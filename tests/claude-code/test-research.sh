@@ -21,7 +21,7 @@ echo ""
 # Test 2: Skill mentions parallel agents
 echo "Test 2: Research skill mentions parallel agents..."
 output=$(run_claude "How does the hyperpowers research skill gather information?" 30)
-if assert_contains "$output" "parallel|agent|codebase|git.*history|framework|best.*practice" "Mentions research agents"; then
+if assert_contains "$output" "parallel\|agent\|codebase\|git.*history\|framework\|best.*practice" "Mentions research agents"; then
     :
 else
     exit 1

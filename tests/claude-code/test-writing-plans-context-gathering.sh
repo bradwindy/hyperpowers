@@ -1,40 +1,28 @@
 #!/usr/bin/env bash
-# Test: writing-plans skill should trigger context gathering phases
+# Test: writing-plans skill should validate requests and check research
 # Scenario: User invokes /write-plan for a feature
-# Expected: Claude announces context gathering, dispatches codebase explorers
-# Baseline behavior: Jumps straight to writing plan without exploration
+# Expected: Claude checks for research, validates request clarity
+# Baseline behavior: Jumps straight to writing plan without research check
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 source "$SCRIPT_DIR/test-helpers.sh"
 
-echo "=== Test: writing-plans context gathering phases ==="
+echo "=== Test: writing-plans research check and clarification ==="
 echo ""
 
-# Test 1: Verify skill describes context gathering phases
-echo "Test 1: Context gathering phases exist..."
+# Test 1: Verify skill describes the research check
+echo "Test 1: Research check phase exists..."
 
-output=$(run_claude "What are the context gathering phases in the writing-plans skill? List them." 30)
+output=$(run_claude "What does the writing-plans skill check for before writing a plan? Describe the phases." 30)
 
-if assert_contains "$output" "Context Gathering\|context gathering" "Mentions context gathering"; then
+if assert_contains "$output" "research\|Research" "Mentions research check"; then
     : # pass
 else
     exit 1
 fi
 
-if assert_contains "$output" "Phase 1\|Codebase Exploration" "Phase 1: Codebase Exploration"; then
-    : # pass
-else
-    exit 1
-fi
-
-if assert_contains "$output" "Phase 2\|Documentation Exploration" "Phase 2: Documentation Exploration"; then
-    : # pass
-else
-    exit 1
-fi
-
-if assert_contains "$output" "Phase 3\|Best Practices\|Examples" "Phase 3: Best Practices & Examples"; then
+if assert_contains "$output" "Phase 0\|clarification\|Clarification" "Mentions Phase 0 or clarification"; then
     : # pass
 else
     exit 1
@@ -42,24 +30,12 @@ fi
 
 echo ""
 
-# Test 2: Verify codebase exploration uses parallel subagents
-echo "Test 2: Codebase exploration uses parallel subagents..."
+# Test 2: Verify research directory is docs/research/
+echo "Test 2: Research directory mentioned..."
 
-output=$(run_claude "In the writing-plans skill, how does Phase 1 (Codebase Exploration) work? Does it use parallel subagents?" 30)
+output=$(run_claude "Where does the writing-plans skill look for research documents?" 30)
 
-if assert_contains "$output" "parallel\|Parallel" "Uses parallel subagents"; then
-    : # pass
-else
-    exit 1
-fi
-
-if assert_contains "$output" "3-5\|3 to 5\|three to five" "Dispatches 3-5 subagents"; then
-    : # pass
-else
-    exit 1
-fi
-
-if assert_contains "$output" "handoff\|handoffs" "Writes to handoff files"; then
+if assert_contains "$output" "docs/research" "Uses docs/research directory"; then
     : # pass
 else
     exit 1
@@ -67,12 +43,12 @@ fi
 
 echo ""
 
-# Test 3: Verify documentation exploration follows codebase exploration
-echo "Test 3: Documentation exploration follows codebase..."
+# Test 3: Verify degraded mode exists when no research
+echo "Test 3: Degraded mode when no research..."
 
-output=$(run_claude "In the writing-plans skill, does Phase 2 use findings from Phase 1?" 60)
+output=$(run_claude "What happens in the writing-plans skill if no research document is found?" 30)
 
-if assert_contains "$output" "from.*codebase\|based on.*codebase\|codebase.*findings\|yes\|Yes" "Docs phase uses codebase findings"; then
+if assert_contains "$output" "degraded\|ask.*user\|lightweight\|proceed without" "Mentions degraded mode or asks user"; then
     : # pass
 else
     exit 1
@@ -80,18 +56,12 @@ fi
 
 echo ""
 
-# Test 4: Verify all three phases must complete before plan writing
-echo "Test 4: All phases required before plan writing..."
+# Test 4: Verify plan saves to docs/plans/
+echo "Test 4: Plan output location..."
 
-output=$(run_claude "In the writing-plans skill, can you start writing the plan before completing all three context gathering phases?" 60)
+output=$(run_claude "Where does the writing-plans skill save the completed plan?" 30)
 
-if assert_contains "$output" "after.*all\|After.*all\|complete.*all.*phases\|all three.*phases\|ALL THREE PHASES\|cannot.*until.*complete" "Must complete all phases"; then
-    : # pass
-else
-    exit 1
-fi
-
-if assert_contains "$output" "summary\|summaries" "Reads summary files"; then
+if assert_contains "$output" "docs/plans" "Saves to docs/plans/"; then
     : # pass
 else
     exit 1
@@ -99,74 +69,38 @@ fi
 
 echo ""
 
-# Test 5: Verify handoff file structure
-echo "Test 5: Handoff file structure..."
-
-output=$(run_claude "In the writing-plans skill context gathering phases, where do subagents write their findings?" 60)
-
-if assert_contains "$output" "docs/handoffs\|docs\/handoffs" "Uses docs/handoffs directory"; then
-    : # pass
-else
-    exit 1
-fi
-
-if assert_contains "$output" "context-codebase\|context-docs\|context-web" "Uses structured naming"; then
-    : # pass
-else
-    exit 1
-fi
-
-echo ""
-
-# Test 6: Verify synthesis files are created between phases
-echo "Test 6: Synthesis files mentioned between phases..."
-
-output=$(run_claude "In the writing-plans skill, what happens after each context gathering phase completes?" 60)
-
-if assert_contains "$output" "summary\|synthesis" "Creates summary/synthesis files"; then
-    : # pass
-else
-    exit 1
-fi
-
-if assert_contains "$output" "context-codebase-summary\|context-docs-summary\|context-web-summary" "Creates specific summary files"; then
-    : # pass
-else
-    exit 1
-fi
-
-if assert_contains "$output" "Read.*handoff\|reads.*handoff" "Reads handoff files"; then
-    : # pass
-else
-    exit 1
-fi
-
-echo ""
-
-# Test 7: Verify plan header includes "Context Gathered From" section
-echo "Test 7: Plan header includes Context Gathered From..."
+# Test 5: Verify plan header includes Context Gathered From
+echo "Test 5: Plan header includes Context Gathered From..."
 
 output=$(run_claude "In the writing-plans skill, what should the plan document header include?" 60)
 
-if assert_contains "$output" "Context Gathered From" "Has 'Context Gathered From' section"; then
+if assert_contains "$output" "Context Gathered From\|Goal\|Architecture\|Tech Stack" "Has required header sections"; then
     : # pass
 else
     exit 1
 fi
 
-if assert_contains "$output" "context-codebase-summary\|Codebase.*summary" "References codebase summary"; then
+echo ""
+
+# Test 6: Verify Issue Context phase exists
+echo "Test 6: Issue context phase exists..."
+
+output=$(run_claude "Does the writing-plans skill include related issues in the plan? How?" 30)
+
+if assert_contains "$output" "issue\|Issue\|Related Issues\|Original Issue" "Mentions issue context"; then
     : # pass
 else
     exit 1
 fi
 
-if assert_contains "$output" "context-docs-summary\|Documentation.*summary" "References docs summary"; then
-    : # pass
-else
-    exit 1
-fi
+echo ""
 
-if assert_contains "$output" "context-web-summary\|Best Practices.*summary" "References web summary"; then
+# Test 7: Verify Phase 0 clarification process
+echo "Test 7: Phase 0 clarification process..."
+
+output=$(run_claude "What is Phase 0 in the writing-plans skill? What does it do?" 30)
+
+if assert_contains "$output" "clarification\|Clarification\|request\|ambiguity\|question" "Mentions request clarification"; then
     : # pass
 else
     exit 1
@@ -216,4 +150,17 @@ fi
 
 echo ""
 
-echo "=== All writing-plans context gathering tests passed ==="
+# Test 9: Verify assumption validation section exists
+echo "Test 9: Assumption validation mentioned..."
+
+output=$(run_claude "Does the writing-plans skill validate assumptions in the plan?" 30)
+
+if assert_contains "$output" "assumption\|Assumption\|validate\|Validate" "Mentions assumption validation"; then
+    : # pass
+else
+    exit 1
+fi
+
+echo ""
+
+echo "=== All writing-plans tests passed ==="
