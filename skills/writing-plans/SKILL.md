@@ -1,6 +1,7 @@
 ---
 name: writing-plans
 description: Use when you have a spec or requirements for a multi-step task, before touching code
+allowed-tools: Read, Grep, Glob, Write, Task, AskUserQuestion
 ---
 
 # Writing Plans
@@ -357,6 +358,47 @@ git commit -m "feat: add specific feature"
 - Exact commands with expected output
 - Reference relevant skills with @ syntax
 - DRY, YAGNI, TDD, frequent commits
+
+## Assumption Validation
+
+Before saving the plan, validate technical assumptions:
+
+1. **Dispatch assumption checker agent**
+   ```
+   Task(description: "Validate plan assumptions",
+        prompt: "[Include full plan content here]
+
+   Validate all technical assumptions in this implementation plan.
+   Return structured output with Validated/Invalid/Unverified sections.",
+        model: "haiku",
+        subagent_type: "hyperpowers:research:assumption-checker")
+   ```
+
+2. **Parse agent output and embed results**
+   - Add "## Validated Assumptions" section after plan tasks
+   - Include all three subsections (✅/❌/⚠️)
+
+3. **If invalid assumptions found**
+   ```
+   AskUserQuestion(
+     questions: [{
+       question: "Found N invalid assumptions in plan. How would you like to proceed?",
+       header: "Assumptions",
+       options: [
+         {label: "Review and address", description: "Pause to fix invalid assumptions before saving"},
+         {label: "Continue anyway", description: "Save plan with invalid assumptions noted"},
+         {label: "Show details", description: "Display full validation report"}
+       ],
+       multiSelect: false
+     }]
+   )
+   ```
+
+4. **Proceed to save after user response**
+
+**Error Handling:**
+- If agent times out: Note "Assumption validation incomplete" in plan, proceed to save
+- If no assumptions found: Note "No technical assumptions to validate" in plan
 
 ## Execution Handoff
 
