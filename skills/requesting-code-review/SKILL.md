@@ -58,7 +58,7 @@ Orchestrator (you) handles synthesis with full reasoning capability.
 | 2 | Summarize what was implemented |
 | 3 | Dispatch 4 parallel review agents |
 | 4 | Synthesize findings by severity |
-| 5 | Check docs/solutions/ for known fixes |
+| 5 | Check docs/hyperpowers/solutions/ for known fixes |
 | 6 | Present unified checklist |
 
 ## How to Request Code Review
@@ -134,9 +134,9 @@ After all agents complete, combine findings by severity:
 
 ### Step 5: Check for Known Solutions
 
-For Critical/Warning findings, check `docs/solutions/` for prior solutions:
+For Critical/Warning findings, check `docs/hyperpowers/solutions/` for prior solutions:
 - If match found: Include link in recommendation
-- Example: "See `docs/solutions/performance-issues/n-plus-one-2026-01-08.md`"
+- Example: "See `docs/hyperpowers/solutions/performance-issues/n-plus-one-2026-01-08.md`"
 
 ### Step 6: Present to User
 
@@ -238,7 +238,7 @@ After agents return, verify synthesis is complete:
 
 - [ ] All 4 agents completed
 - [ ] Findings grouped by severity (Critical/Warning/Suggestion)
-- [ ] Checked docs/solutions/ for known fixes
+- [ ] Checked docs/hyperpowers/solutions/ for known fixes
 - [ ] Unified checklist presented
 
 **STOP CONDITION:** If any agent missing from synthesis, wait or re-dispatch.

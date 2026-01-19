@@ -12,18 +12,18 @@ Write comprehensive implementation plans assuming the engineer has zero context 
 
 Assume they are a skilled developer, but know almost nothing about our toolset or problem domain. Assume they don't know good test design very well.
 
-**Announce at start:** "I'm using the writing-plans skill. Checking for existing research in docs/research/."
+**Announce at start:** "I'm using the writing-plans skill. Checking for existing research in docs/hyperpowers/research/."
 
 **Context:** This should be run in a dedicated worktree (created by brainstorming skill).
 
-**Save plans to:** `docs/plans/YYYY-MM-DD-<feature-name>.md`
+**Save plans to:** `docs/hyperpowers/plans/YYYY-MM-DD-<feature-name>.md`
 
 <requirements>
 ## Requirements
 
 1. Check for existing research before writing plan. Plans without research context may miss critical findings.
 2. Include Original Issue context if available. Missing context = incomplete plan.
-3. Save plan to docs/plans/ before announcing completion.
+3. Save plan to docs/hyperpowers/plans/ before announcing completion.
 </requirements>
 
 ## Phase 0: Request Clarification
@@ -39,7 +39,7 @@ This phase prevents wasted effort by catching ambiguity early. Codebase explorat
 3. **Read exploration findings**: Parse subagent's returned findings (orchestrator writes to handoff file)
 4. **Detect ambiguity**: Flag vague terms, missing boundaries, unclear success criteria using exploration context
 5. **Ask OR proceed**: Use AskUserQuestion for 2-3 targeted questions if unclear; proceed if clear
-6. **Document findings**: Write combined findings to `docs/handoffs/context-clarification.md`
+6. **Document findings**: Write combined findings to `docs/hyperpowers/handoffs/context-clarification.md`
 
 ### When to Ask Questions
 
@@ -74,11 +74,11 @@ Dispatch a single Explore subagent before asking questions:
 - **Template:** `./clarification-explorer-prompt.md`
 - **Dispatch:** Synchronous (wait for results before proceeding)
 
-The subagent returns findings as text. Orchestrator writes findings to `docs/handoffs/context-clarification-exploration.md` then uses them for question design.
+The subagent returns findings as text. Orchestrator writes findings to `docs/hyperpowers/handoffs/context-clarification-exploration.md` then uses them for question design.
 
 ### Output
 
-Write clarification summary to `docs/handoffs/context-clarification.md`. This informs Phase 1 exploration targets.
+Write clarification summary to `docs/hyperpowers/handoffs/context-clarification.md`. This informs Phase 1 exploration targets.
 
 ## Research Check
 
@@ -86,7 +86,7 @@ Before proceeding to plan writing, check for existing research:
 
 ### Step 1: Search for Research Document
 
-Look in `docs/research/` for a matching research document:
+Look in `docs/hyperpowers/research/` for a matching research document:
 - Match by date (recent, within last 7 days)
 - Match by topic keywords in filename
 
@@ -181,11 +181,11 @@ This may indicate context loss. Options:
 
 Proceeding without verification leads to plans that miss context and require rework.
 
-- [ ] Research document exists in docs/research/ OR degraded mode acknowledged
+- [ ] Research document exists in docs/hyperpowers/research/ OR degraded mode acknowledged
 - [ ] Topic is clear (from research or Phase 0 clarification)
 - [ ] Context is sufficient to write specific, actionable tasks
 
-If research exists: Reference `docs/research/YYYY-MM-DD-topic.md`
+If research exists: Reference `docs/hyperpowers/research/YYYY-MM-DD-topic.md`
 If degraded mode: Document limitations in plan header
 </verification>
 
@@ -282,7 +282,7 @@ Incomplete plans require back-and-forth that defeats the purpose of planning.
 **Tech Stack:** [Key technologies/libraries]
 
 **Context Gathered From:**
-- `docs/research/YYYY-MM-DD-topic.md` (if research exists)
+- `docs/hyperpowers/research/YYYY-MM-DD-topic.md` (if research exists)
 - OR: "Degraded mode - limited inline exploration"
 
 ---
@@ -406,27 +406,27 @@ After saving the plan:
 
 **Step 1: Cleanup context gathering files**
 
-Delete all files in `docs/handoffs/` - these are no longer needed once the plan is written:
+Delete all files in `docs/hyperpowers/handoffs/` - these are no longer needed once the plan is written:
 
 ```bash
-rm -rf docs/handoffs/*
+rm -rf docs/hyperpowers/handoffs/*
 ````
 
 **Step 2: Announce completion and provide handoff**
 
 ```
-Plan complete and saved to `docs/plans/<actual-filename>.md`. Context gathering files cleaned up.
+Plan complete and saved to `docs/hyperpowers/plans/<actual-filename>.md`. Context gathering files cleaned up.
 
 To continue:
-/compact ready to implement docs/plans/<actual-filename>.md
-/hyperpowers:execute-plan docs/plans/<actual-filename>.md
+/compact ready to implement docs/hyperpowers/plans/<actual-filename>.md
+/hyperpowers:execute-plan docs/hyperpowers/plans/<actual-filename>.md
 ```
 
 Replace `<actual-filename>` with the real plan path.
 
 ## Cleanup
 
-Delete `docs/handoffs/*` after plan is written (see Execution Handoff above). Stale handoff files cause context confusion in future sessions.
+Delete `docs/hyperpowers/handoffs/*` after plan is written (see Execution Handoff above). Stale handoff files cause context confusion in future sessions.
 
 <requirements>
 ## Requirements Reminder
@@ -434,5 +434,5 @@ Delete `docs/handoffs/*` after plan is written (see Execution Handoff above). St
 Before announcing completion, verify:
 1. Research was checked (or degraded mode acknowledged)
 2. Original Issue context included if available
-3. Plan saved to docs/plans/
+3. Plan saved to docs/hyperpowers/plans/
 </requirements>

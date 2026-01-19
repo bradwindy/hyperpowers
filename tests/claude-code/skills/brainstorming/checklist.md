@@ -17,5 +17,5 @@
 
 ## Design Artifact
 
-- [ ] Design doc saved to `docs/designs/` before any code discussion
+- [ ] Design doc saved to `docs/hyperpowers/designs/` before any code discussion
 - [ ] No code files opened or modified during brainstorming phase

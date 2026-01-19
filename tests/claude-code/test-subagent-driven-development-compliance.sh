@@ -47,12 +47,12 @@ cd "$TEST_PROJECT"
 
 # Clean up any existing test artifacts
 rm -rf src/components/Greeting.tsx src/components/Greeting.test.tsx 2>/dev/null || true
-rm -rf docs/plans/ docs/current-progress.md docs/handoffs/ 2>/dev/null || true
+rm -rf docs/hyperpowers/plans/ docs/hyperpowers/current-progress.md docs/hyperpowers/handoffs/ 2>/dev/null || true
 
 # Create the plan directory and file
-mkdir -p docs/plans
+mkdir -p docs/hyperpowers/plans
 
-cat > docs/plans/greeting-feature.md << 'PLAN_EOF'
+cat > docs/hyperpowers/plans/greeting-feature.md << 'PLAN_EOF'
 # Implementation Plan: User Greeting Feature
 
 **Goal:** Add a greeting feature to the homepage
@@ -114,7 +114,7 @@ PLAN_EOF
 # Create the components directory if it doesn't exist
 mkdir -p src/components
 
-echo "Implementation plan created at docs/plans/greeting-feature.md"
+echo "Implementation plan created at docs/hyperpowers/plans/greeting-feature.md"
 echo ""
 
 # Step 1: Run scenario executing the plan
@@ -123,7 +123,7 @@ echo "(This will execute a 3-task plan with review cycles - may take 10-15 minut
 echo ""
 
 # The prompt triggers the subagent-driven-development skill via /hyperpowers:execute-plan
-USER_PROMPT="Execute the plan at docs/plans/greeting-feature.md using /hyperpowers:execute-plan"
+USER_PROMPT="Execute the plan at docs/hyperpowers/plans/greeting-feature.md using /hyperpowers:execute-plan"
 
 # Run Claude in the test project directory
 # High max-turns needed for: 3 tasks × (implementer + spec review + quality review + possible fixes)
@@ -200,7 +200,7 @@ echo ""
 echo "Step 5: Cleaning up test files..."
 cd "$TEST_PROJECT"
 rm -rf src/components/Greeting.tsx src/components/Greeting.test.tsx 2>/dev/null || true
-rm -rf docs/plans/ docs/current-progress.md docs/handoffs/ 2>/dev/null || true
+rm -rf docs/hyperpowers/plans/ docs/hyperpowers/current-progress.md docs/hyperpowers/handoffs/ 2>/dev/null || true
 # Reset any uncommitted changes
 git checkout -- . 2>/dev/null || true
 # Reset any new commits made during test

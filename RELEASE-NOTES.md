@@ -85,7 +85,7 @@ Description changed to imperative: "You MUST use this before any creative workâ€
 
 - **render-graphs.js** - Tool to extract DOT diagrams from skills and render to SVG
 - **Rationalizations table** in using-hyperpowers - Scannable format including new entries: "I need more context first", "Let me explore first", "This feels productive"
-- **docs/testing.md** - Guide to testing skills with Claude Code integration tests
+- **docs/hyperpowers/testing.md** - Guide to testing skills with Claude Code integration tests
 
 ---
 
@@ -125,7 +125,7 @@ Description changed to imperative: "You MUST use this before any creative workâ€
   - Project-local skills support (`.opencode/skills/`)
   - Shared core module (`lib/skills-core.js`) for code reuse with Codex
   - Automated test suite with proper isolation (`tests/opencode/`)
-  - Platform-specific documentation (`docs/README.opencode.md`, `docs/README.codex.md`)
+  - Platform-specific documentation (`docs/hyperpowers/README.opencode.md`, `docs/hyperpowers/README.codex.md`)
 
 ### Changed
 
@@ -252,7 +252,7 @@ These changes address observed agent behavior where they rationalize around skil
 
 **Design documentation in brainstorming workflow**
 - Added Phase 4: Design Documentation to brainstorming skill
-- Design documents now written to `docs/plans/YYYY-MM-DD-<topic>-design.md` before implementation
+- Design documents now written to `docs/hyperpowers/plans/YYYY-MM-DD-<topic>-design.md` before implementation
 - Restores functionality from original brainstorming command that was lost during skill conversion
 - Documents written before worktree setup and implementation planning
 - Tested with subagent to verify compliance under time pressure
@@ -271,7 +271,7 @@ These changes address observed agent behavior where they rationalize around skil
 **Design vs implementation plan naming**
 - Design documents use `-design.md` suffix to prevent filename collisions
 - Implementation plans continue using existing `YYYY-MM-DD-<feature-name>.md` format
-- Both stored in `docs/plans/` directory with clear naming distinction
+- Both stored in `docs/hyperpowers/plans/` directory with clear naming distinction
 
 ## v3.1.1 (2025-10-17)
 
@@ -494,7 +494,7 @@ If you have an existing installation:
 - Updated Meta skills list
 
 ### Testing Documentation
-- Added comprehensive testing checklist (`docs/TESTING-CHECKLIST.md`)
+- Added comprehensive testing checklist (`docs/hyperpowers/TESTING-CHECKLIST.md`)
 - Created local marketplace config for testing
 - Documented manual testing scenarios
 
@@ -504,7 +504,7 @@ If you have an existing installation:
 
 **Added:**
 - `lib/initialize-skills.sh` - Skills repo initialization and auto-update
-- `docs/TESTING-CHECKLIST.md` - Manual testing scenarios
+- `docs/hyperpowers/TESTING-CHECKLIST.md` - Manual testing scenarios
 - `.claude-plugin/marketplace.json` - Local testing config
 
 **Removed:**

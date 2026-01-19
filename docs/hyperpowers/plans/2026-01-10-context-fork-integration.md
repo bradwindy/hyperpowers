@@ -9,9 +9,9 @@
 **Tech Stack:** Claude Code 2.1+, YAML frontmatter, existing skill infrastructure
 
 **Context Gathered From:**
-- `docs/handoffs/context-codebase-summary.md` - Current subagent dispatch and handoff patterns
-- `docs/handoffs/context-docs-summary.md` - Claude Code 2.1 context:fork feature documentation
-- `docs/handoffs/context-web-summary.md` - Best practices and community feedback
+- `docs/hyperpowers/handoffs/context-codebase-summary.md` - Current subagent dispatch and handoff patterns
+- `docs/hyperpowers/handoffs/context-docs-summary.md` - Claude Code 2.1 context:fork feature documentation
+- `docs/hyperpowers/handoffs/context-web-summary.md` - Best practices and community feedback
 
 ---
 

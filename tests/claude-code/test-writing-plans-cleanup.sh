@@ -10,7 +10,7 @@ source "$SCRIPT_DIR/test-helpers.sh"
 test_cleanup_in_skill() {
     local skill_file="$SCRIPT_DIR/../../skills/writing-plans/SKILL.md"
 
-    if ! grep -q 'rm -rf docs/handoffs/\*' "$skill_file"; then
+    if ! grep -q 'rm -rf docs/hyperpowers/handoffs/\*' "$skill_file"; then
         echo "FAIL: SKILL.md does not contain cleanup command"
         return 1
     fi

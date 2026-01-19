@@ -46,14 +46,14 @@ echo "Step 0: Setting up test environment with research document..."
 cd "$TEST_PROJECT"
 
 # Clean up any previous test artifacts
-rm -rf docs/research/ docs/plans/ docs/handoffs/ 2>/dev/null || true
+rm -rf docs/hyperpowers/research/ docs/hyperpowers/plans/ docs/hyperpowers/handoffs/ 2>/dev/null || true
 
 # Create research directory and document
-mkdir -p docs/research
-mkdir -p docs/plans
+mkdir -p docs/hyperpowers/research
+mkdir -p docs/hyperpowers/plans
 
 # Create the research document that the plan should consume
-cat > docs/research/2026-01-13-user-preferences.md << 'RESEARCH_EOF'
+cat > docs/hyperpowers/research/2026-01-13-user-preferences.md << 'RESEARCH_EOF'
 # User Preferences Feature Research
 
 ## Date
@@ -94,7 +94,7 @@ RESEARCH_EOF
 git add docs/ 2>/dev/null || true
 git commit -m "Add research document for preferences feature" 2>/dev/null || true
 
-echo "Research document created at docs/research/2026-01-13-user-preferences.md"
+echo "Research document created at docs/hyperpowers/research/2026-01-13-user-preferences.md"
 echo ""
 
 # Step 1: Run scenario asking Claude to write a plan
@@ -179,7 +179,7 @@ echo ""
 # Step 5: Cleanup - remove test files
 echo "Step 5: Cleaning up test files..."
 cd "$TEST_PROJECT"
-rm -rf docs/research/ docs/plans/ docs/handoffs/ 2>/dev/null || true
+rm -rf docs/hyperpowers/research/ docs/hyperpowers/plans/ docs/hyperpowers/handoffs/ 2>/dev/null || true
 # Reset any uncommitted changes
 git checkout -- . 2>/dev/null || true
 # Reset any new commits made during test

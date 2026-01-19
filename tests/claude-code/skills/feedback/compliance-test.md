@@ -7,7 +7,7 @@ Verify agent follows feedback skill correctly after implementation.
 
 **Input:**
 ```
-/hyperpowers:feedback docs/designs/2026-01-11-test-feature-design.md
+/hyperpowers:feedback docs/hyperpowers/designs/2026-01-11-test-feature-design.md
 
 Make the authentication more secure.
 ```
@@ -90,8 +90,8 @@ The Architecture section seems verbose. Clean it up.
 
 ```bash
 # Create test fixture
-mkdir -p docs/designs
-cat > docs/designs/2026-01-11-test-feature-design.md << 'EOF'
+mkdir -p docs/hyperpowers/designs
+cat > docs/hyperpowers/designs/2026-01-11-test-feature-design.md << 'EOF'
 # Test Feature Design
 
 > Generated: 2026-01-11

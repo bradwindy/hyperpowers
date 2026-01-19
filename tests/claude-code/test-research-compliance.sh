@@ -46,14 +46,14 @@ echo "Step 0: Setting up test environment with design document..."
 cd "$TEST_PROJECT"
 
 # Clean up any previous test artifacts
-rm -rf docs/designs/ docs/research/ 2>/dev/null || true
+rm -rf docs/hyperpowers/designs/ docs/hyperpowers/research/ 2>/dev/null || true
 
 # Create design directory and document
-mkdir -p docs/designs
-mkdir -p docs/research
+mkdir -p docs/hyperpowers/designs
+mkdir -p docs/hyperpowers/research
 
 # Create the design document for research
-cat > docs/designs/2026-01-13-notification-system-design.md << 'DESIGN_EOF'
+cat > docs/hyperpowers/designs/2026-01-13-notification-system-design.md << 'DESIGN_EOF'
 # Notification System Design
 
 ## Date
@@ -89,7 +89,7 @@ DESIGN_EOF
 git add docs/ 2>/dev/null || true
 git commit -m "Add design document for notification system" 2>/dev/null || true
 
-echo "Design document created at docs/designs/2026-01-13-notification-system-design.md"
+echo "Design document created at docs/hyperpowers/designs/2026-01-13-notification-system-design.md"
 echo ""
 
 # Step 1: Run scenario asking Claude to research the design
@@ -174,7 +174,7 @@ echo ""
 # Step 5: Cleanup - remove test files
 echo "Step 5: Cleaning up test files..."
 cd "$TEST_PROJECT"
-rm -rf docs/designs/ docs/research/ 2>/dev/null || true
+rm -rf docs/hyperpowers/designs/ docs/hyperpowers/research/ 2>/dev/null || true
 # Reset any uncommitted changes
 git checkout -- . 2>/dev/null || true
 # Reset any new commits made during test

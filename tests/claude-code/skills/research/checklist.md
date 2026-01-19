@@ -51,7 +51,7 @@
 - [ ] Architecture Boundaries Analysis section present with agent attribution
 - [ ] Edge Cases & Gotchas section synthesizes from multiple agents
 - [ ] Open Questions section identifies unresolved items
-- [ ] Research doc saved to docs/research/ directory
+- [ ] Research doc saved to docs/hyperpowers/research/ directory
 
 ## Assumption Validation Gate (COMPULSORY)
 - [ ] Assumption checker agent dispatched after synthesis

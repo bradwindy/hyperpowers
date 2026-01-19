@@ -120,11 +120,11 @@ Complete each phase before proceeding to the next. Skipping phases means missing
 
 ## Pre-Phase 1: Solution Search
 
-Before starting fresh investigation, check `docs/solutions/` for matching symptoms:
+Before starting fresh investigation, check `docs/hyperpowers/solutions/` for matching symptoms:
 
 ```bash
 # Search by error message or symptom
-grep -ri "error text" docs/solutions/
+grep -ri "error text" docs/hyperpowers/solutions/
 ```
 
 If solution found and applies, try it first. If unsuccessful, note what didn't work and proceed to Phase 1.

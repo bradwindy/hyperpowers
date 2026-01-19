@@ -9,7 +9,7 @@ Establish baseline agent behavior WITHOUT the feedback skill to identify rationa
 
 **Input:**
 ```
-Here's a design document at docs/designs/2026-01-11-test-feature-design.md.
+Here's a design document at docs/hyperpowers/designs/2026-01-11-test-feature-design.md.
 
 Actually, make the error handling more robust.
 ```

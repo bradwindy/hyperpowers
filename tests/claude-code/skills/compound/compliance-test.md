@@ -29,7 +29,7 @@ When the user says "that worked!", WITH reinforcement gates present, the skill M
 - [ ] **STOP CONDITION:** If ANY checkbox is unchecked, do NOT save. Complete missing section(s) first.
 
 ### Pattern Detection Gate (COMPULSORY after saving)
-- [ ] Ran `ls docs/solutions/{category}/ | wc -l`
+- [ ] Ran `ls docs/hyperpowers/solutions/{category}/ | wc -l`
 - [ ] If 3+: Noted pattern to user
 - [ ] **STOP CONDITION:** If pattern detection skipped, go back and run it.
 
@@ -59,7 +59,7 @@ When the user says "that worked!", WITH reinforcement gates present, the skill M
    - Example: "Code review checklist: verify all imports"
 
 6. **Pattern Detection** - Evidence of running the check:
-   - Command executed: `ls docs/solutions/{category}/ | wc -l`
+   - Command executed: `ls docs/hyperpowers/solutions/{category}/ | wc -l`
    - Output quoted: "Found 5 similar issues in runtime-errors"
    - Action taken: "This is the 5th runtime-errors issue with undefined variables"
 

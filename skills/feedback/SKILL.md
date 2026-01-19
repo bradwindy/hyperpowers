@@ -50,7 +50,7 @@ Enable iterative refinement of design, research, and plan documents through natu
 **Don't use when:**
 - Feedback is about code files (this skill is for design artifacts only)
 - User wants to start fresh with a new design (use brainstorming instead)
-- Document doesn't exist in `docs/designs/`, `docs/research/`, or `docs/plans/`
+- Document doesn't exist in `docs/hyperpowers/designs/`, `docs/hyperpowers/research/`, or `docs/hyperpowers/plans/`
 
 ## Implicit Trigger Detection
 
@@ -78,13 +78,13 @@ Read the target document and parse the user's natural language feedback.
 3. Whether research is needed to fulfill the request
 
 **Document Detection:**
-- `docs/designs/` → design document → next stage is `/hyperpowers:research`
-- `docs/research/` → research document → next stage is `/hyperpowers:writing-plans`
-- `docs/plans/` → plan document → next stage is `/hyperpowers:subagent-driven-development`
+- `docs/hyperpowers/designs/` → design document → next stage is `/hyperpowers:research`
+- `docs/hyperpowers/research/` → research document → next stage is `/hyperpowers:writing-plans`
+- `docs/hyperpowers/plans/` → plan document → next stage is `/hyperpowers:subagent-driven-development`
 
 **If document not found:** Stop and inform user: "Document not found at [path]. Please provide a valid path to a design, research, or plan document."
 
-**If unsupported location:** Stop and inform user: "Feedback skill only supports documents in docs/designs/, docs/research/, or docs/plans/."
+**If unsupported location:** Stop and inform user: "Feedback skill only supports documents in docs/hyperpowers/designs/, docs/hyperpowers/research/, or docs/hyperpowers/plans/."
 
 ### Phase 2: Clarify (if needed)
 
@@ -244,9 +244,9 @@ Would you like to:
 ```
 
 **Next stage options (context-aware):**
-- Design doc (`docs/designs/`) → "Move to research (`/hyperpowers:research`)"
-- Research doc (`docs/research/`) → "Move to planning (`/hyperpowers:writing-plans`)"
-- Plan doc (`docs/plans/`) → "Move to implementation (`/hyperpowers:subagent-driven-development`)"
+- Design doc (`docs/hyperpowers/designs/`) → "Move to research (`/hyperpowers:research`)"
+- Research doc (`docs/hyperpowers/research/`) → "Move to planning (`/hyperpowers:writing-plans`)"
+- Plan doc (`docs/hyperpowers/plans/`) → "Move to implementation (`/hyperpowers:subagent-driven-development`)"
 
 **If user chooses option 1:** Return to Phase 1 with new feedback.
 
@@ -310,7 +310,7 @@ Stop and reconsider if you catch yourself:
 | Batching changes as all-or-nothing | User cannot selectively accept changes | One change at a time, wait for response |
 | Skipping clarification when ambiguous | Changes may not match user intent | Ask questions if confidence < 85% |
 | "I understood the feedback" without asking | Assumptions lead to rework | If unsure, ask for clarification |
-| Modifying code files | Skill is for design artifacts only | Only modify docs/designs/, docs/research/, docs/plans/ |
+| Modifying code files | Skill is for design artifacts only | Only modify docs/hyperpowers/designs/, docs/hyperpowers/research/, docs/hyperpowers/plans/ |
 | Restructuring document format | Loses established document structure | Add content, preserve existing structure |
 | Dispatching full research for simple feedback | Wastes tokens and time | Use Tier 1/2, reserve Tier 3 for major scope changes |
 | Creating new documents instead of modifying | Loses document history and changelog | Modify existing document, update changelog |

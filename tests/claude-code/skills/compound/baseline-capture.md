@@ -15,7 +15,7 @@ Debug and fix a bug, then say "that worked!" to trigger skill
 - Solution has step-by-step instructions
 - Prevention section exists with actionable items
 - Pattern Detection Gate runs
-- Solution doc saved to docs/solutions/
+- Solution doc saved to docs/hyperpowers/solutions/
 
 ### What Currently Happens (Observed/Likely)
 - May skip capture entirely without the "compound" skill invocation

@@ -37,7 +37,7 @@ that worked!
 - The bug involves an undefined variable in a React component
 - The debugging process should involve multiple attempts
 - After the fix, the phrase "that worked!" should trigger the compound skill
-- The compound skill should create a solution document in docs/solutions/
+- The compound skill should create a solution document in docs/hyperpowers/solutions/
 
 ## Single-Turn Test Prompt
 

@@ -99,7 +99,7 @@ Task tool (general-purpose):
 
     ## Write Handoff File
 
-    After self-review, write your implementation report to `docs/handoffs/task-N-impl.md`:
+    After self-review, write your implementation report to `docs/hyperpowers/handoffs/task-N-impl.md`:
 
     ```markdown
     # Task N Implementation Report
@@ -157,7 +157,7 @@ Task tool (general-purpose):
     ## Report Format
 
     When done, report:
-    - Handoff file written to: docs/handoffs/task-N-impl.md
+    - Handoff file written to: docs/hyperpowers/handoffs/task-N-impl.md
     - Commit SHA
     - Any blockers or questions for orchestrator
 ```

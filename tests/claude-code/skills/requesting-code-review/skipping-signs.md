@@ -28,7 +28,7 @@
 - No attribution to source reviewer
 
 ### Skipped Review Steps
-- No docs/solutions/ check for known fixes
+- No docs/hyperpowers/solutions/ check for known fixes
 - Review findings not presented to user
 - Skipped waiting for all agents to complete
 

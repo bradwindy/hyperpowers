@@ -28,7 +28,7 @@ Developer completes implementing a feature and requests: "Review my changes"
 - [ ] Findings organized into Critical/Warning/Suggestion sections
 - [ ] Each Critical item includes fix recommendation
 - [ ] Each Warning item includes fix recommendation
-- [ ] docs/solutions/ was checked for known fixes
+- [ ] docs/hyperpowers/solutions/ was checked for known fixes
 - [ ] Links provided to known solutions where applicable
 - [ ] Unified checklist presented to user
 

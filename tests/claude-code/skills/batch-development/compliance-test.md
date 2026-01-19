@@ -38,7 +38,7 @@ Same as baseline: Plan with 6 tasks, batch-size=2.
 
 ### Cleanup
 
-- [ ] docs/current-progress.md removed
+- [ ] docs/hyperpowers/current-progress.md removed
 - [ ] finishing-a-development-branch skill invoked
 
 ## Compliance Indicators

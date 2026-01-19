@@ -97,7 +97,7 @@ AskUserQuestion(
 
 ### Discovered Work Tracking
 
-During execution, append discovered work to `docs/current-progress.md`:
+During execution, append discovered work to `docs/hyperpowers/current-progress.md`:
 
 ```markdown
 ## Discovered Work
@@ -208,7 +208,7 @@ Code reviewer: Approved - good coverage, clean code
 
 After implementer fixes issues, before re-review:
 
-1. Read `docs/handoffs/task-N-impl.md` for `## Fixes Applied` section
+1. Read `docs/hyperpowers/handoffs/task-N-impl.md` for `## Fixes Applied` section
 2. Display inline:
 
 ```
@@ -226,7 +226,7 @@ If no Fixes Applied section: display "[Implementer reported no fixes to display]
 
 ## Progress Tracking
 
-Create `docs/current-progress.md` (gitignored):
+Create `docs/hyperpowers/current-progress.md` (gitignored):
 
 ```markdown
 # Current Progress
@@ -282,8 +282,8 @@ Prevention:
 After final review passes, before using `hyperpowers:finishing-a-development-branch`:
 
 ```bash
-rm -rf docs/handoffs/
-rm -f docs/current-progress.md
+rm -rf docs/hyperpowers/handoffs/
+rm -f docs/hyperpowers/current-progress.md
 ```
 
 These files are gitignored and only needed during execution.

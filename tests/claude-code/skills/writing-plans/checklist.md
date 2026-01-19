@@ -2,7 +2,7 @@
 
 ## Handoff Consumption Gate (COMPULSORY)
 - [ ] Skill announcement made ("I'm using the writing-plans skill")
-- [ ] Research document search performed (looked in docs/research/)
+- [ ] Research document search performed (looked in docs/hyperpowers/research/)
 - [ ] Research document path explicitly stated (exact path quoted)
 - [ ] Key findings from research quoted in plan (verbatim text from research)
 - [ ] Architecture patterns from research referenced in plan
@@ -57,4 +57,4 @@
 - [ ] Session shows plan with proper header structure
 - [ ] Session shows tasks with complete code blocks
 - [ ] Session shows exact file paths (not vague references)
-- [ ] Plan saved to docs/plans/ directory
+- [ ] Plan saved to docs/hyperpowers/plans/ directory

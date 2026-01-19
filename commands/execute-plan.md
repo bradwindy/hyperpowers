@@ -8,7 +8,7 @@ Execute an implementation plan. First, determine which execution style to use.
 
 ## Step 1: Parse Arguments
 
-- Plan path: First non-flag argument (e.g., `docs/plans/feature.md`)
+- Plan path: First non-flag argument (e.g., `docs/hyperpowers/plans/feature.md`)
 - `--batch-size=N`: Optional, passed to batch-development (default: 3)
 
 ## Step 2: Present Choice (MANDATORY)

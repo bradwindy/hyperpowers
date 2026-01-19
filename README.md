@@ -94,7 +94,7 @@ Tell Codex:
 Fetch and follow instructions from https://raw.githubusercontent.com/bradwindy/hyperpowers/refs/heads/main/.codex/INSTALL.md
 ```
 
-**Detailed docs:** [docs/README.codex.md](docs/README.codex.md)
+**Detailed docs:** [docs/hyperpowers/README.codex.md](docs/hyperpowers/README.codex.md)
 
 ### OpenCode
 
@@ -104,7 +104,7 @@ Tell OpenCode:
 Fetch and follow instructions from https://raw.githubusercontent.com/bradwindy/hyperpowers/refs/heads/main/.opencode/INSTALL.md
 ```
 
-**Detailed docs:** [docs/README.opencode.md](docs/README.opencode.md)
+**Detailed docs:** [docs/hyperpowers/README.opencode.md](docs/hyperpowers/README.opencode.md)
 
 ## The Basic Workflow
 
@@ -167,11 +167,11 @@ Hyperpowers includes significant enhancements over the original Superpowers proj
 
 **Deep Research Before Planning**
 - **4 Parallel Research Agents**: Codebase analyst, git history analyzer, framework docs researcher, and best practices researcher work simultaneously
-- **Persistent Research Documents**: Findings saved to `docs/research/` for reference during implementation
+- **Persistent Research Documents**: Findings saved to `docs/hyperpowers/research/` for reference during implementation
 - **Planning Integration**: Writing-plans skill automatically incorporates research findings
 
 **Subagent Communication**
-- **File-Based Handoffs**: Structured `docs/handoffs/` directory for subagent communication, reducing token usage
+- **File-Based Handoffs**: Structured `docs/hyperpowers/handoffs/` directory for subagent communication, reducing token usage
 - **Progress Tracking**: Gitignored state file for session resumability
 - **Context Curation Guidelines**: Best practices for minimal, focused context passing
 
@@ -181,7 +181,7 @@ Hyperpowers includes significant enhancements over the original Superpowers proj
 - **Anti-Performative-Agreement**: Code review skills require verification, not automatic acceptance
 
 **Knowledge Management**
-- **Solution Capture**: Auto-captures debugging solutions into searchable `docs/solutions/` knowledge base with pattern detection
+- **Solution Capture**: Auto-captures debugging solutions into searchable `docs/hyperpowers/solutions/` knowledge base with pattern detection
 - **Specialized Code Review**: 4 parallel review agents (security, performance, style, test) replace single reviewer
 
 **Cost & Speed Optimization**

@@ -5,7 +5,7 @@ This test runs in the test project directory with a pre-existing design document
 The design document contains open questions that should be investigated by the research agents.
 
 ## Pre-Test Setup Script Must:
-1. Create a design document at `docs/designs/2026-01-13-notification-system-design.md`
+1. Create a design document at `docs/hyperpowers/designs/2026-01-13-notification-system-design.md`
 2. The design document contains:
    - Feature description (notification system)
    - Initial architecture thoughts
@@ -26,7 +26,7 @@ The design document contains open questions that should be investigated by the r
   - Cite EACH agent's findings by name with quotes
   - Identify contradictions/nuances between agents
   - Address open questions from design
-  - Save research document to docs/research/
+  - Save research document to docs/hyperpowers/research/
 
 ## Test Duration
 Expected: 15-20 minutes (8 parallel agents + synthesis)

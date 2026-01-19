@@ -6,7 +6,7 @@
 - Solution doc not created after recognizing non-trivial problem
 - Solution doc missing required sections (Symptoms, Failed Attempts, Root Cause, Solution, Prevention)
 - Root cause is superficial ("fixed the typo", "moved the variable") without explaining WHY
-- Pattern detection not executed (no `ls docs/solutions/` or similar command)
+- Pattern detection not executed (no `ls docs/hyperpowers/solutions/` or similar command)
 
 ## Rationalization Patterns
 

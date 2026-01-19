@@ -26,7 +26,7 @@ Execute plans in batches with human checkpoints between each batch.
 
 ## Arguments
 
-- Plan path: First argument (e.g., `docs/plans/feature.md`)
+- Plan path: First argument (e.g., `docs/hyperpowers/plans/feature.md`)
 - `--batch-size=N`: Number of tasks per batch (default: 3)
 
 ## The Process
@@ -140,7 +140,7 @@ Only execute after user approval via AskUserQuestion response.
 For each batch of N tasks:
 
 1. **Execute tasks sequentially** - Follow each step in the plan precisely
-2. **Track progress** - Update `docs/current-progress.md` after each task
+2. **Track progress** - Update `docs/hyperpowers/current-progress.md` after each task
 3. **Note discovered work** - Append to progress file if work uncovers new requirements
 
 <verification>
@@ -187,13 +187,13 @@ Proceeding without AskUserQuestion response bypasses human control. Plain text q
 
 ## Progress Tracking
 
-Create `docs/current-progress.md` (gitignored) for session state:
+Create `docs/hyperpowers/current-progress.md` (gitignored) for session state:
 
 ```markdown
 # Current Progress
 
 ## Plan
-docs/plans/feature-plan.md
+docs/hyperpowers/plans/feature-plan.md
 
 ## Batch Size
 3
@@ -220,7 +220,7 @@ Tasks 4-6
 
 During task execution, when work uncovers something that should be tracked:
 
-Append to `docs/current-progress.md`:
+Append to `docs/hyperpowers/current-progress.md`:
 
 ```markdown
 ## Discovered Work
@@ -243,10 +243,10 @@ After verification-before-completion passes and before using
 `hyperpowers:finishing-a-development-branch`, clean up transient files:
 
 ```bash
-rm -f docs/current-progress.md
+rm -f docs/hyperpowers/current-progress.md
 ```
 
-Note: `docs/handoffs/` cleanup not needed - batch-development doesn't
+Note: `docs/hyperpowers/handoffs/` cleanup not needed - batch-development doesn't
 create handoff files (those are for subagent communication).
 
 ## Finish

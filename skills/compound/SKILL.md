@@ -41,7 +41,7 @@ Captures solutions from debugging sessions into a searchable knowledge base. Aut
 
 Do NOT capture if:
 - Fix was trivial (typo, missing import, obvious error)
-- Solution is already documented in `docs/solutions/`
+- Solution is already documented in `docs/hyperpowers/solutions/`
 - Problem was user error, not a real issue
 
 ## The Process
@@ -73,7 +73,7 @@ Categorize the issue into one of 9 categories:
 
 ### Step 3: Create Solution Document
 
-Write to `docs/solutions/{category}/{descriptive-name}-YYYY-MM-DD.md`:
+Write to `docs/hyperpowers/solutions/{category}/{descriptive-name}-YYYY-MM-DD.md`:
 
 ```markdown
 # [Searchable Title - Include Error Message or Symptom]
@@ -116,7 +116,7 @@ Write to `docs/solutions/{category}/{descriptive-name}-YYYY-MM-DD.md`:
 After saving, check if 3+ solutions exist in the same category with similar symptoms:
 
 ```bash
-ls docs/solutions/{category}/ | wc -l
+ls docs/hyperpowers/solutions/{category}/ | wc -l
 ```
 
 If pattern detected (3+ similar issues):
@@ -124,7 +124,7 @@ If pattern detected (3+ similar issues):
 
 ### Step 5: Announce Completion
 
-"Solution captured to `docs/solutions/{category}/{filename}.md`. This will help if similar issues arise."
+"Solution captured to `docs/hyperpowers/solutions/{category}/{filename}.md`. This will help if similar issues arise."
 
 ## Quick Reference
 
@@ -139,7 +139,7 @@ If pattern detected (3+ similar issues):
 ## Solution Categories
 
 ```
-docs/solutions/
+docs/hyperpowers/solutions/
 ├── build-errors/
 ├── test-failures/
 ├── runtime-errors/
@@ -176,7 +176,7 @@ If any checkbox is unchecked, complete missing section(s) before saving. Incompl
 
 **Pattern Detection Gate (after saving):**
 
-- [ ] Ran `ls docs/solutions/{category}/ | wc -l`
+- [ ] Ran `ls docs/hyperpowers/solutions/{category}/ | wc -l`
 - [ ] If 3+, noted pattern to user
 
 Skipping pattern detection misses opportunities to address systemic issues.
@@ -186,7 +186,7 @@ Skipping pattern detection misses opportunities to address systemic issues.
 
 **With systematic-debugging:** After debugging completes, compound skill captures the solution.
 
-**With code review:** Reviewers can reference solutions: "See `docs/solutions/performance-issues/n-plus-one-2026-01-08.md`"
+**With code review:** Reviewers can reference solutions: "See `docs/hyperpowers/solutions/performance-issues/n-plus-one-2026-01-08.md`"
 
 <requirements>
 ## Requirements Reminder

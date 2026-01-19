@@ -41,9 +41,9 @@ fi
 echo ""
 
 # Test 4: Skill mentions output location
-echo "Test 4: Compound skill saves to docs/solutions/..."
+echo "Test 4: Compound skill saves to docs/hyperpowers/solutions/..."
 output=$(run_claude "Where does the hyperpowers compound skill save solutions?" 30)
-if assert_contains "$output" "docs/solutions" "Saves to docs/solutions/"; then
+if assert_contains "$output" "docs/hyperpowers/solutions" "Saves to docs/hyperpowers/solutions/"; then
     :
 else
     exit 1

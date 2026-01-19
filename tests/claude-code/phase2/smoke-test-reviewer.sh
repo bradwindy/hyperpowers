@@ -74,9 +74,9 @@ The application needs a user-controlled dark mode toggle that persists preferenc
 
 **Design Gate: COMPLETE** - All 5 sections present.
 
-I will now save this design to docs/designs/dark-mode-toggle.md before any implementation.
+I will now save this design to docs/hyperpowers/designs/dark-mode-toggle.md before any implementation.
 
-[Write tool: docs/designs/dark-mode-toggle.md]
+[Write tool: docs/hyperpowers/designs/dark-mode-toggle.md]
 
 Design saved. Ready for implementation phase when you approve.
 '
@@ -95,7 +95,7 @@ CHECKLIST='
 - [ ] Open Questions section included
 
 ## Design Artifact
-- [ ] Design doc saved to docs/designs/ before any code discussion
+- [ ] Design doc saved to docs/hyperpowers/designs/ before any code discussion
 - [ ] No code files opened or modified during brainstorming phase
 '
 

@@ -37,7 +37,7 @@ Great, I'll design with persistence in mind.
 ## Design Gate
 Now I'll create the design document with all required sections.
 
-Creating docs/designs/2026-01-13-dark-mode-toggle.md:
+Creating docs/hyperpowers/designs/2026-01-13-dark-mode-toggle.md:
 
 # Dark Mode Toggle Design
 

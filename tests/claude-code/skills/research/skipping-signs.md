@@ -84,7 +84,7 @@ For a PASS verdict, the session MUST show:
    - Each section has substantive content
    - Clear agent attribution in each section
    - Open questions addressed or carried forward
-   - Document saved to docs/research/
+   - Document saved to docs/hyperpowers/research/
 
 ## Critical Checks
 

@@ -41,9 +41,9 @@ echo ""
 
 # Step 0: Create the design document that will receive feedback
 echo "Step 0: Creating design document for feedback..."
-mkdir -p "$TEST_PROJECT/docs/designs"
+mkdir -p "$TEST_PROJECT/docs/hyperpowers/designs"
 
-cat > "$TEST_PROJECT/docs/designs/2026-01-13-data-fetching.md" << 'DESIGN_EOF'
+cat > "$TEST_PROJECT/docs/hyperpowers/designs/2026-01-13-data-fetching.md" << 'DESIGN_EOF'
 # Data Fetching Design
 
 ## Problem Statement
@@ -84,7 +84,7 @@ function ProfilePage() {
 - What's the appropriate timeout?
 DESIGN_EOF
 
-echo "Design document created at $TEST_PROJECT/docs/designs/2026-01-13-data-fetching.md"
+echo "Design document created at $TEST_PROJECT/docs/hyperpowers/designs/2026-01-13-data-fetching.md"
 echo ""
 
 # Step 1: Run scenario in test project
@@ -94,7 +94,7 @@ echo ""
 
 # The feedback should trigger the feedback skill
 # Key test: per-change approval, diff format, changelog update
-USER_PROMPT="I'd like to give feedback on docs/designs/2026-01-13-data-fetching.md: Change the data fetching approach to use React Query instead of useEffect"
+USER_PROMPT="I'd like to give feedback on docs/hyperpowers/designs/2026-01-13-data-fetching.md: Change the data fetching approach to use React Query instead of useEffect"
 
 # Run Claude in the test project directory with the scenario
 # More turns needed for interactive approval flow

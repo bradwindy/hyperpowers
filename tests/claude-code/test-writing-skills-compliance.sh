@@ -46,7 +46,7 @@ cd "$TEST_PROJECT"
 
 # Clean up any existing skill-related directories
 rm -rf skills/ ~/.claude/skills/lint-before-commit/ 2>/dev/null || true
-rm -rf docs/tests/ tests/skills/ 2>/dev/null || true
+rm -rf docs/hyperpowers/tests/ tests/skills/ 2>/dev/null || true
 
 # Create skills directory for the test skill to be written
 mkdir -p skills
@@ -137,7 +137,7 @@ echo ""
 echo "Step 5: Cleaning up test files..."
 cd "$TEST_PROJECT"
 rm -rf skills/ 2>/dev/null || true
-rm -rf docs/tests/ tests/skills/ 2>/dev/null || true
+rm -rf docs/hyperpowers/tests/ tests/skills/ 2>/dev/null || true
 # Reset any uncommitted changes
 git checkout -- . 2>/dev/null || true
 # Reset any new commits made during test

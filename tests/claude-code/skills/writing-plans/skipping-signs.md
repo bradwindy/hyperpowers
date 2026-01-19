@@ -44,7 +44,7 @@
 
 | Pattern | What They Say | What They Should Do |
 |---------|---------------|---------------------|
-| "Obviously referenced" | "I based this on the research" | Explicitly quote: "Research found X (docs/research/...)" |
+| "Obviously referenced" | "I based this on the research" | Explicitly quote: "Research found X (docs/hyperpowers/research/...)" |
 | "Implicit context" | "The plan reflects the findings" | Show exact citations with file paths |
 | "Brevity" | "Adding quotes would bloat the plan" | Quotes provide traceability - include them |
 | "Self-evident" | "The code speaks for itself" | Include complete code, not placeholders |
@@ -78,7 +78,7 @@ For a PASS verdict, the session MUST show:
 ### Research Citation Check
 The plan MUST include text like:
 - "Research found..." or "According to research..."
-- Explicit path: `docs/research/2026-01-13-user-preferences.md`
+- Explicit path: `docs/hyperpowers/research/2026-01-13-user-preferences.md`
 - Quoted findings from the research document
 
 If the plan doesn't explicitly cite the research document = FAIL

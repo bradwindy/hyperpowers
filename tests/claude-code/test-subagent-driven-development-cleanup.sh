@@ -6,11 +6,11 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/test-helpers.sh"
 
-# Test: SKILL.md contains cleanup command for docs/handoffs/
+# Test: SKILL.md contains cleanup command for docs/hyperpowers/handoffs/
 test_cleanup_handoffs() {
     local skill_file="$SCRIPT_DIR/../../skills/subagent-driven-development/SKILL.md"
 
-    if ! grep -q 'rm -rf docs/handoffs/' "$skill_file"; then
+    if ! grep -q 'rm -rf docs/hyperpowers/handoffs/' "$skill_file"; then
         echo "FAIL: SKILL.md does not contain handoffs cleanup command"
         return 1
     fi
@@ -19,11 +19,11 @@ test_cleanup_handoffs() {
     return 0
 }
 
-# Test: SKILL.md contains cleanup command for docs/current-progress.md
+# Test: SKILL.md contains cleanup command for docs/hyperpowers/current-progress.md
 test_cleanup_progress() {
     local skill_file="$SCRIPT_DIR/../../skills/subagent-driven-development/SKILL.md"
 
-    if ! grep -q 'rm -f docs/current-progress.md' "$skill_file"; then
+    if ! grep -q 'rm -f docs/hyperpowers/current-progress.md' "$skill_file"; then
         echo "FAIL: SKILL.md does not contain progress file cleanup command"
         return 1
     fi

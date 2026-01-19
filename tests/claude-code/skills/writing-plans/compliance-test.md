@@ -13,7 +13,7 @@ User requests: "Write a plan based on this research"
 ### Research Consumption Gate Evidence
 
 The skill should:
-1. **State research document path explicitly** - Quote: "docs/research/YYYY-MM-DD-..."
+1. **State research document path explicitly** - Quote: "docs/hyperpowers/research/YYYY-MM-DD-..."
 2. **Quote key findings** - Reference specific sections from research with quotes
 3. **Trace architecture to findings** - Explain why architecture was chosen based on research
 4. **Address open questions** - Either answer or carry forward questions from research

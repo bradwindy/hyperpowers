@@ -164,7 +164,7 @@ Also added:
 
 ### Phase 3 - Finalization
 - `skills/writing-skills/SKILL.md` - Added Proven Reinforcement Patterns (238 lines)
-- `docs/summaries/hyperpowers-dvi-summary.md` - This summary
+- `docs/hyperpowers/summaries/hyperpowers-dvi-summary.md` - This summary
 
 ## Conclusion
 

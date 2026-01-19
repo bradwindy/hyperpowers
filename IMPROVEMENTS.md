@@ -64,7 +64,7 @@ Completely redesigned context gathering with parallel subagent exploration acros
    - Potential pitfalls and anti-patterns
 
 **Supporting Infrastructure:**
-- **Handoff Files**: Subagents write findings to `docs/handoffs/` directory for structured communication
+- **Handoff Files**: Subagents write findings to `docs/hyperpowers/handoffs/` directory for structured communication
 - **Context Synthesis Template**: Orchestrator synthesizes all findings into actionable summary
 - **Plan Header References**: Generated plans reference the context sources used
 - **Automatic Cleanup**: All handoff files are deleted after plan completion to prevent stale artifacts
@@ -103,8 +103,8 @@ Major enhancements to how the orchestrator communicates with and manages subagen
 Replaced inline context passing with structured file-based communication.
 
 **Components:**
-- **Progress Tracking File** (`docs/current-progress.md`): Gitignored file for agent state management with status flags (PENDING, IN_PROGRESS, READY_FOR_SPEC_REVIEW, etc.)
-- **Handoff Files** (`docs/handoffs/task-N-impl.md`): Implementers write completion reports here; reviewers read from these files
+- **Progress Tracking File** (`docs/hyperpowers/current-progress.md`): Gitignored file for agent state management with status flags (PENDING, IN_PROGRESS, READY_FOR_SPEC_REVIEW, etc.)
+- **Handoff Files** (`docs/hyperpowers/handoffs/task-N-impl.md`): Implementers write completion reports here; reviewers read from these files
 - **Handoffs Directory**: Dedicated directory with `.gitkeep` for subagent communication
 
 **Benefits:**
@@ -381,14 +381,14 @@ The research skill dispatches specialized agents simultaneously to analyze diffe
 ### Persistent Research Documents
 
 Research findings are saved for reference during implementation:
-- Location: `docs/research/YYYY-MM-DD-<topic-slug>.md`
+- Location: `docs/hyperpowers/research/YYYY-MM-DD-<topic-slug>.md`
 - Contains synthesized findings from all 4 agents
 - Structured sections: Executive Summary, Codebase Analysis, Git History Insights, Framework & Documentation, Best Practices, Edge Cases & Gotchas, Open Questions
 
 ### Planning Integration
 
 Writing-plans skill automatically incorporates research:
-- Checks for existing research in `docs/research/` before planning
+- Checks for existing research in `docs/hyperpowers/research/` before planning
 - If found: uses findings to inform task structure, references in plan header
 - If not found: offers choice to run research first (recommended) or proceed in degraded mode
 - Research clarification phase prevents incomplete planning
@@ -418,7 +418,7 @@ Auto-captures solutions from debugging sessions into searchable knowledge base.
 
 **Files Created:**
 - `skills/compound/SKILL.md`
-- `docs/solutions/{9 categories}/.gitkeep`
+- `docs/hyperpowers/solutions/{9 categories}/.gitkeep`
 
 ### Specialized Code Review
 
@@ -433,7 +433,7 @@ Replaced single code-reviewer with 4 parallel specialized agents.
 **Features:**
 - All 4 agents use haiku for fast, focused analysis
 - Severity-based synthesis (Critical -> Warning -> Suggestion)
-- Integration with docs/solutions/ for known issue links
+- Integration with docs/hyperpowers/solutions/ for known issue links
 
 **Files Created:**
 - `agents/review/security-reviewer.md`
@@ -446,7 +446,7 @@ Replaced single code-reviewer with 4 parallel specialized agents.
 Systematic debugging now searches existing solutions before fresh investigation.
 
 **Features:**
-- Pre-Phase-1 solution search in docs/solutions/
+- Pre-Phase-1 solution search in docs/hyperpowers/solutions/
 - If prior solution found, try it first before investigating
 - Integrates with compound skill for capture after resolution
 

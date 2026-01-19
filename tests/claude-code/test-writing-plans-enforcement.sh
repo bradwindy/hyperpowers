@@ -57,7 +57,7 @@ fi
 
 # Test 6: Gate verification command exists
 echo "Test 6: Gate verification command exists..."
-if grep -q "ls docs/handoffs/context-\*.md" "$SKILL_FILE"; then
+if grep -q "ls docs/hyperpowers/handoffs/context-\*.md" "$SKILL_FILE"; then
     echo "PASS: Gate verification command found"
 else
     echo "FAIL: Gate verification command missing"

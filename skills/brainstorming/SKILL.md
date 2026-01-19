@@ -17,7 +17,7 @@ Start by understanding the current project context, then ask questions one at a 
 
 1. Use AskUserQuestion for ALL user interaction. Plain text questions don't allow structured responses.
 2. Complete Understanding Gate before presenting design.
-3. Save design to docs/designs/ before announcing completion.
+3. Save design to docs/hyperpowers/designs/ before announcing completion.
 </requirements>
 
 ## When to Use
@@ -143,18 +143,18 @@ Use AskUserQuestion for clarifying questions. Plain text questions don't allow s
 ## After the Design
 
 **Documentation:**
-- Write the validated design to `docs/designs/YYYY-MM-DD-<topic>-design.md`
+- Write the validated design to `docs/hyperpowers/designs/YYYY-MM-DD-<topic>-design.md`
 - Do NOT commit (this directory is gitignored - designs are ephemeral)
 
 **Handoff:**
 After saving the design, announce completion with copy-paste commands:
 
 ```
-Design saved to `docs/designs/<actual-filename>.md`.
+Design saved to `docs/hyperpowers/designs/<actual-filename>.md`.
 
 To continue:
-/compact ready to research docs/designs/<actual-filename>.md
-/hyperpowers:research docs/designs/<actual-filename>.md
+/compact ready to research docs/hyperpowers/designs/<actual-filename>.md
+/hyperpowers:research docs/hyperpowers/designs/<actual-filename>.md
 ```
 
 Replace `<actual-filename>` with the real filename you just created.
@@ -221,7 +221,7 @@ Before saving design:
 
 ## Deliverable: design.md
 
-Brainstorming is complete when you have a design document at `docs/designs/YYYY-MM-DD-<topic>-design.md` containing:
+Brainstorming is complete when you have a design document at `docs/hyperpowers/designs/YYYY-MM-DD-<topic>-design.md` containing:
 
 1. **Problem Statement**: What problem are we solving? (not "add feature X")
 2. **Success Criteria**: How will we know it's done? (measurable)
@@ -245,7 +245,7 @@ Brainstorming is complete when you have a design document at `docs/designs/YYYY-
 
 1. Use AskUserQuestion for ALL user interaction. Plain text questions don't allow structured responses.
 2. Complete Understanding Gate before presenting design.
-3. Save design to docs/designs/ before announcing completion.
+3. Save design to docs/hyperpowers/designs/ before announcing completion.
 </requirements>
 
 **No design.md = brainstorming not complete = no implementation.**

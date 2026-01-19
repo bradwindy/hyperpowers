@@ -22,7 +22,7 @@ Make the search feature better.
 4. Agent uses AskUserQuestion to ask about:
    - Goal type (performance? UX? reliability?)
    - Scope (which search feature? what aspects?)
-5. After user answers, agent writes `docs/handoffs/context-clarification.md`
+5. After user answers, agent writes `docs/hyperpowers/handoffs/context-clarification.md`
 6. Agent proceeds to Phase 1 with clarified focus
 
 ## Expected Behavior: Exploration Subagent
@@ -30,7 +30,7 @@ Make the search feature better.
 Phase 0 should:
 1. Dispatch single Explore subagent (haiku model) for project structure scan
 2. Wait for subagent to return findings
-3. Write findings to `docs/handoffs/context-clarification-exploration.md`
+3. Write findings to `docs/hyperpowers/handoffs/context-clarification-exploration.md`
 4. Use findings to design context-aware questions
 5. Proceed with ask/proceed decision
 
@@ -61,7 +61,7 @@ I'm using the writing-plans skill. Starting with extensive context gathering acr
 2. **No AskUserQuestion calls** - Agent would make assumptions about what "better" means
 3. **Immediate context gathering** - Would dispatch codebase exploration subagents without clarifying scope
 4. **Assumption-based approach** - Would likely explore all aspects of search (performance, UX, reliability) without knowing user's priority
-5. **No clarification handoff** - No `docs/handoffs/context-clarification.md` file created
+5. **No clarification handoff** - No `docs/hyperpowers/handoffs/context-clarification.md` file created
 
 ### Problems Identified
 
@@ -108,7 +108,7 @@ All implementation changes are in place as of this verification:
 - When-to-proceed criteria defined (crystal clear, user said no questions, Six Questions answered)
 - Question design guidelines (2-3 max, multiple choice preferred, context-aware)
 - References `./request-clarification-prompt.md` template
-- Output: `docs/handoffs/context-clarification.md`
+- Output: `docs/hyperpowers/handoffs/context-clarification.md`
 
 #### 2. Updated Workflow Diagram
 **Location:** `/Users/bradley/Developer/hyperpowers/skills/writing-plans/SKILL.md` lines 92-153
@@ -167,7 +167,7 @@ Given the input "Make the search feature better":
    - Template: clarification-explorer-prompt.md
    - Returns project structure findings
 4. **Phase 0 Step 2b**: Write exploration handoff
-   - Orchestrator writes findings to docs/handoffs/context-clarification-exploration.md
+   - Orchestrator writes findings to docs/hyperpowers/handoffs/context-clarification-exploration.md
 5. **Phase 0 Step 3**: Detect ambiguity
    - Flags "better" as vague terminology
    - Flags missing scope boundaries
@@ -177,7 +177,7 @@ Given the input "Make the search feature better":
    - Question 1: Goal type (Performance/UX/Reliability/Features)
    - Question 2: Scope (which search, what aspects)
    - Question 3: Success criteria (how will "better" be measured)
-8. **Phase 0 Step 6**: Write `docs/handoffs/context-clarification.md`
+8. **Phase 0 Step 6**: Write `docs/hyperpowers/handoffs/context-clarification.md`
    - Original request
    - Analysis with user's answers
    - Codebase context from shallow exploration
@@ -200,7 +200,7 @@ This verification confirms the implementation is complete and correct. To fully 
 1. Run `claude --skill writing-plans` in a test directory
 2. Provide input: "Make the search feature better"
 3. Observe agent behavior against expected flow above
-4. Verify `docs/handoffs/context-clarification.md` is created
+4. Verify `docs/hyperpowers/handoffs/context-clarification.md` is created
 5. Confirm Phase 1 explores only clarified targets
 
 ### Files Modified in This Feature

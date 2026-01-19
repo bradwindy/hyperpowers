@@ -4,11 +4,11 @@
 _archived/
 
 # Runtime files from subagent-driven development
-docs/current-progress.md
-docs/plans
-docs/handoffs
-docs/research
+docs/hyperpowers/current-progress.md
+docs/hyperpowers/plans
+docs/hyperpowers/handoffs
+docs/hyperpowers/research
 
 # Ephemeral design documents (absorbed into research)
-docs/designs/
+docs/hyperpowers/designs/
 .DS_Store

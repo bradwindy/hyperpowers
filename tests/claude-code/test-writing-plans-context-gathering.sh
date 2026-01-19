@@ -30,12 +30,12 @@ fi
 
 echo ""
 
-# Test 2: Verify research directory is docs/research/
+# Test 2: Verify research directory is docs/hyperpowers/research/
 echo "Test 2: Research directory mentioned..."
 
 output=$(run_claude "Where does the writing-plans skill look for research documents?" 30)
 
-if assert_contains "$output" "docs/research" "Uses docs/research directory"; then
+if assert_contains "$output" "docs/hyperpowers/research" "Uses docs/hyperpowers/research directory"; then
     : # pass
 else
     exit 1
@@ -56,12 +56,12 @@ fi
 
 echo ""
 
-# Test 4: Verify plan saves to docs/plans/
+# Test 4: Verify plan saves to docs/hyperpowers/plans/
 echo "Test 4: Plan output location..."
 
 output=$(run_claude "Where does the writing-plans skill save the completed plan?" 30)
 
-if assert_contains "$output" "docs/plans" "Saves to docs/plans/"; then
+if assert_contains "$output" "docs/hyperpowers/plans" "Saves to docs/hyperpowers/plans/"; then
     : # pass
 else
     exit 1
@@ -141,7 +141,7 @@ else
     exit 1
 fi
 
-if echo "$content" | grep -q "docs/handoffs/context-codebase-{aspect}.md"; then
+if echo "$content" | grep -q "docs/hyperpowers/handoffs/context-codebase-{aspect}.md"; then
     echo "PASS: Specifies correct handoff file path"
 else
     echo "FAIL: Missing correct handoff file path"

@@ -33,9 +33,9 @@ for file in "$SCENARIO_FILE" "$CHECKLIST_FILE" "$SKIPPING_FILE" "$BASELINE_FILE"
     fi
 done
 
-# Ensure docs/solutions directory exists in test project for pattern detection
-mkdir -p "$TEST_PROJECT/docs/solutions/runtime-errors"
-mkdir -p "$TEST_PROJECT/docs/solutions/logic-errors"
+# Ensure docs/hyperpowers/solutions directory exists in test project for pattern detection
+mkdir -p "$TEST_PROJECT/docs/hyperpowers/solutions/runtime-errors"
+mkdir -p "$TEST_PROJECT/docs/hyperpowers/solutions/logic-errors"
 
 # Step 1: Run scenario in test project
 echo "Step 1: Running scenario in test project..."

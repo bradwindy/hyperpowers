@@ -107,7 +107,7 @@ This phase executes after verification passes. Offers are presented to the user,
 
 ### Step 1: Create Issues for Discovered Work
 
-Read `docs/current-progress.md` "Discovered Work" section.
+Read `docs/hyperpowers/current-progress.md` "Discovered Work" section.
 
 For each item, use AskUserQuestion tool to present creation offer (plain text questions prevent structured response):
 ```

@@ -12,7 +12,7 @@ This is a standard Next.js project with:
 
 ## Pre-Scenario Setup
 
-Before running this test, create a simple design document at `docs/designs/2026-01-13-data-fetching.md`:
+Before running this test, create a simple design document at `docs/hyperpowers/designs/2026-01-13-data-fetching.md`:
 
 ```markdown
 # Data Fetching Design

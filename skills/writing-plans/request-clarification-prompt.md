@@ -33,7 +33,7 @@ Wait for subagent to return findings. This takes 30 seconds max.
 
 ### Step 2b: Write Exploration Handoff
 
-Write subagent's returned findings to `docs/handoffs/context-clarification-exploration.md`.
+Write subagent's returned findings to `docs/hyperpowers/handoffs/context-clarification-exploration.md`.
 
 The orchestrator will use these findings to:
 - Design context-aware questions (not generic templates)
@@ -99,7 +99,7 @@ Use AskUserQuestion with 2-3 focused questions. Examples:
 
 ### Step 6: Document Clarification
 
-Write findings to `docs/handoffs/context-clarification.md`:
+Write findings to `docs/hyperpowers/handoffs/context-clarification.md`:
 
 ```markdown
 # Request Clarification Summary
@@ -119,7 +119,7 @@ Write findings to `docs/handoffs/context-clarification.md`:
 - **Related patterns**: [Existing similar code found]
 
 ## Exploration Handoff
-See: `docs/handoffs/context-clarification-exploration.md`
+See: `docs/hyperpowers/handoffs/context-clarification-exploration.md`
 
 ## Clarifications Obtained
 - [Question 1]: [User's answer]

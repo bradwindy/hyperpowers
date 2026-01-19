@@ -81,7 +81,7 @@ Checklist Items:
 - [ ] Constraints/Out of Scope section - MISSING (no design doc)
 - [ ] Approach section - MISSING (no design doc)
 - [ ] Open Questions section - MISSING (no design doc)
-- [ ] Design doc saved to docs/designs/ - MISSING
+- [ ] Design doc saved to docs/hyperpowers/designs/ - MISSING
 - [ ] No code files opened during brainstorming - N/A (didn't reach that phase)
 
 Skipping Observations:

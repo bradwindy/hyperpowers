@@ -29,7 +29,7 @@ Use this skill when:
 
 Do NOT use when:
 - Making a quick fix to familiar code
-- Research already exists in `docs/research/`
+- Research already exists in `docs/hyperpowers/research/`
 
 ## Requirements
 
@@ -47,12 +47,12 @@ If blocked from either requirement, stop and explain why.
 Before topic clarification, check if a design document exists:
 
 **If invoked with a path argument:**
-1. Check if the path points to a file in `docs/designs/` or `docs/plans/`
+1. Check if the path points to a file in `docs/hyperpowers/designs/` or `docs/hyperpowers/plans/`
 2. If file exists: Read the FULL content (it will be included verbatim in the research doc)
 3. If file missing: Warn "Design doc not found at [path], falling back to clarification"
 
 **If no path provided:**
-1. Search `docs/designs/` for recent design docs (within 7 days)
+1. Search `docs/hyperpowers/designs/` for recent design docs (within 7 days)
 2. If found: Ask "Found design doc [filename]. Use this for research?" (Yes/No)
 3. If not found or declined: Proceed to Phase 1 clarification
 
@@ -200,7 +200,7 @@ After all agents complete, synthesize their findings into a research document.
 # Research: [Topic]
 
 > Generated: [YYYY-MM-DD]
-> Design Doc: docs/designs/YYYY-MM-DD-<topic>-design.md (if exists)
+> Design Doc: docs/hyperpowers/designs/YYYY-MM-DD-<topic>-design.md (if exists)
 > Issue: [if linked]
 
 ## Original Design Document
@@ -389,20 +389,20 @@ After synthesis completes, validate technical assumptions:
 
 ### Phase 4: Save Research Document
 
-Save to: `docs/research/YYYY-MM-DD-<topic-slug>.md`
+Save to: `docs/hyperpowers/research/YYYY-MM-DD-<topic-slug>.md`
 
-Example: `docs/research/2026-01-15-user-authentication.md`
+Example: `docs/hyperpowers/research/2026-01-15-user-authentication.md`
 
 ### Phase 5: Announce Completion
 
 After saving the research document, announce with copy-paste commands:
 
 ```
-Research complete and saved to `docs/research/<actual-filename>.md`.
+Research complete and saved to `docs/hyperpowers/research/<actual-filename>.md`.
 
 To continue:
-/compact ready to plan docs/research/<actual-filename>.md
-/hyperpowers:writing-plans docs/research/<actual-filename>.md
+/compact ready to plan docs/hyperpowers/research/<actual-filename>.md
+/hyperpowers:writing-plans docs/hyperpowers/research/<actual-filename>.md
 ```
 
 Replace `<actual-filename>` with the real filename you just created.
@@ -426,7 +426,7 @@ Replace `<actual-filename>` with the real filename you just created.
 | 2.5 | Discover issues | Related issues list |
 | 3 | Synthesize | Combined findings |
 | 3.5 | Validate assumptions | Validated Assumptions section |
-| 4 | Save | `docs/research/YYYY-MM-DD-topic.md` |
+| 4 | Save | `docs/hyperpowers/research/YYYY-MM-DD-topic.md` |
 | 5 | Announce | Ready for planning |
 
 ## Red Flags - Stop and Recover

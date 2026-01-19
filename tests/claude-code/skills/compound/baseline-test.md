@@ -15,7 +15,7 @@ Debug a non-trivial problem:
 When the user says "that worked!", the skill SHOULD:
 1. Recognize the trigger phrase
 2. Assess whether the problem was non-trivial
-3. Capture the solution to `docs/solutions/{category}/`
+3. Capture the solution to `docs/hyperpowers/solutions/{category}/`
 4. Check for pattern detection
 5. Announce completion
 
@@ -32,7 +32,7 @@ However, WITHOUT verification gates, the skill may:
 Gates that would be SKIPPED or RATIONALIZED:
 - Triviality assessment may be skipped: "This is obviously non-trivial, I don't need to verify"
 - Solution Quality Gate missing: Just writes the doc without checking all sections
-- Pattern Detection Gate missing: Skips the `ls docs/solutions/` check
+- Pattern Detection Gate missing: Skips the `ls docs/hyperpowers/solutions/` check
 - Root Cause explanation may be vague: "Fixed the undefined variable" instead of explaining why it was undefined
 - Prevention section may be missing: "Not really preventable" rationalization
 

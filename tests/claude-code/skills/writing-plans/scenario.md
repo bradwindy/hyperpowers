@@ -5,7 +5,7 @@ This test runs in the test project directory with a pre-existing research docume
 The research document contains findings that should be consumed and cited in the plan.
 
 ## Pre-Test Setup Script Must:
-1. Create a research document at `docs/research/2026-01-13-user-preferences.md`
+1. Create a research document at `docs/hyperpowers/research/2026-01-13-user-preferences.md`
 2. The research document contains specific findings:
    - Architecture patterns found in codebase
    - Best practices for preferences storage
