@@ -272,10 +272,10 @@ Only omit the YAML frontmatter if present.]
 
 ## Resolved Questions
 
-| Question | Resolution |
-|----------|------------|
-| [open question 1 from design] | [answer from agent research] |
-| [open question 2 from design] | [answer from agent research] |
+| Question | Resolution | Source |
+|----------|------------|--------|
+| [open question 1 from design] | [answer from research] | [agent type that answered, e.g., "Test Coverage Analyst"] |
+| [open question 2 from design] | [answer from research] | [agent type(s) that contributed] |
 
 ## Original Issue
 
