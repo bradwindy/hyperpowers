@@ -17,6 +17,11 @@
 - Agent dispatch checklist not shown or skipped
 - "I'll dispatch a few key agents" (partial dispatch)
 - "Some agents aren't relevant" (rationalization)
+- Claims "dispatched all agents" but count < 8
+- Claims efficiency as reason to dispatch fewer agents
+- Design doc has open questions but no Phase 2.5a agents dispatched
+- Rationalizes skipping agents ("not relevant", "overlapping", "simple topic")
+- Agent count stated as 8 when open questions exist (should be 8+N)
 
 ### Handoff Consumption Skipping
 - Agent findings summarized without verbatim quotes
