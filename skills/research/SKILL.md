@@ -495,14 +495,16 @@ Replace `<actual-filename>` with the real filename you just created.
 
 ## Red Flags - Stop and Recover
 
-| Violation | Recovery |
-|-----------|----------|
-| Fewer than 8 agents dispatched | Go back, dispatch ALL agents |
-| Writing doc before agents complete | Wait for all agent results |
-| Concatenating without synthesizing | Write Executive Summary + Edge Cases |
-| Skipping dispatch or synthesis checklist | Complete checklist before proceeding |
-| "Agent X had no relevant findings" | Re-read agent output, cite at least one finding |
-| Synthesis shorter than combined outputs | Expand synthesis to cover all findings |
+| Violation | Why It's Critical | Recovery |
+|-----------|-------------------|----------|
+| Dispatching < 8 agents | Violates minimum agent requirement | Stop, add missing agents before proceeding |
+| Ignoring design doc open questions | Open questions need dedicated agents | Count questions, dispatch 1 agent each |
+| "Efficiency" rationalization | 8 parallel agents IS efficient | All 8 required, no exceptions |
+| Writing doc before agents complete | Missing findings corrupt synthesis | Wait for all agent results |
+| Concatenating without synthesizing | Raw output is not research | Write Executive Summary + Edge Cases |
+| Skipping dispatch or synthesis checklist | Gates exist to prevent failures | Complete checklist before proceeding |
+| "Agent X had no relevant findings" | Every agent finds something | Re-read agent output, cite at least one finding |
+| Synthesis shorter than combined outputs | Lost information | Expand synthesis to cover all findings |
 
 ## Integration
 
