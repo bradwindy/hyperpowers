@@ -23,6 +23,7 @@ This document details all significant improvements made to Hyperpowers since for
 - [12. Issue Context Preservation](#12-issue-context-preservation)
 - [13. Skill Instruction Following Improvements](#13-skill-instruction-following-improvements)
 - [14. Assumption Validation](#14-assumption-validation)
+- [15. Research Skill: 8-Agent Minimum Enforcement](#15-research-skill-8-agent-minimum-enforcement)
 
 ---
 
@@ -761,6 +762,73 @@ Created a specialized agent that validates assumptions against live web sources 
 
 ---
 
+## 15. Research Skill: 8-Agent Minimum Enforcement
+
+**Commits:** Session commits for issue hyperpowers-1nk
+
+### The Problem
+
+The research skill specified 8 parallel agents but Claude often rationalized dispatching fewer (4-5 agents typical, ~50-60% compliance). Common excuses included:
+- "The topic is simple enough for fewer agents"
+- "Some agents overlap in this case"
+- "4 agents should be sufficient for this scope"
+
+### Solution: Multi-Layer Enforcement
+
+Strengthened the research skill with multiple enforcement mechanisms to ensure 8+ agents are always dispatched.
+
+**MINIMUM Language:**
+- Changed "8 agents" from target to floor with "VIOLATION" enforcement
+- 8 agents is explicitly documented as the floor, not the ceiling
+- Added consequence statement: dispatching fewer = invalid research output
+
+**Anti-Rationalization Block:**
+- Added table countering common excuses with specific rebuttals:
+  - "Simple topic" -> Still benefits from diverse perspectives
+  - "Agents overlap" -> Cross-validation is a feature, not a bug
+  - "Sufficient for scope" -> You cannot know scope until all agents report
+
+**Strengthened Dispatch Gate:**
+- Explicit count check before proceeding
+- 8+N formula (N = number of open questions from design doc)
+- Gate blocks transition to synthesis if agent count < 8
+
+**Phase 2.5a (New):**
+- Added new phase for open question agents
+- 1 agent per open question extracted from design document
+- Ensures questions don't get lost or abstractly addressed
+
+**Updated Consumption Gate:**
+- Verification for 8+N agent citations in synthesis
+- Each agent finding must be attributed in output
+- Missing attribution = incomplete synthesis
+
+**3-Column Red Flags Table:**
+- Added "Why It's Critical" explanations to each red flag
+- Helps Claude understand the reasoning, not just the rule
+- Pattern: Red Flag | What It Looks Like | Why It's Critical
+
+**Resolved Questions Source:**
+- Agent attribution column added to resolved questions section
+- Every resolved question must cite which agent(s) provided the answer
+- Ensures agent work is traceable
+
+### Tests Updated
+
+**checklist.md:**
+- 8+N verification pattern added to test assertions
+- Validates minimum agent count in dispatch
+
+**skipping-signs.md:**
+- Rationalization detection patterns
+- Tests for common excuse phrases that indicate corner-cutting
+
+### Related Issue
+
+hyperpowers-1nk - Research skill parallel exploration enforcement
+
+---
+
 ## Summary Statistics
 
 | Category | Commits | Impact |
@@ -779,6 +847,7 @@ Created a specialized agent that validates assumptions against live web sources 
 | Issue Context Preservation | ~8 | Requirements preserved through workflow chain |
 | Skill Instruction Following | ~20 | Research-backed pattern application to all skills |
 | Assumption Validation | ~8 | Technical assumption verification before save |
+| Research 8-Agent Enforcement | ~5 | Multi-layer enforcement for agent dispatch |
 
 ---
 
