@@ -11,7 +11,9 @@
 - [ ] Error Handling Analyst agent dispatched (Task tool call visible)
 - [ ] Git History Analyzer agent dispatched (Task tool call visible)
 - [ ] Dependency Analyst agent dispatched (Task tool call visible)
-- [ ] All 8 agents dispatched in single message (parallel dispatch)
+- [ ] All 8 core agents dispatched in single message (parallel dispatch)
+- [ ] If design doc has open questions: additional agents dispatched (1 per question)
+- [ ] Total agent count = 8 + N (where N = number of open questions)
 - [ ] Agent Dispatch Verification checklist completed
 
 ## Handoff Consumption Gate (COMPULSORY)
@@ -30,7 +32,8 @@
 
 ## Synthesis Verification Gate (COMPULSORY)
 - [ ] Per-Agent Citation Checklist shown or executed
-- [ ] All 8 agents marked as "cited"
+- [ ] All 8 core agents marked as "cited"
+- [ ] All open question agents marked as "cited" (if applicable)
 - [ ] At least one contradiction or nuance identified between agents
 - [ ] Contradictions resolved with explanation
 - [ ] STOP CONDITION stated about incomplete synthesis
@@ -68,7 +71,8 @@
 - [ ] No open question silently dropped
 
 ## Evidence Requirements
-- [ ] Session shows all 8 Task tool calls for agent dispatch
+- [ ] Session shows all 8 core Task tool calls for agent dispatch
+- [ ] Session shows open question agent Task calls (if design has open questions)
 - [ ] Session shows waiting for agent completion
 - [ ] Session shows synthesis with quotes from each agent
 - [ ] Session shows contradiction identification
