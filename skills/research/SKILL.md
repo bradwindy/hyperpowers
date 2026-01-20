@@ -366,14 +366,17 @@ Only omit the YAML frontmatter if present.]
 
 ### Agent Output Consumption Gate
 
-Before saving, verify all 8 agents' findings are incorporated:
+Before saving, verify all agents' findings are incorporated:
 
+- [ ] All 8 core agents' findings cited
+- [ ] All open question agents' findings cited (if Phase 2.5a executed)
+- [ ] Total agent count matches 8 + N (where N = open questions, or 0 if none)
 - [ ] Each agent's output file path stated
 - [ ] Key findings from EACH agent quoted in synthesis
 - [ ] Contradictions between agents noted and resolved
 - [ ] No agent's findings silently dropped
 
-**STOP CONDITION:** If synthesis doesn't cite all 8 agents, stop. Quote findings from missing agents.
+**STOP CONDITION:** If synthesis doesn't cite all 8 + N agents, stop. Quote findings from missing agents.
 
 <verification>
 ### Synthesis Verification (check BEFORE saving)
