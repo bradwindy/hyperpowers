@@ -13,10 +13,11 @@ allowed-tools: Read, Grep, Glob, WebSearch, WebFetch, Task, Write, AskUserQuesti
 Deep research that surfaces issues before they become bugs. Dispatches 8 parallel agents to analyze codebase, git history, framework docs, best practices, test coverage, error handling, dependencies, and architecture boundaries, then synthesizes findings into a persistent research document.
 
 <requirements>
-## Requirements (8 agents, synthesis)
+## Requirements (MINIMUM 8 agents, synthesis)
 
-1. Dispatch ALL 8 agents in a single message. Fewer than 8 = incomplete research.
+1. Dispatch ALL 8 agents in a single message (MINIMUM - more if open questions exist). Fewer than 8 = VIOLATION. Stop immediately.
 2. Synthesize findings into research document. Raw concatenation = invalid output.
+3. 8 agents is the floor, not the ceiling.
 </requirements>
 
 ## When to Use
@@ -412,8 +413,9 @@ Replace `<actual-filename>` with the real filename you just created.
 <requirements>
 ## Requirements (reminder)
 
-1. Dispatch ALL 8 agents in a single message. Fewer than 8 = incomplete research.
+1. Dispatch ALL 8 agents in a single message (MINIMUM - more if open questions exist). Fewer than 8 = VIOLATION. Stop immediately.
 2. Synthesize findings into research document. Raw concatenation = invalid output.
+3. 8 agents is the floor, not the ceiling.
 </requirements>
 
 ## Quick Reference
