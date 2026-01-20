@@ -126,7 +126,13 @@ These thoughts mean you're about to violate the 8-agent minimum. STOP.
 | "Given the simple topic" | No topic is too simple for all 8. Simplicity is deceptive. |
 | "I already know the answer" | Research validates, doesn't assume. Dispatch all 8. |
 
-**STOP CONDITION:** If your next message won't contain all 8 Task calls, stop and add the missing ones.
+**STOP CONDITION (MANDATORY):** Count your Task calls before dispatching.
+
+- Less than 8 = VIOLATION. Do not proceed.
+- Design doc has open questions? Add 1 Task call per question (Phase 2.5a).
+- Minimum agents = 8 + (number of open questions)
+
+If count is wrong, FIX IT before proceeding. No exceptions. No rationalizations.
 
 ### Dispatch all 8 agents now:
 
