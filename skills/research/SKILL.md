@@ -114,6 +114,18 @@ You will dispatch exactly 8 agents:
 7. dependency-analyst
 8. architecture-boundaries-analyst
 
+### Common Rationalizations (ALL INVALID)
+
+These thoughts mean you're about to violate the 8-agent minimum. STOP.
+
+| Thought | Reality |
+|---------|---------|
+| "I'll dispatch the most relevant agents" | ALL agents are relevant. Each has unique perspective. |
+| "These agents overlap" | Overlap is intentional - contradictions are valuable. |
+| "To save time/tokens" | 8 parallel agents IS the efficient approach. |
+| "Given the simple topic" | No topic is too simple for all 8. Simplicity is deceptive. |
+| "I already know the answer" | Research validates, doesn't assume. Dispatch all 8. |
+
 **STOP CONDITION:** If your next message won't contain all 8 Task calls, stop and add the missing ones.
 
 ### Dispatch all 8 agents now:
