@@ -192,7 +192,47 @@ Each agent prompt should include:
 - The agent's methodology from their definition file
 - The output format expected
 
-### Phase 2.5: Issue Discovery (Optional)
+### Phase 2.5a: Open Question Agents (Conditional)
+
+If design document had an "Open Questions" section, dispatch additional agents:
+
+**Step 1: Analyze each open question to determine best-fit agent type:**
+
+| Question Type | Best-Fit Agent |
+|---------------|----------------|
+| Framework/API questions | framework-docs-researcher |
+| Code architecture questions | codebase-analyst or architecture-boundaries-analyst |
+| Historical "why" questions | git-history-analyzer |
+| Performance/security questions | best-practices-researcher |
+| Testing approach questions | test-coverage-analyst |
+| Error handling questions | error-handling-analyst |
+| Dependency questions | dependency-analyst |
+
+**Step 2: Dispatch one additional agent per open question:**
+
+```
+Task(
+  description: "Investigate: [3-5 word question summary]",
+  prompt: "Focus ONLY on this open question from the design doc:
+  '[full question text]'
+
+  Research this specific question thoroughly. Provide:
+  1. Direct answer if possible
+  2. Evidence from codebase/docs/web
+  3. Confidence level (high/medium/low)
+  4. Remaining unknowns",
+  model: "haiku",
+  subagent_type: "hyperpowers:research:[best-fit-agent]"
+)
+```
+
+**Step 3: Update dispatch count verification:**
+
+Total agents dispatched = 8 core + N open question agents
+
+**Skip Condition:** If design doc has no "Open Questions" section, skip Phase 2.5a entirely.
+
+### Phase 2.6: Issue Discovery (Optional)
 
 If an issue tracker is detected, dispatch issue-tracking agent for discovery:
 
@@ -443,7 +483,8 @@ Replace `<actual-filename>` with the real filename you just created.
 | 0 | Check design doc | Full design content or proceed |
 | 1 | Clarify topic (if no design) | Clear research question |
 | 2 | Dispatch 8 agents | Parallel research |
-| 2.5 | Discover issues | Related issues list |
+| 2.5a | Open question agents | Additional targeted research |
+| 2.6 | Discover issues | Related issues list |
 | 3 | Synthesize | Combined findings |
 | 3.5 | Validate assumptions | Validated Assumptions section |
 | 4 | Save | `docs/hyperpowers/research/YYYY-MM-DD-topic.md` |
