@@ -135,3 +135,80 @@ Before proceeding to execution:
 
 Proceeding without user-approved batches defeats the intelligent batching purpose.
 </verification>
+
+## Phase 2: Execution
+
+**Purpose:** Main agent implements all tasks in the current batch directly.
+
+**Key Principle:** The main agent writes code directly, not through subagents. This preserves:
+- Full context across tasks (no context loss from fresh subagents)
+- Ability to make cross-task adjustments as implementation reveals issues
+- Direct feedback loop between implementation and validation
+
+### Execution Flow
+
+1. Mark batch as in-progress (update TodoWrite)
+2. For each task in batch:
+   - Mark task as in-progress
+   - Implement the task following plan specifications
+   - Run task-level tests if specified
+   - Mark task as completed
+3. When all tasks in batch complete, proceed to validation
+
+### What the Main Agent Does
+
+- Follow plan specifications exactly
+- Write tests as part of implementation (when plan includes them)
+- Use existing patterns from codebase exploration
+- Note any deviations from plan for spec review
+
+### What the Main Agent Does NOT Do
+
+- Dispatch implementation subagents (preserves context)
+- Run full build/tests (validation phase handles this)
+- Ask user for approval mid-batch (checkpoint is after validation)
+
+### Progress Tracking
+
+Update `docs/hyperpowers/current-progress.md` after each task:
+
+```markdown
+## Validated Batch Development Progress
+
+**Plan:** docs/hyperpowers/plans/feature-plan.md
+**Status:** Batch 2/4 in progress
+
+### Approved Batches
+- Batch 1 (Tasks 1-3): Complete
+- Batch 2 (Tasks 4-6): In Progress ← current
+- Batch 3 (Tasks 7-8): Pending
+- Batch 4 (Tasks 9-10): Pending
+
+### Completed Tasks
+- [x] Task 1: Setup project structure
+- [x] Task 2: Add base API client
+- [x] Task 3: Add error handling
+
+### Current Batch Tasks
+- [x] Task 4: Add retry logic ← just completed
+- [ ] Task 5: Add rate limiting ← in progress
+- [ ] Task 6: Add tests
+
+### Fix Cycles This Batch
+0/3
+
+### Discovered Work
+- [ ] "Need timeout configuration" (discovered in Task 4)
+```
+
+<verification>
+### Batch Execution Gate
+
+Before proceeding to validation:
+
+- [ ] All batch tasks executed (not skipped)
+- [ ] Progress file updated with completed tasks
+- [ ] Discovered work appended (if any found)
+
+Incomplete batch execution produces incomplete validation.
+</verification>
