@@ -212,3 +212,91 @@ Before proceeding to validation:
 
 Incomplete batch execution produces incomplete validation.
 </verification>
+
+## Phase 3: Parallel Validation
+
+**Purpose:** Validate the batch implementation through 3 parallel subagents.
+
+### Parallel Dispatch
+
+All three validators dispatched in a single message for true parallelism:
+
+```
+Task(description: "Build + test validation",
+     prompt: "[Use build-validator-prompt.md template]",
+     model: "haiku",
+     subagent_type: "general-purpose")
+
+Task(description: "Spec compliance review",
+     prompt: "[Use spec-validator-prompt.md template]",
+     model: "haiku",
+     subagent_type: "general-purpose")
+
+Task(description: "Code quality review",
+     prompt: "[Use code-quality-validator-prompt.md template]",
+     model: "haiku",
+     subagent_type: "general-purpose")
+```
+
+### Validator 1: Build + Tests (haiku)
+
+- Run project build command
+- Run test suite
+- Report: pass/fail with output
+- If fail: list specific errors
+
+### Validator 2: Spec Compliance (haiku)
+
+- Read plan tasks for this batch
+- Read implemented code
+- Verify: implementation matches spec, nothing extra, nothing missing
+- Report: compliant/issues with specific findings
+
+### Validator 3: Code Quality (haiku)
+
+- Review code changes in this batch
+- Check: naming, patterns, error handling, maintainability
+- Check: OWASP Top 10 security patterns (per Veracode research: 45% AI code fails security)
+- Report: clean/issues with specific findings
+
+### Failure Handling
+
+1. Collect all three reports
+2. If any issues found:
+   - Present consolidated findings to main agent
+   - Main agent fixes issues
+   - Increment fix cycle counter
+   - Re-run ALL THREE validations (full re-validation, not incremental)
+3. Repeat until all three pass OR fix cycles >= 3
+
+### 3-Strike Escalation
+
+After 3 fix cycles without all validators passing:
+
+```
+AskUserQuestion(
+  questions: [{
+    question: "3 fix cycles completed but validation still failing. How do you want to proceed?",
+    header: "Escalate",
+    options: [
+      {label: "Continue trying", description: "Reset counter and continue fix cycles"},
+      {label: "Skip validation", description: "Proceed to checkpoint with current state"},
+      {label: "Stop", description: "Pause execution, I'll investigate"}
+    ],
+    multiSelect: false
+  }]
+)
+```
+
+<verification>
+### Parallel Validation Gate
+
+Before proceeding to human checkpoint:
+
+- [ ] All 3 validators dispatched in SINGLE message (parallel execution)
+- [ ] All 3 validators returned results
+- [ ] All 3 validators passed OR user chose to skip after escalation
+- [ ] Fix cycles <= 3 OR user approved continuation
+
+Sequential validator dispatch serializes execution. Multiple messages = not parallel.
+</verification>
