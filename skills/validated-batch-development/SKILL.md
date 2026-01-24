@@ -300,3 +300,75 @@ Before proceeding to human checkpoint:
 
 Sequential validator dispatch serializes execution. Multiple messages = not parallel.
 </verification>
+
+## Phase 4: Human Checkpoint
+
+**Purpose:** Present validation results and get user approval or feedback before proceeding.
+
+### Checkpoint Presentation
+
+Display batch completion summary:
+
+```
+## Batch N Complete
+
+**Tasks completed:**
+- Task 1: [name] ✓
+- Task 2: [name] ✓
+- Task 3: [name] ✓
+
+**Validation Results:**
+- Build + Tests: ✓ Passed
+- Spec Compliance: ✓ Approved
+- Code Quality: ✓ Clean
+
+**Fix Cycles Used:** 1/3
+
+**Remaining:** X batches, Y tasks
+```
+
+### User Options
+
+```
+AskUserQuestion(
+  questions: [{
+    question: "Batch complete and validated. How should I proceed?",
+    header: "Continue",
+    options: [
+      {label: "Continue", description: "Proceed to next batch"},
+      {label: "Feedback", description: "I have feedback on this batch"},
+      {label: "Pause", description: "Stop here, can resume later"},
+      {label: "Stop", description: "Abort remaining work"}
+    ],
+    multiSelect: false
+  }]
+)
+```
+
+### Feedback Flow
+
+When user selects "Feedback":
+1. User provides feedback text
+2. Main agent addresses the feedback
+3. Re-run all 3 parallel validations (reset fix cycle counter)
+4. Present updated checkpoint
+5. Repeat until user selects Continue/Pause/Stop
+
+### Iteration Rules
+
+- After "Continue": begin next batch's execution phase
+- After "Feedback": address feedback → re-validate → present checkpoint again
+- After final batch: proceed to completion phase
+- After "Pause"/"Stop": save progress, offer partial commit
+
+<verification>
+### Human Checkpoint Gate
+
+After presenting checkpoint:
+
+- [ ] Used AskUserQuestion tool (NOT plain text)
+- [ ] Waited for explicit user response via tool
+- [ ] Incorporated feedback before next batch (if "Feedback" selected)
+
+Proceeding without AskUserQuestion response bypasses human control.
+</verification>
