@@ -443,3 +443,35 @@ Use `hyperpowers:finishing-a-development-branch` skill:
 | Implement via subagent | Loses context | Main agent implements directly |
 | Plain text questions | No structured response | Use AskUserQuestion |
 | Proceeding after "Pause" | Ignores user intent | Wait for resume |
+
+## Integration
+
+**Required workflow skills:**
+- **hyperpowers:writing-plans** - Creates the plan this skill executes
+- **hyperpowers:verification-before-completion** - Final evidence-based verification
+- **hyperpowers:finishing-a-development-branch** - Complete development after all tasks
+
+**Prompt templates (in this directory):**
+- `./batch-analyzer-prompt.md` - Dispatch batch analyzer subagent
+- `./build-validator-prompt.md` - Dispatch build+test validator subagent
+- `./spec-validator-prompt.md` - Dispatch spec compliance validator subagent
+- `./code-quality-validator-prompt.md` - Dispatch code quality validator subagent
+
+## Comparison with Other Execution Skills
+
+| Aspect | batch-development | subagent-driven | validated-batch |
+|--------|-------------------|-----------------|-----------------|
+| Batching | Fixed size (N tasks) | Per task | Buildability-based |
+| Implementation | Main agent | Subagent per task | Main agent |
+| Validation | Human review | Two-stage review | 3 parallel validators |
+| Checkpoint | After N tasks | After each task | After each batch |
+| Context | Preserved | Fresh per task | Preserved |
+
+<requirements>
+## Requirements Reminder
+
+1. Dispatch batch analyzer before execution. Fixed-size batches ignore buildability.
+2. Three validators in parallel after each batch. Sequential validation wastes time.
+3. Max 3 fix cycles per batch before escalating. Infinite loops degrade quality.
+4. Human checkpoint after each batch. EU AI Act requires human oversight.
+</requirements>
