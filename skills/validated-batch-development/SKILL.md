@@ -66,3 +66,72 @@ digraph process {
     "More batches?" -> "Completion" [label="done"];
 }
 ```
+
+## Phase 1: Batch Analysis
+
+**Purpose:** Group tasks into batches where each batch leaves the codebase in a buildable, testable state.
+
+### Dispatch Batch Analyzer
+
+```
+Task(description: "Analyze plan for batch boundaries",
+     prompt: "[Use batch-analyzer-prompt.md template]",
+     model: "haiku",
+     subagent_type: "general-purpose")
+```
+
+**Analyzer Input:**
+- Full plan document text
+- Project file structure (`tree -L 2`)
+- Build system detection (package.json, Cargo.toml, pyproject.toml, etc.)
+
+**Analyzer Output:**
+```markdown
+## Proposed Batches
+
+### Batch 1 (Tasks 1-3)
+- Task 1: Create data model
+- Task 2: Add database migration
+- Task 3: Implement repository layer
+**Rationale:** Creates complete data layer that can be built and tested independently.
+
+### Batch 2 (Tasks 4-5)
+- Task 4: Add API endpoint
+- Task 5: Add request validation
+**Rationale:** Adds HTTP layer on top of data layer.
+```
+
+### User Approval Flow
+
+Present proposed batches via AskUserQuestion:
+
+```
+AskUserQuestion(
+  questions: [{
+    question: "Proposed batch boundaries based on buildability. How do you want to proceed?",
+    header: "Batches",
+    options: [
+      {label: "Approve", description: "Accept these batch boundaries"},
+      {label: "Adjust", description: "I want to specify different groupings"}
+    ],
+    multiSelect: false
+  }]
+)
+```
+
+If user selects "Adjust":
+- Ask for free-text description of desired changes
+- Re-dispatch analyzer with adjustments
+- Present new boundaries for approval
+
+<verification>
+### Batch Analysis Gate
+
+Before proceeding to execution:
+
+- [ ] Analyzer dispatched with plan + file structure + build system
+- [ ] User approved batch boundaries via AskUserQuestion
+- [ ] Batches documented in progress file
+
+Proceeding without user-approved batches defeats the intelligent batching purpose.
+</verification>
