@@ -372,3 +372,36 @@ After presenting checkpoint:
 
 Proceeding without AskUserQuestion response bypasses human control.
 </verification>
+
+## Resume After Pause
+
+When resuming a paused execution:
+
+### Step 1: Check for Progress File
+
+```bash
+cat docs/hyperpowers/current-progress.md 2>/dev/null || echo "No progress file found"
+```
+
+### Step 2: If Progress File Exists
+
+Present resume options:
+
+```
+AskUserQuestion(
+  questions: [{
+    question: "Found saved progress: Batch 2/4 complete, 5 tasks done. How do you want to proceed?",
+    header: "Resume",
+    options: [
+      {label: "Continue", description: "Resume from Batch 3"},
+      {label: "Re-validate", description: "Re-validate Batch 2 before continuing"},
+      {label: "Start fresh", description: "Ignore progress, start from Batch 1"}
+    ],
+    multiSelect: false
+  }]
+)
+```
+
+### Step 3: If No Progress File
+
+Proceed with Phase 1 (Batch Analysis) as normal.
