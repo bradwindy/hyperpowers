@@ -405,3 +405,41 @@ AskUserQuestion(
 ### Step 3: If No Progress File
 
 Proceed with Phase 1 (Batch Analysis) as normal.
+
+## Completion
+
+After all batches complete:
+
+### Step 1: Final Verification
+
+Use `hyperpowers:verification-before-completion`:
+- Evidence-based completion checklist
+- Discovered work offers
+- Original issue update offer
+
+### Step 2: Cleanup Transient Files
+
+```bash
+rm -f docs/hyperpowers/current-progress.md
+```
+
+Note: This file is gitignored.
+
+### Step 3: Finish
+
+Use `hyperpowers:finishing-a-development-branch` skill:
+- Offers 4 completion options (merge, PR, continue, stash)
+- Issue close offer (if primary issue tracked)
+- Worktree cleanup offer (if in worktree)
+
+## Red Flags
+
+| Violation | Consequence | Recovery |
+|-----------|-------------|----------|
+| Fixed batch sizes (ignoring buildability) | Batches may not build | Re-run batch analyzer |
+| Sequential validator dispatch | Wastes time | Dispatch all 3 in single message |
+| > 3 fix cycles without escalation | Quality degrades | Escalate to user |
+| Skip human checkpoint | Violates oversight requirement | Use AskUserQuestion |
+| Implement via subagent | Loses context | Main agent implements directly |
+| Plain text questions | No structured response | Use AskUserQuestion |
+| Proceeding after "Pause" | Ignores user intent | Wait for resume |
