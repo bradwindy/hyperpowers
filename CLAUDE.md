@@ -45,7 +45,12 @@ When making significant improvements to Hyperpowers, update the documentation:
  
 ## Plugin Version Updates
 
-**ALWAYS** offer to update the plugin version number once work is deemed completed. 
-Suggest a patch version update (0.0.1 -> 0.0.2) for small updates, and a minor version update (0.1.1 -> 0.2.0) for larger improvements. 
-Do not offer a major version update yet, this library is still in development and not stable. 
+**ALWAYS** offer to update the plugin version number once work is deemed completed.
+Suggest a patch version update (0.0.1 -> 0.0.2) for small updates, and a minor version update (0.1.1 -> 0.2.0) for larger improvements.
+Do not offer a major version update yet, this library is still in development and not stable.
 Always offer the user to provide their own version instead too alongside your suggested version. Use AskUserQuestion for this.
+
+## Issue Tracking
+
+Issue tracker: Notion
+Issue ID format: HYP-X (where X is a number)
