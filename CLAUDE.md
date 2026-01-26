@@ -2,23 +2,6 @@
 
 This is a plugin for claude code that provides a set of skills to execute a complete software development workflow.
 
-## Issue Tracking
-
-This project uses **beads** for issue tracking.
-
-**IMPORTANT: Always use the `bd` CLI for beads operations. Never manually edit `.beads/issues.jsonl`.**
-
-```bash
-# Essential commands
-bd list                              # View all issues
-bd show <issue-id>                   # View issue details
-bd create "Issue title"              # Create new issue
-bd update <issue-id> --status done   # Update status
-bd sync                              # Sync to beads-sync branch (required for cross-machine sync)
-```
-
-Issues sync via the `beads-sync` branch, not main. Always run `bd sync` after creating/updating issues.
-
 ## Structure
 
 - `skills/` - Core skills, each subdirectory has a `SKILL.md`
@@ -62,7 +45,12 @@ When making significant improvements to Hyperpowers, update the documentation:
  
 ## Plugin Version Updates
 
-**ALWAYS** offer to update the plugin version number once work is deemed completed. 
-Suggest a patch version update (0.0.1 -> 0.0.2) for small updates, and a minor version update (0.1.1 -> 0.2.0) for larger improvements. 
-Do not offer a major version update yet, this library is still in development and not stable. 
+**ALWAYS** offer to update the plugin version number once work is deemed completed.
+Suggest a patch version update (0.0.1 -> 0.0.2) for small updates, and a minor version update (0.1.1 -> 0.2.0) for larger improvements.
+Do not offer a major version update yet, this library is still in development and not stable.
 Always offer the user to provide their own version instead too alongside your suggested version. Use AskUserQuestion for this.
+
+## Issue Tracking
+
+Issue tracker: Notion
+Issue ID format: HYP-X (where X is a number)

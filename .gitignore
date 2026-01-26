@@ -5,10 +5,15 @@ _archived/
 
 # Runtime files from subagent-driven development
 docs/hyperpowers/current-progress.md
+
 docs/hyperpowers/plans
 docs/hyperpowers/handoffs
 docs/hyperpowers/research
+docs/hyperpowers/designs
 
-# Ephemeral design documents (absorbed into research)
-docs/hyperpowers/designs/
+docs/plans
+docs/handoffs
+docs/research
+docs/designs
+
 .DS_Store

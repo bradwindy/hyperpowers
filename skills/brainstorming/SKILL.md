@@ -20,6 +20,15 @@ Start by understanding the current project context, then ask questions one at a 
 3. Save design to docs/hyperpowers/designs/ before announcing completion.
 </requirements>
 
+<compliance-anchor>
+You have invoked this skill. You MUST:
+- Follow phases in order (no skipping)
+- Complete all gates (no self-exemptions)
+- Produce required outputs (no substitutions)
+
+Failure to comply = skill failure. There is no "partial compliance."
+</compliance-anchor>
+
 ## When to Use
 
 **Use this skill when:**
@@ -146,6 +155,28 @@ Use AskUserQuestion for clarifying questions. Plain text questions don't allow s
 - Write the validated design to `docs/hyperpowers/designs/YYYY-MM-DD-<topic>-design.md`
 - Do NOT commit (this directory is gitignored - designs are ephemeral)
 
+**Completion Enforcement** (CRITICAL):
+
+Your FINAL message MUST contain the handoff block. This is NOT optional.
+
+STOP. Look at your planned final message. Does it contain:
+```
+Design saved to `docs/hyperpowers/designs/<actual-filename>.md`.
+
+To continue:
+/compact ready to research docs/hyperpowers/designs/<actual-filename>.md
+/hyperpowers:research docs/hyperpowers/designs/<actual-filename>.md
+```
+
+If NO: Add it. You cannot announce completion without this exact block.
+If YES: Proceed with sending.
+
+| Thought | Reality |
+|---------|---------|
+| "User knows what's next" | NO. Explicit commands prevent context loss. |
+| "I'll mention it casually" | NO. Copy-paste commands, not prose descriptions. |
+| "Compacting isn't always needed" | WRONG. Context degrades. ALWAYS suggest compact. |
+
 **Handoff:**
 After saving the design, announce completion with copy-paste commands:
 
@@ -196,17 +227,52 @@ Before proceeding to design presentation:
 
 Before saving design:
 
-**Design Gate** (Required):
+**Design Gate** (Required - NEVER announce completion without this):
 
-- [ ] Problem Statement included
-- [ ] Success Criteria included (measurable)
-- [ ] Constraints/Out of Scope included
-- [ ] Approach included
-- [ ] Open Questions included
+STOP. Before saving design, verify each section EXISTS in your document:
+- [ ] Problem Statement - Quote the first sentence you wrote
+- [ ] Success Criteria - How many criteria? (must be ≥1 measurable)
+- [ ] Constraints/Out of Scope - Quote one constraint
+- [ ] Approach - Quote the approach summary
+- [ ] Open Questions - How many? (0 is valid only if explicitly noted)
 - [ ] Original Issue included (if issue ID was provided at start)
+
+If ANY section is missing, ADD IT NOW. Do not proceed.
+
+| Thought | Reality |
+|---------|---------|
+| "Design is straightforward, no assumptions" | WRONG. All designs have assumptions. List them. |
+| "User already confirmed understanding" | Understanding ≠ assumption validation. Different gates. |
+| "I'll validate during research phase" | NO. Brainstorm validates design assumptions. Research validates technical assumptions. |
 
 **STOP CONDITION:** If any section missing, add it before saving.
 </verification>
+
+### Phase: Assumption Validation (Before saving)
+
+Before finalizing design, dispatch assumption-checker agent:
+
+```
+Task(
+  description: "Validate design assumptions",
+  prompt: "Validate these assumptions from the design:
+  [list assumptions extracted from the design]
+
+  Check against codebase patterns and documentation.",
+  model: "haiku",
+  subagent_type: "hyperpowers:research:assumption-checker"
+)
+```
+
+Wait for agent response. If assumptions are INVALID:
+- Update design to reflect reality
+- Re-present affected sections via AskUserQuestion
+
+Do NOT save design until assumptions are validated.
+
+**Error Handling:**
+- If agent times out: Note "Assumption validation incomplete" in document, proceed to save
+- If no assumptions found: Note "No technical assumptions to validate" in document
 
 ## Red Flags - IMMEDIATE STOP
 
@@ -239,6 +305,15 @@ Brainstorming is complete when you have a design document at `docs/hyperpowers/d
 
    [Full issue body verbatim]
    ```
+
+<completion-check>
+Before announcing completion, verify you followed the skill:
+- [ ] Completed all phases in order (0 → 0.5 → Understanding → Design Presentation → Assumption Validation → Save)
+- [ ] Passed all verification gates (Understanding Gate, Design Gate)
+- [ ] Produced required outputs (design document at docs/hyperpowers/designs/)
+
+If ANY unchecked, go back and complete missing steps.
+</completion-check>
 
 <requirements>
 ## Requirements (reminder)

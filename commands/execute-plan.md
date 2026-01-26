@@ -1,5 +1,6 @@
 ---
-description: Execute an implementation plan using your preferred approach
+name: execute-plan
+description: "Use when executing an implementation plan. Offers batch, validated-batch, or subagent approaches."
 ---
 
 Execute an implementation plan. First, determine which execution style to use.
@@ -17,24 +18,26 @@ Use AskUserQuestion with these options:
 
 **Question:** "How would you like to execute this plan?"
 
-| Option | Label | Description |
-|--------|-------|-------------|
-| A | Batch (human checkpoints) (Recommended) | Execute tasks in batches, pause for your feedback after each batch. You stay in control. |
-| B | Subagent (automated reviews) | Fresh subagent per task with automated spec + code quality reviews. Faster, less interaction. |
+| Option | Label                                    | Description                                                                                                             |
+| ------ | ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| A      | Batch (human checkpoints) (Recommended)  | Execute tasks in batches, pause for your feedback after each batch. You stay in control.                                |
+| B      | Validated Batch (parallel validation)    | Intelligent batching based on buildability + 3 parallel validators after each batch. Best balance of speed and quality. |
+| C      | Subagent (automated reviews)             | Fresh subagent per task with automated spec + code quality reviews. Faster, less interaction.                           |
 
 **This question is COMPULSORY. Never skip it, never assume a default.**
 
 ## Step 3: Invoke Chosen Skill
 
 - If Batch: `Skill(hyperpowers:batch-development, args: "<plan-path> --batch-size=N")`
+- If Validated Batch: `Skill(hyperpowers:validated-batch-development, args: "<plan-path>")`
 - If Subagent: `Skill(hyperpowers:subagent-driven-development, args: "<plan-path>")`
 
 Pass the plan path as the argument to the skill.
 
 ## Red Flags
 
-| Violation | Why It's Critical | Recovery |
-|-----------|-------------------|----------|
-| Skipping the choice question | User loses control over execution style | Present AskUserQuestion |
-| Assuming a default | Different users want different approaches | Always ask |
-| Not passing batch-size arg | User's preference ignored | Parse and forward --batch-size |
+| Violation                    | Why It's Critical                         | Recovery                       |
+| ---------------------------- | ----------------------------------------- | ------------------------------ |
+| Skipping the choice question | User loses control over execution style   | Present AskUserQuestion        |
+| Assuming a default           | Different users want different approaches | Always ask                     |
+| Not passing batch-size arg   | User's preference ignored                 | Parse and forward --batch-size |

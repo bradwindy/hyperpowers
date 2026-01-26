@@ -48,6 +48,22 @@ Skills are pre-loaded workflows that ensure consistent, high-quality execution. 
 
 Instructions say WHAT, not HOW. "Add X" doesn't mean skip workflows.
 
+## Post-Invocation Compliance
+
+After invoking a skill via the Skill tool, you MUST:
+1. Read the ENTIRE skill that loads
+2. Follow the skill's phases IN ORDER
+3. Complete ALL verification gates before proceeding
+4. NEVER skip phases because "it seems simple"
+
+**Compliance is non-negotiable.** Invoking a skill = committing to follow it completely.
+
+| Thought | Reality |
+|---------|---------|
+| "This case is simple, I can skip phases" | NO. Simple cases still require full process. |
+| "I know what this skill does" | Skills evolve. Read the current version. |
+| "Gates are optional suggestions" | Gates are STOP CONDITIONS. Complete them. |
+
 <verification>
 ## Pre-Response Check
 
