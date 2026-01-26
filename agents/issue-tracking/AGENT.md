@@ -3,7 +3,7 @@ name: issue-tracking
 model: haiku
 tools: Bash, Read, Grep, Glob
 description: |
-  Abstracts issue tracker operations across beads, GitHub Issues, and Jira MCP.
+  Abstracts issue tracker operations across beads, GitHub Issues, Jira MCP, and Notion MCP.
   Dispatched by skills for detection, discovery, status updates, creation, and closing.
 ---
 
@@ -37,7 +37,8 @@ Execute in order, stop at first match:
 2. **Auto-detect beads** - Check for `.beads/` directory AND `bd version` succeeds
 3. **Auto-detect GitHub** - Check `gh auth status` succeeds
 4. **Auto-detect Jira** - Attempt MCP tool call (graceful failure)
-5. **Fallback** - Return `ISSUE_TRACKER: none` with warning
+5. **Auto-detect Notion** - Check Notion MCP available (graceful failure)
+6. **Fallback** - Return `ISSUE_TRACKER: none` with warning
 
 ## Operations
 
@@ -47,13 +48,16 @@ Determine which tracker is configured. Return tracker type and any warnings.
 
 ```bash
 # Check CLAUDE.md for explicit declaration
-grep -i "issue\|tracker\|beads\|github\|jira" CLAUDE.md
+grep -i "issue\|tracker\|beads\|github\|jira\|notion" CLAUDE.md
 
 # Check for beads
 test -d .beads && bd version
 
 # Check for GitHub CLI
 gh auth status 2>&1
+
+# Check for Notion MCP (via MCP tool call)
+# notion-search with query: "" (graceful failure)
 ```
 
 ### discover
@@ -74,6 +78,7 @@ Update issue status (e.g., open → in-progress).
 | beads | `bd update <id> --status=<status>` |
 | github | `gh issue edit <id> --add-label <status>` |
 | jira | `transitionJiraIssue` MCP call |
+| notion | `notion-update-page` with Status property |
 
 ### create
 
@@ -84,6 +89,7 @@ Create new issue from discovered work.
 | beads | `bd create --title="<title>" --type=task` |
 | github | `gh issue create --title "<title>" --body "<body>"` |
 | jira | `createJiraIssue` MCP call |
+| notion | `notion-create-pages` MCP call |
 
 ### close
 
@@ -94,6 +100,7 @@ Close completed issue.
 | beads | `bd close <id>` |
 | github | `gh issue close <id>` |
 | jira | `transitionJiraIssue` to Done state |
+| notion | `notion-update-page` with Status = Done |
 
 ### add-comment
 
@@ -104,6 +111,7 @@ Add progress summary comment to issue.
 | beads | `bd comments add <id> "<comment>"` |
 | github | `gh issue comment <id> --body "<comment>"` |
 | jira | `addCommentToJiraIssue` MCP call |
+| notion | `notion-update-page` with content append |
 
 ### get-issue-body
 
@@ -114,6 +122,7 @@ Fetch full issue body/description for inclusion in documents.
 | beads | `bd show <id>` (extract DESCRIPTION section) |
 | github | `gh issue view <id> --json body --jq .body` |
 | jira | `getJiraIssue` MCP call (extract description field) |
+| notion | `notion-fetch` page (extract title + content) |
 
 **Output addition:**
 ```
