@@ -1,5 +1,6 @@
 ---
-description: Conduct deep technical research before planning using parallel research agents
+name: research
+description: "Use when conducting deep technical research before planning. Dispatches parallel research agents."
 ---
 
 Take the prompt just given to you by the user and invoke the hyperpowers research skill.

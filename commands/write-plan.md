@@ -1,5 +1,6 @@
 ---
-description: Create detailed implementation plan with bite-sized tasks
+name: write-plan
+description: "Use when creating an implementation plan. Produces detailed, bite-sized tasks."
 ---
 
 Take the prompt just given to you by the user and invoke the hyperpowers writing-plans skill.
