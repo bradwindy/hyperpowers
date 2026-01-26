@@ -26,6 +26,15 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 3. Save plan to docs/hyperpowers/plans/ before announcing completion.
 </requirements>
 
+<compliance-anchor>
+You have invoked this skill. You MUST:
+- Follow phases in order (no skipping)
+- Complete all gates (no self-exemptions)
+- Produce required outputs (no substitutions)
+
+Failure to comply = skill failure. There is no "partial compliance."
+</compliance-anchor>
+
 ## Phase 0: Request Clarification
 
 **Before ANY context gathering, validate the request is clear.**
@@ -400,6 +409,28 @@ Before saving the plan, validate technical assumptions:
 - If agent times out: Note "Assumption validation incomplete" in plan, proceed to save
 - If no assumptions found: Note "No technical assumptions to validate" in plan
 
+**Completion Enforcement** (CRITICAL):
+
+Your FINAL message MUST contain the handoff block. This is NOT optional.
+
+STOP. Look at your planned final message. Does it contain:
+```
+Plan complete and saved to `docs/hyperpowers/plans/<actual-filename>.md`. Context gathering files cleaned up.
+
+To continue:
+/compact ready to implement docs/hyperpowers/plans/<actual-filename>.md
+/hyperpowers:execute-plan docs/hyperpowers/plans/<actual-filename>.md
+```
+
+If NO: Add it. You cannot announce completion without this exact block.
+If YES: Proceed with sending.
+
+| Thought | Reality |
+|---------|---------|
+| "User knows what's next" | NO. Explicit commands prevent context loss. |
+| "I'll mention it casually" | NO. Copy-paste commands, not prose descriptions. |
+| "Compacting isn't always needed" | WRONG. Context degrades. ALWAYS suggest compact. |
+
 ## Execution Handoff
 
 After saving the plan:
@@ -427,6 +458,15 @@ Replace `<actual-filename>` with the real plan path.
 ## Cleanup
 
 Delete `docs/hyperpowers/handoffs/*` after plan is written (see Execution Handoff above). Stale handoff files cause context confusion in future sessions.
+
+<completion-check>
+Before announcing completion, verify you followed the skill:
+- [ ] Completed all phases in order (Research Check → Issue Context → Plan Writing → Assumption Validation → Save)
+- [ ] Passed all verification gates (Pre-Plan Writing, Handoff Consumption, Plan Quality)
+- [ ] Produced required outputs (plan document at docs/hyperpowers/plans/)
+
+If ANY unchecked, go back and complete missing steps.
+</completion-check>
 
 <requirements>
 ## Requirements Reminder
