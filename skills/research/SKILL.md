@@ -19,6 +19,15 @@ Deep research that surfaces issues before they become bugs. Dispatches 8 paralle
 2. Synthesize findings into research document. Raw concatenation = invalid output.
 </requirements>
 
+<compliance-anchor>
+You have invoked this skill. You MUST:
+- Follow phases in order (no skipping)
+- Complete all gates (no self-exemptions)
+- Produce required outputs (no substitutions)
+
+Failure to comply = skill failure. There is no "partial compliance."
+</compliance-anchor>
+
 ## When to Use
 
 Use this skill when:
@@ -112,6 +121,25 @@ You will dispatch exactly 8 agents:
 6. error-handling-analyst
 7. dependency-analyst
 8. architecture-boundaries-analyst
+
+**Dispatch Gate** (Required - NEVER skip):
+
+STOP. Before proceeding to synthesis, verify:
+- [ ] All 8 CORE agents dispatched in ONE message
+- [ ] Additional agents dispatched for any open questions discovered
+- [ ] Count ≥ 8
+
+If core count < 8, you have NOT completed research dispatch. Send remaining agents NOW.
+
+In ONE message, dispatch ALL of these:
+- [ ] codebase-analyst
+- [ ] git-history-analyzer
+- [ ] framework-docs-researcher
+- [ ] best-practices-researcher
+- [ ] test-coverage-analyst
+- [ ] error-handling-analyst
+- [ ] dependency-analyst
+- [ ] architecture-boundaries-analyst
 
 **STOP CONDITION:** If your next message won't contain all 8 Task calls, stop and add the missing ones.
 
@@ -393,10 +421,26 @@ Save to: `docs/hyperpowers/research/YYYY-MM-DD-<topic-slug>.md`
 
 Example: `docs/hyperpowers/research/2026-01-15-user-authentication.md`
 
+**Output Gate** (Required - NEVER skip):
+
+STOP. Before announcing completion, verify:
+- [ ] File EXISTS at `docs/hyperpowers/research/YYYY-MM-DD-<topic-slug>.md`
+- [ ] Quote the first line of the file you just wrote (proof you wrote it)
+
+If file doesn't exist, you have NOT completed research. Write it now.
+
+| Thought | Reality |
+|---------|---------|
+| "I'll just summarize in chat" | NO. Document MUST be written to file. Chat is ephemeral. |
+| "The user can see my synthesis" | NO. Next skill needs the file path. No file = broken handoff. |
+
 ### Phase 5: Announce Completion
 
-After saving the research document, announce with copy-paste commands:
+**Completion Enforcement** (CRITICAL):
 
+Your FINAL message MUST contain the handoff block. This is NOT optional.
+
+STOP. Look at your planned final message. Does it contain:
 ```
 Research complete and saved to `docs/hyperpowers/research/<actual-filename>.md`.
 
@@ -405,9 +449,27 @@ To continue:
 /hyperpowers:writing-plans docs/hyperpowers/research/<actual-filename>.md
 ```
 
+If NO: Add it. You cannot announce completion without this exact block.
+If YES: Proceed with sending.
+
+| Thought | Reality |
+|---------|---------|
+| "User knows what's next" | NO. Explicit commands prevent context loss. |
+| "I'll mention it casually" | NO. Copy-paste commands, not prose descriptions. |
+| "Compacting isn't always needed" | WRONG. Context degrades. ALWAYS suggest compact. |
+
 Replace `<actual-filename>` with the real filename you just created.
 
 **Design doc note:** If a design doc was used, add: "The full design document has been preserved in the research doc."
+
+<completion-check>
+Before announcing completion, verify you followed the skill:
+- [ ] Completed all phases in order (0 → 1 → 2 → 2.5 → 3 → 3.5 → 4 → 5)
+- [ ] Passed all verification gates (Dispatch Gate, Synthesis Verification, Output Gate)
+- [ ] Produced required outputs (research document at docs/hyperpowers/research/)
+
+If ANY unchecked, go back and complete missing steps.
+</completion-check>
 
 <requirements>
 ## Requirements (reminder)
