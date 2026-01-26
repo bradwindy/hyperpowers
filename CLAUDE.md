@@ -2,23 +2,6 @@
 
 This is a plugin for claude code that provides a set of skills to execute a complete software development workflow.
 
-## Issue Tracking
-
-This project uses **beads** for issue tracking.
-
-**IMPORTANT: Always use the `bd` CLI for beads operations. Never manually edit `.beads/issues.jsonl`.**
-
-```bash
-# Essential commands
-bd list                              # View all issues
-bd show <issue-id>                   # View issue details
-bd create "Issue title"              # Create new issue
-bd update <issue-id> --status done   # Update status
-bd sync                              # Sync to beads-sync branch (required for cross-machine sync)
-```
-
-Issues sync via the `beads-sync` branch, not main. Always run `bd sync` after creating/updating issues.
-
 ## Structure
 
 - `skills/` - Core skills, each subdirectory has a `SKILL.md`
