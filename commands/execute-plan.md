@@ -17,11 +17,11 @@ Use AskUserQuestion with these options:
 
 **Question:** "How would you like to execute this plan?"
 
-| Option | Label | Description |
-|--------|-------|-------------|
-| A | Batch (human checkpoints) | Execute tasks in batches, pause for your feedback after each batch. You stay in control. |
-| B | Validated Batch (parallel validation) (Recommended) | Intelligent batching based on buildability + 3 parallel validators after each batch. Best balance of speed and quality. |
-| C | Subagent (automated reviews) | Fresh subagent per task with automated spec + code quality reviews. Faster, less interaction. |
+| Option | Label                                    | Description                                                                                                             |
+| ------ | ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| A      | Batch (human checkpoints) (Recommended)  | Execute tasks in batches, pause for your feedback after each batch. You stay in control.                                |
+| B      | Validated Batch (parallel validation)    | Intelligent batching based on buildability + 3 parallel validators after each batch. Best balance of speed and quality. |
+| C      | Subagent (automated reviews)             | Fresh subagent per task with automated spec + code quality reviews. Faster, less interaction.                           |
 
 **This question is COMPULSORY. Never skip it, never assume a default.**
 
@@ -35,8 +35,8 @@ Pass the plan path as the argument to the skill.
 
 ## Red Flags
 
-| Violation | Why It's Critical | Recovery |
-|-----------|-------------------|----------|
-| Skipping the choice question | User loses control over execution style | Present AskUserQuestion |
-| Assuming a default | Different users want different approaches | Always ask |
-| Not passing batch-size arg | User's preference ignored | Parse and forward --batch-size |
+| Violation                    | Why It's Critical                         | Recovery                       |
+| ---------------------------- | ----------------------------------------- | ------------------------------ |
+| Skipping the choice question | User loses control over execution style   | Present AskUserQuestion        |
+| Assuming a default           | Different users want different approaches | Always ask                     |
+| Not passing batch-size arg   | User's preference ignored                 | Parse and forward --batch-size |
