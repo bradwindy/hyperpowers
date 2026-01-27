@@ -178,3 +178,33 @@ rm -rf ~/.claude/plugins/cache/hyperpowers-marketplace/
 ```
 
 Then restart Claude Code.
+
+## Contributing
+
+1. Fork the repository
+2. Create a branch for your skill or improvement
+3. Follow the `writing-skills` skill (`/hyperpowers:writing-skills`) for creating and testing new skills
+4. Run tests: `./tests/claude-code/run-skill-tests.sh`
+5. Submit a PR
+
+See `skills/writing-skills/SKILL.md` for the complete guide.
+
+## Updating
+
+```bash
+/plugin update hyperpowers
+```
+
+**Note:** Due to caching issues, you may need to clear the cache manually:
+```bash
+rm -rf ~/.claude/plugins/cache/
+claude plugin install hyperpowers@hyperpowers-marketplace
+```
+
+## Sponsorship
+
+If Hyperpowers has helped you do stuff that makes money and you are so inclined, please consider [sponsoring my opensource work](https://github.com/sponsors/bradwindy).
+
+Thanks!
+
+- Bradley
