@@ -49,3 +49,54 @@ Activates with a plan to implement tasks. Choose from three approaches:
 | **Batch** | Human checkpoints after each batch of tasks | Maximum control |
 | **Validated Batch** | 3 parallel validators (build, spec, quality) + human checkpoints | Balance of speed and quality |
 | **Subagent** | Fresh agent per task with automated two-stage review | Faster, less interaction |
+
+## Installation
+
+**Requires:** Claude Code 1.0.33 or later
+
+### Quick Install
+
+**From terminal:**
+```bash
+claude plugin marketplace add bradwindy/hyperpowers
+claude plugin install hyperpowers@hyperpowers-marketplace
+```
+
+**From Claude Code REPL:**
+```
+/plugin marketplace add bradwindy/hyperpowers
+/plugin install hyperpowers@hyperpowers-marketplace
+```
+
+### Verify Installation
+
+```
+/help
+```
+
+You should see skills like `/hyperpowers:brainstorm`, `/hyperpowers:write-plan`, etc.
+
+**Note:** Skills may not appear in `/help` due to a [known issue](https://github.com/anthropics/claude-code/issues/17271), but they still work when invoked directly.
+
+### Local Development
+
+Clone the repository and add it as a local marketplace:
+
+```bash
+git clone https://github.com/bradwindy/hyperpowers.git
+claude plugin marketplace add ./hyperpowers
+claude plugin install hyperpowers@hyperpowers-marketplace
+```
+
+**Refreshing after local changes:**
+
+```bash
+rm -rf ~/.claude/plugins/cache/hyperpowers-marketplace/
+```
+
+Then restart Claude Code. The skill hot-reload feature (v2.1.0+) only applies to `~/.claude/skills/` directories, not marketplace plugins.
+
+### Other Platforms
+
+- **Codex:** See [docs/hyperpowers/README.codex.md](docs/hyperpowers/README.codex.md)
+- **OpenCode:** See [docs/hyperpowers/README.opencode.md](docs/hyperpowers/README.opencode.md)
