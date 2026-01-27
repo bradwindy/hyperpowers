@@ -124,3 +124,57 @@ Hyperpowers includes significant enhancements over the original [Superpowers](ht
 | Upstream Merges | Regular sync with Superpowers upstream improvements |
 
 For complete details, see [IMPROVEMENTS.md](IMPROVEMENTS.md).
+
+## Troubleshooting
+
+### Plugin Not Loading / Skills Not Appearing
+
+**Symptoms:** `/help` doesn't show hyperpowers skills, or invoking skills fails.
+
+**Cause:** Plugin cache may be stale or corrupted.
+
+**Solution:**
+```bash
+rm -rf ~/.claude/plugins/cache/
+claude plugin install hyperpowers@hyperpowers-marketplace
+```
+
+Then restart Claude Code.
+
+### Plugin Updates Not Taking Effect
+
+**Symptoms:** Running `/plugin update` but not seeing new features or fixes.
+
+**Cause:** Known bugs in Claude Code plugin caching ([#14061](https://github.com/anthropics/claude-code/issues/14061), [#19197](https://github.com/anthropics/claude-code/issues/19197), [#15642](https://github.com/anthropics/claude-code/issues/15642)).
+
+**Solution:**
+```bash
+rm -rf ~/.claude/plugins/cache/
+claude plugin install hyperpowers@hyperpowers-marketplace
+```
+
+### Commands Not Showing in /help
+
+**Symptoms:** Skills work when invoked directly, but don't appear in `/help` output.
+
+**Cause:** Namespace visibility bug ([#17271](https://github.com/anthropics/claude-code/issues/17271)).
+
+**Solution:** This is a known Claude Code issue. Skills still work—invoke them directly:
+```
+/hyperpowers:brainstorm
+/hyperpowers:write-plan
+/hyperpowers:execute-plan
+```
+
+### Local Development Changes Not Reflected
+
+**Symptoms:** Edited skill files locally but changes don't appear in Claude Code.
+
+**Cause:** Marketplace plugins are cached. Skill hot-reload (v2.1.0+) only applies to `~/.claude/skills/` directories.
+
+**Solution:**
+```bash
+rm -rf ~/.claude/plugins/cache/hyperpowers-marketplace/
+```
+
+Then restart Claude Code.
