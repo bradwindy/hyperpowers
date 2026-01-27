@@ -208,3 +208,20 @@ If Hyperpowers has helped you do stuff that makes money and you are so inclined,
 Thanks!
 
 - Bradley
+
+## License
+
+MIT License - see [LICENSE](LICENSE) for details.
+
+## Support
+
+- **Issues:** https://github.com/bradwindy/hyperpowers/issues
+- **Marketplace:** https://github.com/bradwindy/hyperpowers-marketplace
+
+## Attribution
+
+Hyperpowers is a fork of [Superpowers](https://github.com/obra/superpowers), originally created by [Jesse Vincent](https://github.com/obra).
+
+The original Superpowers project is licensed under the MIT License. This fork maintains the same license terms.
+
+We gratefully acknowledge Jesse Vincent's work in creating the original project that made this fork possible.
