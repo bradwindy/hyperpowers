@@ -46,9 +46,13 @@ When making significant improvements to Hyperpowers, update the documentation:
 ## Plugin Version Updates
 
 **ALWAYS** offer to update the plugin version number once work is deemed completed.
-Suggest a patch version update (0.0.1 -> 0.0.2) for small updates, and a minor version update (0.1.1 -> 0.2.0) for larger improvements.
-Do not offer a major version update yet, this library is still in development and not stable.
+Follow [SemVer](https://semver.org/) versioning:
+- **Patch** (0.0.X): Bug fixes and tiny tweaks, backwards compatible
+- **Minor** (0.X.0): New features and improvements, backwards compatible
+- **Major** (X.0.0): Breaking changes (removed/renamed skills, incompatible behavior changes)
+
 Always offer the user to provide their own version instead too alongside your suggested version. Use AskUserQuestion for this.
+When committing the version bump, also create a git tag with the same version number (e.g., `v0.9.0`).
 
 ## Issue Tracking
 
