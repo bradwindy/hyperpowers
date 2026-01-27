@@ -100,3 +100,27 @@ Then restart Claude Code. The skill hot-reload feature (v2.1.0+) only applies to
 
 - **Codex:** See [docs/hyperpowers/README.codex.md](docs/hyperpowers/README.codex.md)
 - **OpenCode:** See [docs/hyperpowers/README.opencode.md](docs/hyperpowers/README.opencode.md)
+
+## Key Improvements
+
+Hyperpowers includes significant enhancements over the original [Superpowers](https://github.com/obra/superpowers) project:
+
+| Improvement | Description |
+|-------------|-------------|
+| Enhanced Planning Workflow | Clarification phase with explicit context gathering and synthesis |
+| Subagent-Driven Development | Fresh subagent per task with two-stage review (spec + code quality) |
+| Skill Strengthening & Enforcement | `allowed-tools` frontmatter restricts tool access per skill phase |
+| Model Selection Optimization | Haiku for validation, Sonnet/Opus for implementation |
+| Research Skill | 8+ parallel agents for comprehensive technical research |
+| Knowledge Management | Auto-captures debugging solutions to searchable knowledge base |
+| Specialized Code Review | 4 parallel reviewers (security, performance, style, test) |
+| Context Fork Integration | Isolated investigations reduce token usage by 40-50% |
+| Issue Tracking Abstraction | Single agent abstracts beads, GitHub Issues, and Jira MCP |
+| Issue Context Preservation | Issue context flows through entire workflow chain |
+| Skill Instruction Following | Research-backed reinforcement patterns prevent shortcutting |
+| Assumption Validation | Validates design assumptions before planning |
+| Research 8-Agent Enforcement | Counter-rationalization prevents agent reduction |
+| Test Infrastructure | Comprehensive skill testing with case-insensitive assertions |
+| Upstream Merges | Regular sync with Superpowers upstream improvements |
+
+For complete details, see [IMPROVEMENTS.md](IMPROVEMENTS.md).
