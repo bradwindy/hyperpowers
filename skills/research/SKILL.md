@@ -482,8 +482,11 @@ Example: `docs/hyperpowers/research/2026-01-15-user-authentication.md`
 STOP. Before announcing completion, verify:
 - [ ] File EXISTS at `docs/hyperpowers/research/YYYY-MM-DD-<topic-slug>.md`
 - [ ] Quote the first line of the file you just wrote (proof you wrote it)
+- [ ] **Store this exact path for Phase 5 handoff** (do NOT use the design doc path from Phase 0)
 
 If file doesn't exist, you have NOT completed research. Write it now.
+
+**Path Reminder:** Your OUTPUT is `docs/hyperpowers/research/...`, your INPUT was `docs/hyperpowers/designs/...`. The handoff uses OUTPUT.
 
 | Thought | Reality |
 |---------|---------|
@@ -507,6 +510,27 @@ To continue:
 
 If NO: Add it. You cannot announce completion without this exact block.
 If YES: Proceed with sending.
+
+<verification>
+### Handoff Path Verification Gate
+
+**STOP CONDITION:** Before writing your handoff message, verify the path:
+
+- [ ] Handoff path starts with `docs/hyperpowers/research/` (NOT `designs/`)
+- [ ] Handoff path matches the file you saved in Phase 4
+- [ ] Handoff path is the RESEARCH doc you created, not the DESIGN doc you consumed
+
+**Common Confusion (INVALID - will break workflow):**
+
+| Wrong Path | Why It's Wrong | Correct Path |
+|------------|----------------|--------------|
+| `docs/hyperpowers/designs/...` | This is your INPUT (design doc) | `docs/hyperpowers/research/...` |
+| Path from Phase 0 | Phase 0 reads design; Phase 4 writes research | Path from Phase 4 |
+
+**Self-Check:** The path in your handoff MUST match the path in Phase 4 where you wrote: "Save to: `docs/hyperpowers/research/YYYY-MM-DD-<topic-slug>.md`"
+
+If paths don't match, STOP and fix before sending.
+</verification>
 
 | Thought | Reality |
 |---------|---------|
@@ -561,6 +585,7 @@ If ANY unchecked, go back and complete missing steps.
 | Skipping dispatch or synthesis checklist | Gates exist to prevent failures | Complete checklist before proceeding |
 | "Agent X had no relevant findings" | Every agent finds something | Re-read agent output, cite at least one finding |
 | Synthesis shorter than combined outputs | Lost information | Expand synthesis to cover all findings |
+| Handoff suggests design doc path | Design doc is INPUT, research doc is OUTPUT | Use research doc path from Phase 4 |
 
 ## Integration
 

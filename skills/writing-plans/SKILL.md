@@ -93,6 +93,33 @@ Write clarification summary to `docs/hyperpowers/handoffs/context-clarification.
 
 Before proceeding to plan writing, check for existing research:
 
+### Argument Path Validation
+
+**If invoked with a path argument**, validate it points to a research document:
+
+1. **If path contains `docs/hyperpowers/designs/`:**
+
+   **STOP CONDITION:** Design docs are inputs to research, not planning.
+
+   ```
+   AskUserQuestion(
+     questions: [{
+       question: "This path points to a design document. Write-plan expects a research document. How to proceed?",
+       header: "Wrong Doc Type",
+       options: [
+         {label: "Run research first (Recommended)", description: "Run research with this design doc first"},
+         {label: "Proceed without research", description: "Continue in degraded mode"},
+         {label: "Search for existing research", description: "Ignore path, search for recent research"}
+       ],
+       multiSelect: false
+     }]
+   )
+   ```
+
+2. **If path contains `docs/hyperpowers/research/`:** Correct - proceed to validate file exists
+
+3. **If no path argument:** Continue to Step 1 search
+
 ### Step 1: Search for Research Document
 
 Look in `docs/hyperpowers/research/` for a matching research document:
