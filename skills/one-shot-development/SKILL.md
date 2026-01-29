@@ -466,7 +466,7 @@ Note: This file is gitignored. Only cleanup AFTER verification passes.
 ### Step 3: Finish
 
 Use `hyperpowers:finishing-a-development-branch` skill:
-- Offers 4 completion options (merge, PR, continue, stash)
+- Offers 4 completion options (merge, PR, keep, discard)
 - Issue close offer (if primary issue tracked)
 - Worktree cleanup offer (if in worktree)
 
