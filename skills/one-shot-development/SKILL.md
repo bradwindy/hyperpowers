@@ -211,3 +211,85 @@ Implementing Task 4/10
 
 **STOP CONDITION:** If ANY unchecked, do NOT proceed. Complete all tasks before proceeding to Phase 3.
 </verification>
+
+## Phase 3: Build Phase
+
+**Purpose:** Validate that all implemented code compiles/builds successfully.
+
+### Build System Detection
+
+Detect build command from project manifests (in priority order):
+
+| Manifest File | Build Command |
+|--------------|---------------|
+| `package.json` (with `scripts.build`) | `npm run build` |
+| `Cargo.toml` | `cargo build` |
+| `pyproject.toml` | `python -m build` |
+| `Makefile` | `make` |
+| `go.mod` | `go build ./...` |
+
+If no manifest found:
+```
+AskUserQuestion(
+  questions: [{
+    question: "No build system detected. What build command should I use?",
+    header: "Build",
+    options: [
+      {label: "Skip build", description: "No build needed for this project"},
+      {label: "Custom command", description: "I'll provide a build command"}
+    ],
+    multiSelect: false
+  }]
+)
+```
+
+### Build Loop
+
+```
+fix_cycles = 0
+MAX_CYCLES = 3
+
+while fix_cycles < MAX_CYCLES:
+    run build command
+
+    if build succeeds:
+        proceed to Phase 4
+        break
+
+    if build fails:
+        analyze error output
+        apply targeted fix
+        fix_cycles += 1
+
+if fix_cycles >= MAX_CYCLES:
+    escalate to user
+```
+
+### 3-Strike Escalation (Build)
+
+After 3 failed fix cycles:
+
+```
+AskUserQuestion(
+  questions: [{
+    question: "Build failed after 3 fix attempts. How do you want to proceed?",
+    header: "Escalate",
+    options: [
+      {label: "Continue trying", description: "Reset counter and try more fixes"},
+      {label: "Skip build", description: "Proceed to checkpoint without passing build"},
+      {label: "Stop", description: "Pause execution, I'll investigate"}
+    ],
+    multiSelect: false
+  }]
+)
+```
+
+<verification>
+**Build Phase Gate** (Required):
+
+- [ ] Build command identified (or user confirmed skip)
+- [ ] Build passes OR user approved skip after escalation
+- [ ] Fix cycles documented (show count)
+
+**STOP CONDITION:** If ANY unchecked, do NOT proceed. Do not proceed to checkpoint with failing build unless user explicitly approved via escalation.
+</verification>
