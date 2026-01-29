@@ -143,3 +143,73 @@ AskUserQuestion(
 ```
 
 After offers complete (or skipped), proceed to Phase 2.
+
+## Phase 2: Implementation (No Checkpoints)
+
+**Purpose:** Execute ALL tasks from the plan sequentially without pausing for human input.
+
+### Execution Flow
+
+1. Load plan from argument path
+2. For each task in plan:
+   - Show progress: "**Implementing Task N/M:** [task title]"
+   - Execute task following plan specifications exactly
+   - Update progress file after each task
+   - **Do NOT pause for user feedback**
+3. When all tasks complete, proceed to Phase 3
+
+### What the Main Agent Does
+
+- Follow plan specifications exactly (this is one-shot, not exploratory)
+- Write code directly (no subagent dispatch)
+- Note discovered work in progress file (do not act on it mid-flight)
+- Show brief progress output after each task
+
+### What the Main Agent Does NOT Do
+
+- Pause for human checkpoints (defeats one-shot purpose)
+- Dispatch implementation subagents (preserves context)
+- Run build/tests mid-flight (validation is Phase 3+)
+- Ask for feedback before all tasks complete
+
+### Progress Tracking
+
+Update `docs/hyperpowers/current-progress.md` after each task:
+
+```markdown
+# One-Shot Development Progress
+
+## Plan
+docs/hyperpowers/plans/feature-plan.md
+
+## Mode
+One-Shot (no checkpoints)
+
+## Status
+Implementing Task 4/10
+
+## Completed Tasks
+- [x] Task 1: Setup project structure
+- [x] Task 2: Add base API client
+- [x] Task 3: Add error handling
+
+## Remaining Tasks
+- [ ] Task 4: Add retry logic ← in progress
+- [ ] Task 5: Add rate limiting
+...
+
+## Discovered Work
+- [ ] "Need timeout configuration" (discovered in Task 3)
+```
+
+<verification>
+### Implementation Completion Gate
+
+Before proceeding to build phase:
+
+- [ ] All plan tasks executed (none skipped)
+- [ ] Progress file shows all tasks marked [x]
+- [ ] Discovered work appended (if any found)
+
+**STOP CONDITION:** If any tasks skipped, complete them before build phase.
+</verification>
