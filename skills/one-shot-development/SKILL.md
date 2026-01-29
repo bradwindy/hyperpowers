@@ -293,3 +293,59 @@ AskUserQuestion(
 
 **STOP CONDITION:** If ANY unchecked, do NOT proceed. Do not proceed to checkpoint with failing build unless user explicitly approved via escalation.
 </verification>
+
+## Phase 4: Build→Test Checkpoint
+
+**Purpose:** The ONLY human checkpoint in one-shot mode. User decides whether to run tests.
+
+This is the natural pause point between build and test phases. All implementation is complete, build passes, user can review before testing.
+
+### Checkpoint Presentation
+
+Display implementation summary:
+
+```
+## One-Shot Implementation Complete
+
+**Tasks Completed:** N/N
+**Build Status:** ✓ Passed (X fix cycles used)
+
+**Summary of Changes:**
+- [brief summary of what was implemented]
+
+**Discovered Work (for later):**
+- [list any discovered work items]
+```
+
+### User Decision
+
+```
+AskUserQuestion(
+  questions: [{
+    question: "Build successful. How would you like to proceed?",
+    header: "Continue",
+    options: [
+      {label: "Run tests", description: "Continue to test phase with fix loops"},
+      {label: "Review first", description: "Pause here so I can review the changes"},
+      {label: "Stop here", description: "Skip tests, proceed to completion"}
+    ],
+    multiSelect: false
+  }]
+)
+```
+
+### Response Handling
+
+- **Run tests:** Proceed to Phase 5
+- **Review first:** Pause and wait for user to return with feedback or "continue"
+- **Stop here:** Skip Phase 5, proceed directly to Phase 6 (Completion)
+
+<verification>
+**Checkpoint Gate** (Required):
+
+- [ ] Used AskUserQuestion (not plain text)
+- [ ] Waited for explicit user response
+- [ ] Routed to correct next phase based on selection
+
+**STOP CONDITION:** If ANY unchecked, do NOT proceed. Never proceed to tests without explicit user approval via AskUserQuestion.
+</verification>
