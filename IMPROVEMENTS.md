@@ -2,8 +2,8 @@
 
 This document details all significant improvements made to Hyperpowers since forking from [Superpowers](https://github.com/obra/superpowers) (commit `80643c2`).
 
-**Total Commits Since Fork:** 111
-**Date Range:** December 22, 2025 - January 10, 2026
+**Total Commits Since Fork:** 423
+**Date Range:** December 22, 2025 - January 29, 2026
 
 ---
 
@@ -24,6 +24,7 @@ This document details all significant improvements made to Hyperpowers since for
 - [13. Skill Instruction Following Improvements](#13-skill-instruction-following-improvements)
 - [14. Assumption Validation](#14-assumption-validation)
 - [15. Research Skill: 8-Agent Minimum Enforcement](#15-research-skill-8-agent-minimum-enforcement)
+- [16. One-Shot Execution Mode](#16-one-shot-execution-mode)
 
 ---
 
@@ -829,6 +830,95 @@ hyperpowers-1nk - Research skill parallel exploration enforcement
 
 ---
 
+## 16. One-Shot Execution Mode
+
+New execution mode for plans that allows uninterrupted task execution with build and test validation at the end.
+
+**Commits:** `129e361` through `30f1be2` (14 commits)
+
+### The Problem
+
+Existing execution modes (Batch, Validated Batch, Subagent) all require human interaction during execution. For well-defined, thoroughly researched plans, these checkpoints create unnecessary cognitive overhead when the user trusts the agent to execute fully.
+
+### Solution: One-Shot Execution Mode
+
+Created a fourth execution mode that runs all tasks without human checkpoints, validating only at the end with build and test phases.
+
+**Files Created:**
+- `skills/one-shot-development/SKILL.md` (500 lines)
+
+**Files Modified:**
+- `commands/execute-plan.md` - Added Option D routing
+
+### 6-Phase Workflow
+
+| Phase | Purpose | Human Interaction |
+|-------|---------|------------------|
+| **Phase 1: Pre-Execution Setup** | Branch creation and status update offers | Optional offers only |
+| **Phase 2: Implementation** | Execute ALL tasks sequentially | None |
+| **Phase 3: Build Phase** | Run build with 3-cycle fix loop | Only on escalation |
+| **Phase 4: Build→Test Checkpoint** | Single human checkpoint | **Required** |
+| **Phase 5: Test Phase** | Run tests with 3-cycle fix loop | Only on escalation |
+| **Phase 6: Completion** | Verification and finishing | Standard completion |
+
+### Key Features
+
+**No Mid-Implementation Checkpoints:**
+- Tasks execute sequentially without pausing for feedback
+- Progress tracked in `docs/hyperpowers/current-progress.md`
+- Discovered work noted but not acted upon mid-flight
+
+**3-Cycle Fix Loops:**
+- Build and test phases retry up to 3 times on failure
+- Each cycle: analyze error → apply targeted fix → retry
+- After 3 failures: escalate to user with options (continue, skip, stop)
+
+**Single Human Checkpoint:**
+- Located between build and test phases (Phase 4)
+- User decides: run tests, review first, or stop here
+- Natural pause point after all implementation complete
+
+**Build/Test Detection:**
+- Automatic detection from project manifests (package.json, Cargo.toml, pyproject.toml, Makefile, go.mod)
+- Fallback to user-provided commands if no manifest found
+
+### Verification Gates
+
+5 verification gates ensure correct execution:
+
+1. **Pre-Execution Verification** - Branch/status offers presented
+2. **Implementation Completion Gate** - All tasks executed, progress file updated
+3. **Build Phase Gate** - Build passes or user approved skip
+4. **Checkpoint Gate** - AskUserQuestion used, response waited
+5. **Test Phase Gate** - Tests pass or user approved skip
+
+### Red Flags
+
+| Violation | Why It's Critical | Recovery |
+|-----------|-------------------|----------|
+| Pausing mid-implementation | Defeats one-shot purpose | Continue to completion |
+| > 3 fix cycles without escalation | Risk of infinite loops | Escalate to user |
+| Skipping build phase entirely | Ships broken code | Run build or get explicit skip |
+| Proceeding to tests without approval | Violates checkpoint contract | Wait for Phase 4 response |
+| Different tests failing each cycle | Indicates architectural issue | Escalate immediately |
+
+### Warning: Not Recommended
+
+This mode is explicitly marked "not recommended" in the execute-plan command because:
+- Requires comprehensive, unambiguous plans
+- No opportunity for mid-flight corrections
+- Best suited for well-researched, validated plans
+- User must trust the agent to execute without oversight
+
+### Integration
+
+- Routes from `execute-plan.md` Option D
+- Uses `verification-before-completion` for final checks
+- Uses `finishing-a-development-branch` for completion
+- Progress file format consistent with other execution modes
+
+---
+
 ## Summary Statistics
 
 | Category | Commits | Impact |
@@ -848,6 +938,7 @@ hyperpowers-1nk - Research skill parallel exploration enforcement
 | Skill Instruction Following | ~20 | Research-backed pattern application to all skills |
 | Assumption Validation | ~8 | Technical assumption verification before save |
 | Research 8-Agent Enforcement | ~5 | Multi-layer enforcement for agent dispatch |
+| One-Shot Execution Mode | ~14 | Uninterrupted plan execution with build/test validation |
 
 ---
 

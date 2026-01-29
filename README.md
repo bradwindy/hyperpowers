@@ -42,13 +42,14 @@ Activates with approved design to create detailed implementation plans.
 
 ### 4. Execution (`/execute-plan`)
 
-Activates with a plan to implement tasks. Choose from three approaches:
+Activates with a plan to implement tasks. Choose from four approaches:
 
 | Approach | Description | Best For |
 |----------|-------------|----------|
 | **Batch** | Human checkpoints after each batch of tasks | Maximum control |
 | **Validated Batch** | 3 parallel validators (build, spec, quality) + human checkpoints | Balance of speed and quality |
 | **Subagent** | Fresh agent per task with automated two-stage review | Faster, less interaction |
+| **One Shot** | Execute all tasks, then build+test with fix loops (not recommended) | Well-tested, unambiguous plans |
 
 ## Installation
 
@@ -121,6 +122,7 @@ Hyperpowers includes significant enhancements over the original [Superpowers](ht
 | Assumption Validation | Validates design assumptions before planning |
 | Research 8-Agent Enforcement | Counter-rationalization prevents agent reduction |
 | Test Infrastructure | Comprehensive skill testing with case-insensitive assertions |
+| One-Shot Execution Mode | Execute all tasks without checkpoints, then build+test |
 | Upstream Merges | Regular sync with Superpowers upstream improvements |
 
 For complete details, see [IMPROVEMENTS.md](IMPROVEMENTS.md).
