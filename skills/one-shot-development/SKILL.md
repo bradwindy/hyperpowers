@@ -349,3 +349,97 @@ AskUserQuestion(
 
 **STOP CONDITION:** If ANY unchecked, do NOT proceed. Never proceed to tests without explicit user approval via AskUserQuestion.
 </verification>
+
+## Phase 5: Test Phase
+
+**Purpose:** Run tests with fix loops to ensure code works correctly.
+
+### Test Command Detection
+
+Detect test command from project manifests (in priority order):
+
+| Manifest File | Test Command |
+|--------------|--------------|
+| `package.json` (with `scripts.test`) | `npm test` |
+| `Cargo.toml` | `cargo test` |
+| `pyproject.toml` | `pytest` |
+| `Makefile` (with `test` target) | `make test` |
+| `go.mod` | `go test ./...` |
+
+If no test command found:
+```
+AskUserQuestion(
+  questions: [{
+    question: "No test command detected. What test command should I use?",
+    header: "Test",
+    options: [
+      {label: "Skip tests", description: "No tests to run for this project"},
+      {label: "Custom command", description: "I'll provide a test command"}
+    ],
+    multiSelect: false
+  }]
+)
+```
+
+### Test Loop
+
+```
+fix_cycles = 0
+MAX_CYCLES = 3
+
+while fix_cycles < MAX_CYCLES:
+    run test command
+
+    if all tests pass:
+        proceed to Phase 6
+        break
+
+    if tests fail:
+        analyze failure output
+        identify failing tests
+        apply targeted fix
+        fix_cycles += 1
+
+if fix_cycles >= MAX_CYCLES:
+    escalate to user
+```
+
+### Failure Analysis
+
+When tests fail, categorize the failure:
+
+| Pattern | Likely Cause | Fix Approach |
+|---------|--------------|--------------|
+| Same test fails repeatedly | Implementation doesn't address root cause | Re-analyze test expectation |
+| Different tests fail each cycle | Architectural issue | Flag and escalate immediately |
+| Import/module errors | Missing dependency or path | Check imports and dependencies |
+| Assertion errors | Logic bug in implementation | Review test case and fix logic |
+
+### 3-Strike Escalation (Tests)
+
+After 3 failed fix cycles:
+
+```
+AskUserQuestion(
+  questions: [{
+    question: "Tests failed after 3 fix attempts. How do you want to proceed?",
+    header: "Escalate",
+    options: [
+      {label: "Continue trying", description: "Reset counter and try more fixes"},
+      {label: "Skip tests", description: "Proceed to completion with failing tests"},
+      {label: "Stop", description: "Pause execution, I'll investigate"}
+    ],
+    multiSelect: false
+  }]
+)
+```
+
+<verification>
+**Test Phase Gate** (Required):
+
+- [ ] Test command identified (or user confirmed skip)
+- [ ] Tests pass OR user approved skip after escalation
+- [ ] Fix cycles documented (show count)
+
+**STOP CONDITION:** If ANY unchecked, do NOT proceed. Do not proceed to completion with failing tests unless user explicitly approved via escalation.
+</verification>
