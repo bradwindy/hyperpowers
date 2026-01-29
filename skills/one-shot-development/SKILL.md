@@ -443,3 +443,58 @@ AskUserQuestion(
 
 **STOP CONDITION:** If ANY unchecked, do NOT proceed. Do not proceed to completion with failing tests unless user explicitly approved via escalation.
 </verification>
+
+## Phase 6: Completion
+
+**Purpose:** Verify completion and hand off to finishing skill.
+
+### Step 1: Final Verification
+
+Use `hyperpowers:verification-before-completion`:
+- Evidence-based completion checklist
+- Discovered work offers
+- Original issue update offer
+
+### Step 2: Cleanup Transient Files
+
+```bash
+rm -f docs/hyperpowers/current-progress.md
+```
+
+Note: This file is gitignored. Only cleanup AFTER verification passes.
+
+### Step 3: Finish
+
+Use `hyperpowers:finishing-a-development-branch` skill:
+- Offers 4 completion options (merge, PR, continue, stash)
+- Issue close offer (if primary issue tracked)
+- Worktree cleanup offer (if in worktree)
+
+## Red Flags
+
+| Violation | Why It's Critical | Recovery |
+|-----------|-------------------|----------|
+| Pausing mid-implementation for feedback | Defeats one-shot purpose | Continue to completion, pause only at Phase 4 |
+| > 3 fix cycles without escalation | Risk of infinite loops | Escalate to user after 3 cycles |
+| Skipping build phase entirely | Ships potentially broken code | Run build or get explicit user skip |
+| Plain text questions instead of AskUserQuestion | User can't respond via structured UI | Use AskUserQuestion tool |
+| Proceeding to tests without user approval | Violates single-checkpoint contract | Wait for Phase 4 response |
+| Different tests failing each fix cycle | Indicates architectural issue | Escalate immediately, don't count as normal fix |
+| Cleaning up progress file before verification | Loses debugging context | Keep until verification-before-completion passes |
+
+## Integration
+
+**Required workflow skills:**
+- **hyperpowers:verification-before-completion** - Final evidence-based verification
+- **hyperpowers:finishing-a-development-branch** - Complete development after all tasks
+
+**No prompt templates needed:** One-shot executes directly without subagents.
+
+<requirements>
+## Requirements Reminder
+
+1. Execute all tasks without human checkpoints.
+2. Run build phase with fix loops (max 3 cycles).
+3. Ask user before proceeding to test phase.
+4. Invoke finishing-a-development-branch at completion.
+</requirements>
