@@ -87,3 +87,59 @@ digraph process {
     "Escalate to user (tests)" -> "Phase 6: Completion";
 }
 ```
+
+## Phase 1: Pre-Execution Setup
+
+Same as other execution modes. Present offers before task loop begins.
+
+<verification>
+### Pre-Execution Verification
+
+Before starting implementation:
+
+- [ ] On base branch? If yes, present Branch Creation Offer
+- [ ] Primary issue exists? If yes, present Status Update Offer
+
+User can decline any offer - the requirement is presentation, not execution.
+</verification>
+
+### Branch Creation Offer (if on base branch)
+
+Check if on main/master/develop:
+```bash
+git branch --show-current
+```
+
+If on base branch:
+```
+AskUserQuestion(
+  questions: [{
+    question: "Create feature branch for this work?",
+    header: "Branch",
+    options: [
+      {label: "Yes", description: "Create branch: feature/<plan-name>"},
+      {label: "Skip", description: "Stay on current branch"}
+    ],
+    multiSelect: false
+  }]
+)
+```
+
+### Status Update Offer (if issue tracked)
+
+If primary issue identified (from plan header or branch name):
+```
+AskUserQuestion(
+  questions: [{
+    question: "Update issue status to in-progress?",
+    header: "Status",
+    options: [
+      {label: "Yes", description: "Mark issue as in-progress"},
+      {label: "Skip", description: "Leave status unchanged"}
+    ],
+    multiSelect: false
+  }]
+)
+```
+
+After offers complete (or skipped), proceed to Phase 2.
