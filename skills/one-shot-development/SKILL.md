@@ -131,10 +131,10 @@ If primary issue identified (from plan header or branch name):
 ```
 AskUserQuestion(
   questions: [{
-    question: "Update issue status to in-progress?",
+    question: "Update issue [ISSUE-ID] status to in-progress?",
     header: "Status",
     options: [
-      {label: "Yes", description: "Mark issue as in-progress"},
+      {label: "Yes", description: "Mark issue [ISSUE-ID] as in-progress"},
       {label: "Skip", description: "Leave status unchanged"}
     ],
     multiSelect: false
