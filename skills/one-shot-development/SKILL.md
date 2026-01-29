@@ -203,13 +203,11 @@ Implementing Task 4/10
 ```
 
 <verification>
-### Implementation Completion Gate
-
-Before proceeding to build phase:
+**Implementation Completion Gate** (Required):
 
 - [ ] All plan tasks executed (none skipped)
 - [ ] Progress file shows all tasks marked [x]
 - [ ] Discovered work appended (if any found)
 
-**STOP CONDITION:** If any tasks skipped, complete them before build phase.
+**STOP CONDITION:** If ANY unchecked, do NOT proceed. Complete all tasks before proceeding to Phase 3.
 </verification>
