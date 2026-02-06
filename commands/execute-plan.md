@@ -1,6 +1,6 @@
 ---
 name: execute-plan
-description: "Use when executing an implementation plan. Offers batch, validated-batch, subagent, or one-shot approaches."
+description: "Use when executing an implementation plan. Offers batch, validated-batch, subagent, team-driven, or one-shot approaches."
 ---
 
 Execute an implementation plan. First, determine which execution style to use.
@@ -23,7 +23,8 @@ Use AskUserQuestion with these options:
 | A      | Batch (human checkpoints) (Recommended)  | Execute tasks in batches, pause for your feedback after each batch. You stay in control.                                |
 | B      | Validated Batch (parallel validation)    | Intelligent batching based on buildability + 3 parallel validators after each batch. Best balance of speed and quality. |
 | C      | Subagent (automated reviews)             | Fresh subagent per task with automated spec + code quality reviews. Faster, less interaction.                           |
-| D      | One Shot (not recommended)               | Execute ALL tasks without pauses, then build+test. Requires solid plan. No checkpoints until build completes.           |
+| D      | Team-Driven (agent teams)                | Parallel execution using agent teams. Fastest for independent tasks. Requires CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS.     |
+| E      | One Shot (not recommended)               | Execute ALL tasks without pauses, then build+test. Requires solid plan. No checkpoints until build completes.           |
 
 **This question is COMPULSORY. Never skip it, never assume a default.**
 
@@ -32,6 +33,7 @@ Use AskUserQuestion with these options:
 - If Batch: `Skill(hyperpowers:batch-development, args: "<plan-path> --batch-size=N")`
 - If Validated Batch: `Skill(hyperpowers:validated-batch-development, args: "<plan-path>")`
 - If Subagent: `Skill(hyperpowers:subagent-driven-development, args: "<plan-path>")`
+- If Team-Driven: `Skill(hyperpowers:team-driven-development, args: "<plan-path>")`
 - If One Shot: `Skill(hyperpowers:one-shot-development, args: "<plan-path>")`
 
 Pass the plan path as the argument to the skill.
