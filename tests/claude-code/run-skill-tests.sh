@@ -86,6 +86,7 @@ tests=(
 # Integration tests (slow, full execution)
 integration_tests=(
     "test-subagent-driven-development-integration.sh"
+    "test-team-driven-development-compliance.sh"
 )
 
 # Add integration tests if requested
