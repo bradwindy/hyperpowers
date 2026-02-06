@@ -25,6 +25,7 @@ This document details all significant improvements made to Hyperpowers since for
 - [14. Assumption Validation](#14-assumption-validation)
 - [15. Research Skill: 8-Agent Minimum Enforcement](#15-research-skill-8-agent-minimum-enforcement)
 - [16. One-Shot Execution Mode](#16-one-shot-execution-mode)
+- [17. Agent Teams Integration](#17-agent-teams-integration)
 
 ---
 
@@ -919,6 +920,23 @@ This mode is explicitly marked "not recommended" in the execute-plan command bec
 
 ---
 
+## 17. Agent Teams Integration
+
+New execution and collaboration modes using Claude Code's agent teams for parallel implementation, collaborative review, and coordinated build/test/fix cycles.
+
+### Agent Teams Integration
+
+| Improvement | Description |
+|-------------|-------------|
+| Team-Driven Development Skill | New execution mode using agent teams for parallel implementation, collaborative review, and coordinated build/test/fix cycles |
+| Research Skill Agent Teams | Research agents spawn as teammates, collaborate and challenge each other's findings, produce peer-reviewed synthesis |
+| Code Review Agent Teams | Review agents spawn as teammates, discuss cross-domain concerns in real-time, produce enriched findings |
+| Parallelization Planner | New agent that analyzes plans for parallel execution, produces batch groupings with zero file overlap |
+| Execution Agent Group | New agent group (build-runner, test-runner, fix-specialist) for team-based build/test/fix cycles |
+| Phased Team Lifecycle | One team per phase with cleanup retry logic; implementation -> review -> build/test/fix per batch |
+
+---
+
 ## Summary Statistics
 
 | Category | Commits | Impact |
@@ -939,6 +957,7 @@ This mode is explicitly marked "not recommended" in the execute-plan command bec
 | Assumption Validation | ~8 | Technical assumption verification before save |
 | Research 8-Agent Enforcement | ~5 | Multi-layer enforcement for agent dispatch |
 | One-Shot Execution Mode | ~14 | Uninterrupted plan execution with build/test validation |
+| Agent Teams Integration | ~15 | Parallel implementation and collaborative review via agent teams |
 
 ---
 

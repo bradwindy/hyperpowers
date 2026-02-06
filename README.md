@@ -50,6 +50,7 @@ Activates with a plan to implement tasks. Choose from four approaches:
 | **Validated Batch** | 3 parallel validators (build, spec, quality) + human checkpoints | Balance of speed and quality |
 | **Subagent** | Fresh agent per task with automated two-stage review | Faster, less interaction |
 | **One Shot** | Execute all tasks, then build+test with fix loops (not recommended) | Well-tested, unambiguous plans |
+| **Team-Driven** | Agent teams for parallel implementation + collaborative review | Plans with independent tasks, agent teams enabled |
 
 ## Installation
 
@@ -123,6 +124,7 @@ Hyperpowers includes significant enhancements over the original [Superpowers](ht
 | Research 8-Agent Enforcement | Counter-rationalization prevents agent reduction |
 | Test Infrastructure | Comprehensive skill testing with case-insensitive assertions |
 | One-Shot Execution Mode | Execute all tasks without checkpoints, then build+test |
+| Agent Teams Integration | Research, review, and development execution using collaborative agent teams for parallel work |
 | Upstream Merges | Regular sync with Superpowers upstream improvements |
 
 For complete details, see [IMPROVEMENTS.md](IMPROVEMENTS.md).
