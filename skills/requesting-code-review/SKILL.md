@@ -56,7 +56,8 @@ Orchestrator (you) handles synthesis with full reasoning capability.
 |------|--------|
 | 1 | Gather git context (BASE_SHA, HEAD_SHA) |
 | 2 | Summarize what was implemented |
-| 3 | Dispatch 4 parallel review agents |
+| 3 | Spawn review team |
+| 3.5 | Team cleanup | Clean up review team |
 | 4 | Synthesize findings by severity |
 | 5 | Check docs/hyperpowers/solutions/ for known fixes |
 | 6 | Present unified checklist |
@@ -78,40 +79,42 @@ Summarize the changes:
 - Which files were changed
 - What requirements it should meet
 
-### Step 3: Dispatch 4 Parallel Review Agents
+### Step 3: Spawn Review Team
 
-Dispatch all 4 agents simultaneously:
+**Create an agent team** named "Code Review: [summary of changes]" with the following teammates:
 
-```
-Task(description: "Security review",
-     prompt: [security-reviewer with diff context],
-     model: "haiku",
-     subagent_type: "general-purpose")
-
-Task(description: "Performance review",
-     prompt: [performance-reviewer with diff context],
-     model: "haiku",
-     subagent_type: "general-purpose")
-
-Task(description: "Style review",
-     prompt: [style-reviewer with diff context],
-     model: "haiku",
-     subagent_type: "general-purpose")
-
-Task(description: "Test review",
-     prompt: [test-reviewer with diff context],
-     model: "haiku",
-     subagent_type: "general-purpose")
-```
-
-Each agent prompt should include:
+For each reviewer, use the agent definition content from the corresponding file in `agents/review/` as their spawn prompt. Include:
 - The git diff or changed file contents
 - Summary of what was implemented
-- The agent's checklist and output format
+- The instruction: "You are operating as a teammate. Follow the Teammate Instructions section in your agent definition. Share cross-domain findings with relevant teammates."
+
+**Teammate spawn list:**
+
+1. **Security Reviewer** — spawn with content from `agents/review/security-reviewer.md` plus diff context
+2. **Performance Reviewer** — spawn with content from `agents/review/performance-reviewer.md` plus diff context
+3. **Style Reviewer** — spawn with content from `agents/review/style-reviewer.md` plus diff context
+4. **Test Reviewer** — spawn with content from `agents/review/test-reviewer.md` plus diff context
+
+Reviewers should:
+1. Conduct their specialized review
+2. When they find an issue that touches another reviewer's domain, message that reviewer directly via `write`
+3. After completing their own review, read other reviewers' findings and add any cross-domain observations
+4. Use `broadcast` only for critical findings that all reviewers need to know
+
+**After spawning:** Wait for all reviewers to complete their reviews and cross-domain discussion.
+
+### Step 3.5: Review Team Cleanup
+
+After all reviewers complete:
+1. Request shutdown for all reviewer teammates
+2. Wait for all teammates to approve shutdown
+3. Call cleanup to remove team resources
+4. Retry cleanup up to 3 times if it fails
+5. If cleanup fails after 3 retries, escalate to user via AskUserQuestion
 
 ### Step 4: Synthesize Findings
 
-After all agents complete, combine findings by severity:
+After review team is cleaned up, combine findings by severity. Findings are now enriched with cross-domain observations from reviewer collaboration.
 
 ```markdown
 ## Code Review Results
@@ -120,16 +123,23 @@ After all agents complete, combine findings by severity:
 [Must fix before merge]
 - [ ] **[CATEGORY]** [Issue] at `file:line`
   - [Details and fix recommendation]
+  - Cross-domain note: [if multiple reviewers flagged this]
 
 ### Warnings
 [Should fix, may proceed with justification]
 - [ ] **[CATEGORY]** [Issue] at `file:line`
   - [Details and fix recommendation]
+  - Cross-domain note: [if applicable]
 
 ### Suggestions
 [Optional improvements]
 - [ ] **[CATEGORY]** [Issue] at `file:line`
   - [Details]
+
+### Cross-Domain Insights
+[Findings that span multiple review domains]
+- **[Domain A + Domain B]**: [Cross-cutting finding] at `file:line`
+  - [How the domains interact and why this matters]
 ```
 
 ### Step 5: Check for Known Solutions
@@ -219,14 +229,15 @@ Before dispatching review agents, verify context is complete:
 
 **STOP CONDITION:** If context incomplete, gather it before dispatching agents.
 
-**Dispatch Gate:**
+**Spawn Gate:**
 
-- [ ] Security Reviewer dispatched
-- [ ] Performance Reviewer dispatched
-- [ ] Style Reviewer dispatched
-- [ ] Test Reviewer dispatched
+- [ ] Security Reviewer spawned as teammate
+- [ ] Performance Reviewer spawned as teammate
+- [ ] Style Reviewer spawned as teammate
+- [ ] Test Reviewer spawned as teammate
+- [ ] Team cleanup completed before synthesis
 
-**STOP CONDITION:** If fewer than 4 agents dispatched, dispatch missing agents.
+**STOP CONDITION:** If fewer than 4 reviewers spawned, spawn missing reviewers.
 </verification>
 
 <verification>
