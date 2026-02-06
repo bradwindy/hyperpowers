@@ -109,11 +109,11 @@ If the research topic is ambiguous, ask 2-3 targeted questions using AskUserQues
 
 If clear, proceed directly to Phase 2.
 
-### Phase 2: Dispatch Parallel Research Agents
+### Phase 2: Spawn Research Team
 
-### Dispatch Verification (check BEFORE dispatching)
+### Dispatch Verification (check BEFORE spawning)
 
-You will dispatch exactly 8 agents:
+You will spawn exactly 8 researcher teammates:
 1. codebase-analyst
 2. git-history-analyzer
 3. framework-docs-researcher
@@ -129,15 +129,15 @@ These thoughts mean you're about to violate the 8-agent minimum. STOP.
 
 | Thought | Reality |
 |---------|---------|
-| "I'll dispatch the most relevant agents" | ALL agents are relevant. Each has unique perspective. |
+| "I'll spawn the most relevant agents" | ALL agents are relevant. Each has unique perspective. |
 | "These agents overlap" | Overlap is intentional - contradictions are valuable. |
-| "To save time/tokens" | 8 parallel agents IS the efficient approach. |
+| "To save time/tokens" | 8 parallel teammates IS the efficient approach. |
 | "Given the simple topic" | No topic is too simple for all 8. Simplicity is deceptive. |
-| "I already know the answer" | Research validates, doesn't assume. Dispatch all 8. |
+| "I already know the answer" | Research validates, doesn't assume. Spawn all 8. |
 
-**Dispatch Gate** (Required - NEVER skip):
+**Spawn Gate** (Required - NEVER skip):
 
-STOP. Before proceeding, verify you will dispatch ALL of these in ONE message:
+STOP. Before proceeding, verify you will spawn ALL of these as teammates:
 - [ ] codebase-analyst
 - [ ] git-history-analyzer
 - [ ] framework-docs-researcher
@@ -146,82 +146,53 @@ STOP. Before proceeding, verify you will dispatch ALL of these in ONE message:
 - [ ] error-handling-analyst
 - [ ] dependency-analyst
 - [ ] architecture-boundaries-analyst
-- [ ] Additional agents for any open questions discovered
+- [ ] Additional teammates for any open questions discovered
 
-**STOP CONDITION (MANDATORY):** Count your Task calls before dispatching.
+**STOP CONDITION (MANDATORY):** Count your teammates before spawning.
 
 - Less than 8 = VIOLATION. Do not proceed.
-- Design doc has open questions? Add 1 Task call per question (Phase 2.5a).
-- Minimum agents = 8 + (number of open questions)
+- Design doc has open questions? Add 1 teammate per question (Phase 2.5a).
+- Minimum teammates = 8 + (number of open questions)
 
 If count is wrong, FIX IT before proceeding. No exceptions. No rationalizations.
 
-### Dispatch all 8 agents now:
+### Spawn the Research Team
 
-```
-# Agent 1 of 8: Codebase Analysis
-Task(description: "Analyze codebase patterns",
-     prompt: [codebase-analyst prompt with topic],
-     model: "haiku",
-     subagent_type: "general-purpose")
+**Create an agent team** named "Research: [topic]" with the following teammates:
 
-# Agent 2 of 8: Git History
-Task(description: "Analyze git history",
-     prompt: [git-history-analyzer prompt with topic],
-     model: "haiku",
-     subagent_type: "general-purpose")
-
-# Agent 3 of 8: Framework Docs
-Task(description: "Research framework docs",
-     prompt: [framework-docs-researcher prompt with topic],
-     model: "haiku",
-     subagent_type: "general-purpose")
-
-# Agent 4 of 8: Best Practices
-Task(description: "Research best practices",
-     prompt: [best-practices-researcher prompt with topic],
-     model: "haiku",
-     subagent_type: "general-purpose")
-
-# Agent 5 of 8: Test Coverage
-Task(description: "Analyze test coverage",
-     prompt: [test-coverage-analyst prompt with topic],
-     model: "haiku",
-     subagent_type: "general-purpose")
-
-# Agent 6 of 8: Error Handling
-Task(description: "Analyze error handling",
-     prompt: [error-handling-analyst prompt with topic],
-     model: "haiku",
-     subagent_type: "general-purpose")
-
-# Agent 7 of 8: Dependencies
-Task(description: "Analyze dependencies",
-     prompt: [dependency-analyst prompt with topic],
-     model: "haiku",
-     subagent_type: "general-purpose")
-
-# Agent 8 of 8: Architecture Boundaries
-Task(description: "Analyze architecture boundaries",
-     prompt: [architecture-boundaries-analyst prompt with topic],
-     model: "haiku",
-     subagent_type: "general-purpose")
-```
-
-Each agent prompt should include:
+For each researcher, use the agent definition content from the corresponding file in `agents/research/` as their spawn prompt. Include:
 - The specific research topic
 - Any open questions from the design document
-- The agent's methodology from their definition file
-- The output format expected
+- The instruction: "You are operating as a teammate. Follow the Teammate Instructions section in your agent definition."
 
-### Phase 2.5a: Open Question Agents (Conditional)
+**Teammate spawn list:**
 
-If design document had an "Open Questions" section, dispatch additional agents:
+1. **Codebase Analyst** — spawn with content from `agents/research/codebase-analyst.md` plus research topic
+2. **Git History Analyzer** — spawn with content from `agents/research/git-history-analyzer.md` plus research topic
+3. **Framework Docs Researcher** — spawn with content from `agents/research/framework-docs-researcher.md` plus research topic
+4. **Best Practices Researcher** — spawn with content from `agents/research/best-practices-researcher.md` plus research topic
+5. **Test Coverage Analyst** — spawn with content from `agents/research/test-coverage-analyst.md` plus research topic
+6. **Error Handling Analyst** — spawn with content from `agents/research/error-handling-analyst.md` plus research topic
+7. **Dependency Analyst** — spawn with content from `agents/research/dependency-analyst.md` plus research topic
+8. **Architecture Boundaries Analyst** — spawn with content from `agents/research/architecture-boundaries-analyst.md` plus research topic
 
-**Step 1: Analyze each open question to determine best-fit agent type:**
+Each researcher should:
+1. Conduct their specialized analysis
+2. Share findings with relevant teammates via targeted `write` messages
+3. Challenge findings from other researchers that touch their domain
+4. Update their findings based on peer feedback
+5. Use `broadcast` only for critical team-wide findings
 
-| Question Type | Best-Fit Agent |
-|---------------|----------------|
+**After spawning:** Wait for all researchers to complete their peer discussion before proceeding to synthesis.
+
+### Phase 2.5a: Open Question Teammates (Conditional)
+
+If design document had an "Open Questions" section, spawn additional teammates into the existing research team:
+
+**Step 1: Analyze each open question to determine best-fit researcher type:**
+
+| Question Type | Best-Fit Researcher |
+|---------------|---------------------|
 | Framework/API questions | framework-docs-researcher |
 | Code architecture questions | codebase-analyst or architecture-boundaries-analyst |
 | Historical "why" questions | git-history-analyzer |
@@ -230,27 +201,13 @@ If design document had an "Open Questions" section, dispatch additional agents:
 | Error handling questions | error-handling-analyst |
 | Dependency questions | dependency-analyst |
 
-**Step 2: Dispatch one additional agent per open question:**
+**Step 2: Spawn one additional teammate per open question** into the existing team. Use the corresponding agent definition from `agents/research/` as the spawn prompt, but focus the prompt on the specific open question:
 
-```
-Task(
-  description: "Investigate: [3-5 word question summary]",
-  prompt: "Focus ONLY on this open question from the design doc:
-  '[full question text]'
+"Focus ONLY on this open question from the design doc: '[full question text]'. Research this specific question thoroughly. Share your findings with the full team."
 
-  Research this specific question thoroughly. Provide:
-  1. Direct answer if possible
-  2. Evidence from codebase/docs/web
-  3. Confidence level (high/medium/low)
-  4. Remaining unknowns",
-  model: "haiku",
-  subagent_type: "hyperpowers:research:[best-fit-agent]"
-)
-```
+**Step 3: Update spawn count verification:**
 
-**Step 3: Update dispatch count verification:**
-
-Total agents dispatched = 8 core + N open question agents
+Total teammates spawned = 8 core + N open question teammates
 
 **Skip Condition:** If design doc has no "Open Questions" section, skip Phase 2.5a entirely.
 
@@ -271,9 +228,28 @@ Find issues related to this research topic.",
 
 If no tracker detected, skip this phase (will note in output).
 
+### Phase 2.9: Team Cleanup
+
+Before synthesizing, shut down the research team:
+1. Request shutdown for all researcher teammates
+2. Wait for all teammates to approve shutdown
+3. Call cleanup to remove team resources
+4. Retry cleanup up to 3 times if it fails
+5. If cleanup fails after 3 retries, escalate to user via AskUserQuestion
+
+**STOP CONDITION:** Do not proceed to synthesis until team is cleaned up (one team per session constraint).
+
 ### Phase 3: Synthesize Findings
 
 After all agents complete, synthesize their findings into a research document.
+
+**Team-Based Synthesis Enhancement:**
+
+The lead synthesizes findings that have already been peer-reviewed by the research team. When writing the synthesis:
+- Note where researchers agreed (peer-validated findings)
+- Note where researchers disagreed and how it was resolved
+- Note where researchers challenged each other's conclusions
+- Include cross-domain observations from the "Peer Interactions" and "Cross-Domain Observations" sections of each researcher's output
 
 **Research Document Format:**
 
@@ -565,9 +541,10 @@ If ANY unchecked, go back and complete missing steps.
 |-------|--------|--------|
 | 0 | Check design doc | Full design content or proceed |
 | 1 | Clarify topic (if no design) | Clear research question |
-| 2 | Dispatch 8 agents | Parallel research |
+| 2 | Spawn 8 research teammates | Parallel team research |
 | 2.5a | Open question agents | Additional targeted research |
 | 2.6 | Discover issues | Related issues list |
+| 2.9 | Team cleanup | Clean up research team |
 | 3 | Synthesize | Combined findings |
 | 3.5 | Validate assumptions | Validated Assumptions section |
 | 4 | Save | `docs/hyperpowers/research/YYYY-MM-DD-topic.md` |
