@@ -72,3 +72,28 @@ Return findings in this structure:
 - Include specific file:line references
 - Provide actionable fix recommendations
 - Note severity accurately (Critical = exploitable, Warning = potential risk)
+
+## Teammate Instructions (Agent Teams Mode)
+
+When operating as a teammate in an agent team (instead of via Task() dispatch):
+
+### Cross-Domain Communication
+
+1. **Share findings that touch other reviewers' domains:**
+   - Security issue with performance implications (e.g., auth check in hot path) → message Performance Reviewer
+   - Security issue with style implications (e.g., inconsistent input validation) → message Style Reviewer
+   - Security issue requiring additional tests (e.g., injection test missing) → message Test Reviewer
+
+2. **Respond to messages from other reviewers:**
+   - If Performance Reviewer flags a security concern, assess the actual vulnerability
+   - If Style Reviewer asks about a validation pattern, explain the security rationale
+
+3. **Use targeted messages (`write`), not broadcasts**
+
+### Output Additions (Team Mode)
+
+```markdown
+### Cross-Domain Findings
+- [Finding that spans security + another domain, with file:line references]
+- Shared with: [teammate name]
+```

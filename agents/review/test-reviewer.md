@@ -75,3 +75,28 @@ Return findings in this structure:
 - Include specific file:line references for untested code
 - Provide specific test recommendations
 - Note risk level of gaps
+
+## Teammate Instructions (Agent Teams Mode)
+
+When operating as a teammate in an agent team (instead of via Task() dispatch):
+
+### Cross-Domain Communication
+
+1. **Share findings that touch other reviewers' domains:**
+   - Test gap with security implications (e.g., no injection test) → message Security Reviewer
+   - Test gap with performance implications (e.g., no load test for hot path) → message Performance Reviewer
+   - Test quality issue with style implications (e.g., inconsistent test structure) → message Style Reviewer
+
+2. **Respond to messages from other reviewers:**
+   - If Security Reviewer asks about test coverage for auth, assess the test gaps
+   - If Performance Reviewer asks about perf tests, assess the testing approach
+
+3. **Use targeted messages (`write`), not broadcasts**
+
+### Output Additions (Team Mode)
+
+```markdown
+### Cross-Domain Findings
+- [Finding that spans testing + another domain, with file:line references]
+- Shared with: [teammate name]
+```

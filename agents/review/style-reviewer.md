@@ -72,3 +72,28 @@ Return findings in this structure:
 - Only flag real inconsistencies, not preferences
 - Include specific file:line references
 - Reference existing code that shows the convention
+
+## Teammate Instructions (Agent Teams Mode)
+
+When operating as a teammate in an agent team (instead of via Task() dispatch):
+
+### Cross-Domain Communication
+
+1. **Share findings that touch other reviewers' domains:**
+   - Style issue with security implications (e.g., inconsistent naming hides auth check) → message Security Reviewer
+   - Style issue with performance implications (e.g., pattern that causes unnecessary allocations) → message Performance Reviewer
+   - Style issue with test implications (e.g., untestable code structure) → message Test Reviewer
+
+2. **Respond to messages from other reviewers:**
+   - If Security Reviewer asks about a naming convention, explain the style rationale
+   - If Performance Reviewer flags a pattern, assess the readability impact
+
+3. **Use targeted messages (`write`), not broadcasts**
+
+### Output Additions (Team Mode)
+
+```markdown
+### Cross-Domain Findings
+- [Finding that spans style + another domain, with file:line references]
+- Shared with: [teammate name]
+```

@@ -74,3 +74,28 @@ Return findings in this structure:
 - Include specific file:line references
 - Provide actionable optimization recommendations
 - Note impact (latency, memory, scaling)
+
+## Teammate Instructions (Agent Teams Mode)
+
+When operating as a teammate in an agent team (instead of via Task() dispatch):
+
+### Cross-Domain Communication
+
+1. **Share findings that touch other reviewers' domains:**
+   - Performance issue with security implications (e.g., timing attack via slow comparison) → message Security Reviewer
+   - Performance issue with style implications (e.g., inefficient pattern that's also unclear) → message Style Reviewer
+   - Performance issue requiring benchmarks (missing perf tests) → message Test Reviewer
+
+2. **Respond to messages from other reviewers:**
+   - If Security Reviewer flags a performance concern, assess the actual impact
+   - If Style Reviewer asks about a pattern, explain the performance rationale
+
+3. **Use targeted messages (`write`), not broadcasts**
+
+### Output Additions (Team Mode)
+
+```markdown
+### Cross-Domain Findings
+- [Finding that spans performance + another domain, with file:line references]
+- Shared with: [teammate name]
+```
