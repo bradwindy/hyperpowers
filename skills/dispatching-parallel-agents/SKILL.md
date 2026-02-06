@@ -163,6 +163,24 @@ Each parallel subagent must return results in structured format to enable synthe
 **Exploratory debugging:** You don't know what's broken yet
 **Shared state:** Subagents would interfere (editing same files, using same resources)
 
+## Agent Teams Alternative
+
+For sustained parallel collaboration (not just independent parallel tasks), consider using agent teams instead of `Task()` dispatch:
+
+- **Agent teams** enable teammates to message each other directly, share findings, and challenge conclusions
+- **Task() dispatch** is better for independent, isolated tasks that don't need coordination
+- Agent teams require `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` to be enabled
+
+**When to use agent teams instead:**
+- Researchers need to challenge each other's findings (use research skill with teams)
+- Reviewers need cross-domain discussion (use code review skill with teams)
+- Implementation tasks can run in parallel (use team-driven-development skill)
+
+**When to stick with Task() dispatch:**
+- Tasks are truly independent and need no coordination
+- Token cost is a concern (teams use ~5x tokens)
+- You need quick, isolated investigations
+
 ## When to Use Parallel vs Sequential
 
 **Use Parallel When:**
