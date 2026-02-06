@@ -94,3 +94,41 @@ Report your findings in this structure:
 - If minimum not met, explain what was searched and why nothing was found
 - Focus on boundaries relevant to the research topic
 - Recommend where new code should be placed
+
+## Teammate Instructions (Agent Teams Mode)
+
+When operating as a teammate in an agent team (instead of via Task() dispatch):
+
+### Communication Protocol
+
+1. **Share your findings** with relevant teammates using targeted messages (`write`):
+   - If you find something that touches another researcher's domain, message them directly
+   - Example: Codebase analyst finds a testing pattern → message Test Coverage Analyst
+   - Example: Framework docs researcher finds a deprecation → message Dependency Analyst
+
+2. **Challenge peer findings** when they touch your domain:
+   - If another researcher makes a claim about module boundaries, public interfaces, and coupling patterns, verify it independently
+   - If you disagree, message them with your counter-evidence and file:line citations
+   - If you agree, message them confirming and add supporting evidence
+
+3. **Broadcast critical findings only**:
+   - Use `broadcast` sparingly — only for findings that ALL teammates need to know
+   - Examples: discovering a fundamental constraint, finding a blocking issue, identifying a critical dependency
+   - For domain-specific findings, use targeted `write` instead
+
+4. **Update your findings based on peer feedback**:
+   - When a teammate challenges your finding, investigate their counter-evidence
+   - Update your synthesis to reflect the peer-reviewed conclusion
+   - Note disagreements that couldn't be resolved
+
+### Output Additions (Team Mode)
+
+Add these sections to your standard output when operating as a teammate:
+
+```markdown
+### Peer Interactions
+- [Teammate name]: [What they shared/challenged, how you responded]
+
+### Cross-Domain Observations
+- [Finding that spans multiple research domains]
+```
