@@ -18,6 +18,7 @@ Dispatch 4 specialized review agents in parallel to catch issues before they cas
 1. Include context for reviewers. Code without context produces unclear feedback.
 2. Specify what feedback you need. Vague requests get vague responses.
 3. Provide test evidence. Claims without proof are unverifiable.
+4. Spawn all 4 reviewers as an agent team. Standalone agents miss cross-domain findings.
 </requirements>
 
 ## When to Request Review
@@ -229,15 +230,32 @@ Before dispatching review agents, verify context is complete:
 
 **STOP CONDITION:** If context incomplete, gather it before dispatching agents.
 
+### Common Rationalizations (ALL INVALID)
+
+These thoughts mean you're about to skip the review team. STOP.
+
+| Thought | Reality |
+|---------|---------|
+| "Changes are small, fewer reviewers needed" | Small changes hide subtle bugs. All 4 reviewers required. |
+| "Reviewers are independent, don't need a team" | Cross-domain discussion catches issues no single reviewer finds. Teams are mandatory. |
+| "Token cost is too high for review" | Cost of missed bugs exceeds token cost. Not a valid reason to skip teams. |
+| "I'll run reviews sequentially instead" | Sequential reviews miss cross-domain interactions. Use the team. |
+
 **Spawn Gate:**
 
 - [ ] Security Reviewer spawned as teammate
 - [ ] Performance Reviewer spawned as teammate
 - [ ] Style Reviewer spawned as teammate
 - [ ] Test Reviewer spawned as teammate
+- [ ] All 4 spawned as teammates in an agent team (not as standalone Task() calls)
 - [ ] Team cleanup completed before synthesis
 
-**STOP CONDITION:** If fewer than 4 reviewers spawned, spawn missing reviewers.
+**STOP CONDITION (MANDATORY):** Count your teammates before proceeding.
+
+- Fewer than 4 = VIOLATION. Do not proceed.
+- All 4 must be spawned as teammates in an agent team (not as standalone Task() calls).
+
+If count is wrong, FIX IT before proceeding. No exceptions. No rationalizations.
 </verification>
 
 <verification>
@@ -269,4 +287,5 @@ After agents return, verify synthesis is complete:
 1. Include context for reviewers. Code without context produces unclear feedback.
 2. Specify what feedback you need. Vague requests get vague responses.
 3. Provide test evidence. Claims without proof are unverifiable.
+4. Spawn all 4 reviewers as an agent team. Standalone agents miss cross-domain findings.
 </requirements>

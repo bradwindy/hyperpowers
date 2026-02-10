@@ -15,7 +15,7 @@ Deep research that surfaces issues before they become bugs. Dispatches 8 paralle
 <requirements>
 ## Requirements (MINIMUM 8 agents, synthesis)
 
-1. Dispatch ALL 8 agents in a single message (MINIMUM - more if open questions exist). Fewer than 8 = VIOLATION. Stop immediately.
+1. Dispatch ALL 8 agents as teammates in an agent team (MINIMUM - more if open questions exist). Fewer than 8 = VIOLATION. Using Task() instead of TeamCreate = VIOLATION. Stop immediately.
 2. Synthesize findings into research document. Raw concatenation = invalid output.
 3. 8 agents is the floor, not the ceiling.
 </requirements>
@@ -45,7 +45,7 @@ Do NOT use when:
 
 This skill produces valid output only when both are met:
 
-1. **Dispatch all 8 agents** in one message. Dispatching fewer produces incomplete research.
+1. **Dispatch all 8 agents as teammates in an agent team** via TeamCreate. Dispatching fewer OR using standalone Task() calls produces incomplete research.
 2. **Synthesize findings** into a coherent document. Concatenating raw output is not synthesis.
 
 If blocked from either requirement, stop and explain why.
@@ -134,6 +134,8 @@ These thoughts mean you're about to violate the 8-agent minimum. STOP.
 | "To save time/tokens" | 8 parallel teammates IS the efficient approach. |
 | "Given the simple topic" | No topic is too simple for all 8. Simplicity is deceptive. |
 | "I already know the answer" | Research validates, doesn't assume. Spawn all 8. |
+| "Agents are independent, don't need team coordination" | Team structure enables peer challenge and cross-domain validation. Independence is not a reason to skip teams. |
+| "I'll use Task() dispatch instead of TeamCreate" | Task() agents cannot message each other. TeamCreate is mandatory for peer review. Using Task() = VIOLATION. |
 
 **Spawn Gate** (Required - NEVER skip):
 
@@ -147,14 +149,16 @@ STOP. Before proceeding, verify you will spawn ALL of these as teammates:
 - [ ] dependency-analyst
 - [ ] architecture-boundaries-analyst
 - [ ] Additional teammates for any open questions discovered
+- [ ] All agents spawned via TeamCreate (NOT standalone Task() calls)
 
 **STOP CONDITION (MANDATORY):** Count your teammates before spawning.
 
 - Less than 8 = VIOLATION. Do not proceed.
+- Using Task() instead of TeamCreate = VIOLATION. Do not proceed.
 - Design doc has open questions? Add 1 teammate per question (Phase 2.5a).
 - Minimum teammates = 8 + (number of open questions)
 
-If count is wrong, FIX IT before proceeding. No exceptions. No rationalizations.
+If count is wrong or dispatch method is wrong, FIX IT before proceeding. No exceptions. No rationalizations.
 
 ### Spawn the Research Team
 
@@ -530,7 +534,7 @@ If ANY unchecked, go back and complete missing steps.
 <requirements>
 ## Requirements (reminder)
 
-1. Dispatch ALL 8 agents in a single message (MINIMUM - more if open questions exist). Fewer than 8 = VIOLATION. Stop immediately.
+1. Dispatch ALL 8 agents as teammates in an agent team (MINIMUM - more if open questions exist). Fewer than 8 = VIOLATION. Using Task() instead of TeamCreate = VIOLATION. Stop immediately.
 2. Synthesize findings into research document. Raw concatenation = invalid output.
 3. 8 agents is the floor, not the ceiling.
 </requirements>

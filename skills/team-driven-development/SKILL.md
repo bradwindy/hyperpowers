@@ -37,10 +37,18 @@ Failure to comply = skill failure. There is no "partial compliance."
 - `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` is enabled
 
 **Don't use when:**
-- Tasks are highly sequential with no parallelization opportunity
-- Token cost is a primary concern (agent teams use ~5x tokens per team)
-- `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` is not enabled
-- Plan has < 3 tasks (overhead not worth it)
+- `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS` is not enabled (technical prerequisite)
+
+### Common Rationalizations (ALL INVALID)
+
+These thoughts mean you're about to skip agent teams. STOP.
+
+| Thought | Reality |
+|---------|---------|
+| "Plan has only 2 tasks, teams are overkill" | Even 2 tasks benefit from team review and build/test/fix phases. No minimum threshold. |
+| "Tasks are sequential, can't parallelize" | Sequential tasks still get batched — the parallelization planner handles this. Teams still provide collaborative review and build/test/fix. |
+| "Token cost is too high" | Quality, review collaboration, and parallel build/test/fix outweigh token cost. Not a valid reason. |
+| "I'll use subagent-driven instead, it's more efficient" | If agent teams are available, use them. Subagent mode is a fallback when teams are unavailable. |
 
 ## Arguments
 
