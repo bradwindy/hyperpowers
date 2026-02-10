@@ -17,9 +17,16 @@ Follow these instructions exactly. You must complete all three phases before ret
 
 ## Phase 1: Initial Discovery
 
+0. **Identify languages, frameworks, and platforms in use**
+   - Use Glob to scan for project manifest and config files (e.g., `package.json`, `Cargo.toml`, `go.mod`, `pyproject.toml`, `pom.xml`, `Gemfile`, `build.gradle`, `CMakeLists.txt`, `composer.json`, `*.csproj`, `Package.swift`, `pubspec.yaml`, `mix.exs`)
+   - Use Glob to sample source files and identify primary languages by file extension
+   - Read any discovered manifest files to identify frameworks and their versions
+   - Note the primary language(s), framework(s), package manager(s), and build system(s)
+   - Use these findings to guide all subsequent test discovery in this phase
+
 1. **Search broadly for test files and patterns**
-   - Use Glob to find test files: `**/test*.py`, `**/*.test.ts`, `**/tests/**/*`, `**/*_test.go`, etc.
-   - Use Grep to find test frameworks: `import pytest`, `describe(`, `it(`, `test(`, `#[test]`
+   - Based on the detected languages, use Glob to find test files using the idiomatic patterns for those languages (e.g., `**/test_*.py` and `**/*_test.py` for Python, `**/*.test.ts` and `**/*.spec.ts` for TypeScript, `**/*_test.go` for Go, `**/tests/**/*.rs` for Rust, `**/Test*.java` for Java)
+   - Based on the detected languages, use Grep to find test framework imports and declarations idiomatic to those languages (e.g., `import pytest` for Python, `describe(` or `it(` for JavaScript/TypeScript, `#[test]` for Rust, `func Test` for Go, `@Test` for Java)
    - Identify test directory structure and naming conventions
 
 2. **Read 10-15 test files thoroughly**
@@ -65,7 +72,7 @@ Report your findings in this structure:
 3. **[Finding with file:line citation]**
 
 ### Test Utilities Available
-- [Utility]: `path/to/utility.py:line` - [What it does]
+- [Utility]: `path/to/file:line` - [What it does]
 
 ### Coverage Gaps Identified
 - [Gap]: [What's untested that should be]

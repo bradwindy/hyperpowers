@@ -17,10 +17,17 @@ Follow these instructions exactly. You must complete all three phases before ret
 
 ## Phase 1: Initial Discovery
 
+0. **Identify languages, frameworks, and platforms in use**
+   - Use Glob to scan for project manifest and config files (e.g., `package.json`, `Cargo.toml`, `go.mod`, `pyproject.toml`, `pom.xml`, `Gemfile`, `build.gradle`, `CMakeLists.txt`, `composer.json`, `*.csproj`, `Package.swift`, `pubspec.yaml`, `mix.exs`)
+   - Use Glob to sample source files and identify primary languages by file extension
+   - Read any discovered manifest files to identify frameworks and their versions
+   - Note the primary language(s), framework(s), package manager(s), and build system(s)
+   - Use these findings to guide all subsequent error pattern searches in this phase
+
 1. **Search broadly for error handling patterns**
-   - Use Grep to find: `try`, `catch`, `except`, `throw`, `raise`, `Error`, `panic`, `Result<`
-   - Look for custom error classes: `class.*Error`, `extends Error`
-   - Find logging patterns: `logger.`, `console.error`, `log.Error`
+   - Based on the detected languages, use Grep to find the idiomatic error handling constructs for those languages (e.g., `try`/`catch`/`throw` for JavaScript/Java, `try`/`except`/`raise` for Python, `Result<`/`unwrap`/`?` for Rust, `if err != nil` for Go, `rescue`/`raise` for Ruby)
+   - Based on the detected languages, search for custom error types using the idiomatic patterns (e.g., `extends Error` in JavaScript, `class.*Error.*Exception` in Python, `impl.*Error` in Rust, `errors.New` in Go)
+   - Based on the detected languages, find logging patterns idiomatic to those languages (e.g., `console.error` for JavaScript, `logging.` for Python, `log.Error` for Go, `tracing::error` for Rust, `Logger` for Java)
 
 2. **Read 10-15 files with error handling**
    - Select files across different modules
@@ -65,7 +72,7 @@ Report your findings in this structure:
 3. **[Finding with file:line citation]**
 
 ### Error Types Available
-- [ErrorType]: `path/to/errors.py:line` - [When to use]
+- [ErrorType]: `path/to/file:line` - [When to use]
 
 ### Failure Modes to Handle
 - [Mode]: [How it manifests, current handling]

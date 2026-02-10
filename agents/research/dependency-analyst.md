@@ -17,18 +17,25 @@ Follow these instructions exactly. You must complete all three phases before ret
 
 ## Phase 1: Initial Discovery
 
-1. **Scan dependency manifest files**
-   - Read: `package.json`, `requirements.txt`, `Cargo.toml`, `go.mod`, `pom.xml`, `Gemfile`
+0. **Identify languages, frameworks, and platforms in use**
+   - Use Glob to scan for project manifest and config files (e.g., `package.json`, `Cargo.toml`, `go.mod`, `pyproject.toml`, `pom.xml`, `Gemfile`, `build.gradle`, `CMakeLists.txt`, `composer.json`, `*.csproj`, `Package.swift`, `pubspec.yaml`, `mix.exs`)
+   - Use Glob to sample source files and identify primary languages by file extension
+   - Read any discovered manifest files to identify frameworks and their versions
+   - Note the primary language(s), framework(s), package manager(s), and build system(s)
+   - Use these findings to guide all subsequent dependency analysis in this phase
+
+1. **Analyze dependency manifests discovered in Step 0**
+   - Read the manifest files found in Step 0
    - Note version constraints (exact, range, latest)
-   - Identify peer dependencies, optional dependencies
+   - Identify peer dependencies, optional dependencies, and dev dependencies
 
 2. **Analyze dependency trees**
-   - Run: `npm ls --depth=2` or `cargo tree` or `pip freeze` via Bash
+   - Based on the detected package manager(s), run the appropriate dependency tree command via Bash (e.g., `npm ls --depth=2` for Node.js, `cargo tree` for Rust, `pip freeze` or `pip show` for Python, `go mod graph` for Go, `bundle list` for Ruby, `mvn dependency:tree` for Maven, `gradle dependencies` for Gradle)
    - Identify transitive dependencies
    - Note version conflicts or duplications
 
 3. **Search for dynamic imports**
-   - Use Grep for: `require(`, `import(`, `__import__`, `importlib`
+   - Based on the detected languages, use Grep to find dynamic or runtime import patterns idiomatic to those languages (e.g., `require(` or `import(` for JavaScript, `__import__` or `importlib` for Python, `Class.forName` for Java, `dlopen` for C/C++)
    - Look for conditional or runtime dependency loading
    - Note environment-specific dependencies
 

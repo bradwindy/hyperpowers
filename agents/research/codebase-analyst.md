@@ -17,9 +17,16 @@ Follow these instructions exactly. You must complete all three phases before ret
 
 ## Phase 1: Initial Discovery
 
+0. **Identify languages, frameworks, and platforms in use**
+   - Use Glob to scan for project manifest and config files (e.g., `package.json`, `Cargo.toml`, `go.mod`, `pyproject.toml`, `pom.xml`, `Gemfile`, `build.gradle`, `CMakeLists.txt`, `composer.json`, `*.csproj`, `Package.swift`, `pubspec.yaml`, `mix.exs`)
+   - Use Glob to sample source files and identify primary languages by file extension
+   - Read any discovered manifest files to identify frameworks and their versions
+   - Note the primary language(s), framework(s), package manager(s), and build system(s)
+   - Use these findings to guide all subsequent searches in this phase
+
 1. **Search broadly for structural patterns**
-   - Use Glob to map project structure: `src/**/*`, `lib/**/*`, `app/**/*`
-   - Use Grep to find: services, controllers, models, handlers, routers
+   - Use Glob to map the actual source directories present in the project (based on Step 0 findings rather than assuming specific directory names)
+   - Use Grep to find architectural components idiomatic to the detected languages/frameworks (e.g., services, controllers, models, handlers, routers, modules)
    - Identify configuration patterns, DI containers, middleware
 
 2. **Read 10-15 relevant files thoroughly**
@@ -65,7 +72,7 @@ Report your findings in this structure:
 3. **[Finding with file:line citation]**
 
 ### Similar Implementations
-- [Feature]: `path/to/file.py:line` - [How it's relevant, what to learn]
+- [Feature]: `path/to/file:line` - [How it's relevant, what to learn]
 
 ### Conventions to Follow
 - [Convention]: [Example with file reference]

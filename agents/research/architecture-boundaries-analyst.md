@@ -17,15 +17,22 @@ Follow these instructions exactly. You must complete all three phases before ret
 
 ## Phase 1: Initial Discovery
 
+0. **Identify languages, frameworks, and platforms in use**
+   - Use Glob to scan for project manifest and config files (e.g., `package.json`, `Cargo.toml`, `go.mod`, `pyproject.toml`, `pom.xml`, `Gemfile`, `build.gradle`, `CMakeLists.txt`, `composer.json`, `*.csproj`, `Package.swift`, `pubspec.yaml`, `mix.exs`)
+   - Use Glob to sample source files and identify primary languages by file extension
+   - Read any discovered manifest files to identify frameworks and their versions
+   - Note the primary language(s), framework(s), package manager(s), and build system(s)
+   - Use these findings to guide all subsequent boundary analysis in this phase
+
 1. **Map module structure**
-   - Use Glob to find: `**/index.ts`, `**/__init__.py`, `**/mod.rs`, `**/package-info.java`
+   - Based on the detected languages, use Glob to find module entry points idiomatic to those languages (e.g., `**/index.ts` for TypeScript, `**/__init__.py` for Python, `**/mod.rs` for Rust, `**/package-info.java` for Java, `**/go.mod` for Go modules)
    - Identify top-level modules/packages
    - Note public vs internal directories
 
 2. **Analyze public interfaces**
-   - Find exports: `export`, `__all__`, `pub`, `public`
+   - Based on the detected languages, search for the idiomatic visibility and export patterns (e.g., `export` in TypeScript/JavaScript, `__all__` in Python, `pub` in Rust, `public` in Java/C#)
    - Identify API boundaries (REST endpoints, GraphQL schemas, CLI commands)
-   - Note interface definitions, abstract classes, traits
+   - Note interface definitions, abstract classes, traits, or protocols
 
 3. **Examine coupling patterns**
    - Use Grep for cross-module imports
@@ -70,7 +77,7 @@ Report your findings in this structure:
 3. **[Finding with file:line citation]**
 
 ### Relevant Interfaces
-- [Interface]: `path/to/interface.ts:line` - [What implementations must provide]
+- [Interface]: `path/to/file:line` - [What implementations must provide]
 
 ### Module Boundaries
 - [Boundary]: [What's on each side, how to cross properly]
