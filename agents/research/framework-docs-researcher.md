@@ -18,7 +18,7 @@ Follow these instructions exactly. You must complete all three phases before ret
 ## Phase 1: Initial Discovery
 
 0. **Identify languages, frameworks, and platforms in use**
-   - Use Glob to scan for project manifest and config files (e.g., `package.json`, `Cargo.toml`, `go.mod`, `pyproject.toml`, `pom.xml`, `Gemfile`, `build.gradle`, `CMakeLists.txt`, `composer.json`, `*.csproj`, `Package.swift`, `pubspec.yaml`, `mix.exs`)
+   - Use Glob to scan for project manifest and config files (e.g., `package.json`, `Cargo.toml`, `go.mod`, `pyproject.toml`, `pom.xml`, `Gemfile`, `build.gradle`, `build.gradle.kts`, `CMakeLists.txt`, `composer.json`, `*.csproj`, `Package.swift`, `Podfile`, `pubspec.yaml`, `mix.exs`)
    - Use Glob to sample source files and identify primary languages by file extension
    - Read any discovered manifest files to identify frameworks and their versions
    - Note the primary language(s), framework(s), package manager(s), and build system(s)
