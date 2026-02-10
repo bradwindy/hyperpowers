@@ -18,7 +18,7 @@ Follow these instructions exactly. You must complete all three phases before ret
 ## Phase 1: Initial Discovery
 
 0. **Identify languages, frameworks, and platforms in use**
-   - Use Glob to scan for project manifest and config files (e.g., `package.json`, `Cargo.toml`, `go.mod`, `pyproject.toml`, `pom.xml`, `Gemfile`, `build.gradle`, `CMakeLists.txt`, `composer.json`, `*.csproj`, `Package.swift`, `pubspec.yaml`, `mix.exs`)
+   - Use Glob to scan for project manifest and config files (e.g., `package.json`, `Cargo.toml`, `go.mod`, `pyproject.toml`, `pom.xml`, `Gemfile`, `build.gradle`, `build.gradle.kts`, `CMakeLists.txt`, `composer.json`, `*.csproj`, `Package.swift`, `Podfile`, `pubspec.yaml`, `mix.exs`)
    - Use Glob to sample source files and identify primary languages by file extension
    - Read any discovered manifest files to identify frameworks and their versions
    - Note the primary language(s), framework(s), package manager(s), and build system(s)
@@ -30,12 +30,12 @@ Follow these instructions exactly. You must complete all three phases before ret
    - Identify peer dependencies, optional dependencies, and dev dependencies
 
 2. **Analyze dependency trees**
-   - Based on the detected package manager(s), run the appropriate dependency tree command via Bash (e.g., `npm ls --depth=2` for Node.js, `cargo tree` for Rust, `pip freeze` or `pip show` for Python, `go mod graph` for Go, `bundle list` for Ruby, `mvn dependency:tree` for Maven, `gradle dependencies` for Gradle)
+   - Based on the detected package manager(s), run the appropriate dependency tree command via Bash (e.g., `npm ls --depth=2` for Node.js, `cargo tree` for Rust, `pip freeze` or `pip show` for Python, `go mod graph` for Go, `bundle list` for Ruby, `mvn dependency:tree` for Maven, `gradle dependencies` for Gradle/Android, `swift package show-dependencies` for Swift, `pod outdated` for CocoaPods)
    - Identify transitive dependencies
    - Note version conflicts or duplications
 
 3. **Search for dynamic imports**
-   - Based on the detected languages, use Grep to find dynamic or runtime import patterns idiomatic to those languages (e.g., `require(` or `import(` for JavaScript, `__import__` or `importlib` for Python, `Class.forName` for Java, `dlopen` for C/C++)
+   - Based on the detected languages, use Grep to find dynamic or runtime import patterns idiomatic to those languages (e.g., `require(` or `import(` for JavaScript, `__import__` or `importlib` for Python, `Class.forName` for Java/Kotlin, `dlopen` for C/C++, `NSClassFromString` for Swift/Objective-C)
    - Look for conditional or runtime dependency loading
    - Note environment-specific dependencies
 
