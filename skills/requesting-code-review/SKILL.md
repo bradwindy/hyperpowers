@@ -13,6 +13,8 @@ Dispatch 4 specialized review agents in parallel to catch issues before they cas
 
 **Core principle:** Review early, review often.
 
+**Context isolation:** When dispatching review subagents, construct exactly what they need. Subagents should never inherit your session context or history — you curate their input precisely.
+
 <requirements>
 ## Requirements
 

@@ -13,6 +13,8 @@ user-invocable: false
 
 Deep research that surfaces issues before they become bugs. Dispatches 8 parallel agents to analyze codebase, git history, framework docs, best practices, test coverage, error handling, dependencies, and architecture boundaries, then synthesizes findings into a persistent research document.
 
+**Context isolation:** When dispatching research subagents, construct exactly what they need. Subagents should never inherit your session context or history — you curate their input precisely.
+
 <requirements>
 ## Requirements (MINIMUM 8 agents, synthesis)
 

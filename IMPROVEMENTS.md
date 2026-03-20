@@ -299,6 +299,35 @@ Cherry-picked improvements from the original Superpowers repository.
 - **Clarify Skill tool behavior** (`73fa8c7` from upstream `a7a8c08`)
   - Skill content is loaded directly, no need to Read
 
+- **Spec document review loop** (adapted from upstream `ec3f7f1`, `ee14cae`)
+  - Brainstorming skill now dispatches spec reviewer subagent after saving design doc
+  - Reviewer validates completeness, consistency, clarity, scope, and YAGNI
+  - Calibrated review: only flags issues that would cause real planning problems
+  - Max 3 review iterations before surfacing to user
+  - User review gate added: user must approve spec before proceeding to planning
+  - New file: `skills/brainstorming/spec-document-reviewer-prompt.md`
+
+- **Plan document review loop** (adapted from upstream `7b99c39`, `6c274dc`, `2c6a8a3`)
+  - Writing-plans skill now dispatches plan reviewer subagent after assumption validation
+  - Reviewer validates completeness, spec alignment, task decomposition, and buildability
+  - Calibrated review: only flags serious implementation-blocking issues
+  - Max 3 review iterations before surfacing to user
+  - New file: `skills/writing-plans/plan-document-reviewer-prompt.md`
+
+- **Checkbox syntax for plan tasks** (adapted from upstream `7b99c39`)
+  - Plan task steps now use `- [ ]` checkbox syntax for progress tracking
+  - Plan header notes checkbox syntax for implementers
+
+- **Context isolation principle** (adapted from upstream `9ccce3b`)
+  - Added explicit context isolation statement to all 5 delegation skills
+  - Principle: subagents get curated context only, never session history
+  - Applied to: brainstorming, dispatching-parallel-agents, requesting-code-review, research, writing-plans
+
+- **SUBAGENT-STOP gate** (adapted from upstream `1c53f5d`)
+  - using-hyperpowers skill now includes SUBAGENT-STOP block
+  - Prevents subagents from accidentally invoking full workflow skills
+  - Subagents skip the skill and execute their dispatch prompt instead
+
 ---
 
 ## 6. Test Infrastructure
@@ -927,7 +956,7 @@ This mode is explicitly marked "not recommended" in the execute-plan command bec
 | Subagent Development | ~10 | Token efficiency, resumability |
 | Skill Strengthening | ~15 | Reduced corner-cutting |
 | Model Selection | ~5 | Cost and speed optimization |
-| Upstream Merges | ~6 | Feature parity |
+| Upstream Merges | ~11 | Feature parity + review loops, context isolation |
 | Test Infrastructure | ~12 | Quality assurance |
 | Fork/Rebranding | ~23 | Independent identity |
 | Research Skill | ~8 | Deep context gathering before planning |
