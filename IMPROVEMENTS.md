@@ -304,7 +304,6 @@ Cherry-picked improvements from the original Superpowers repository.
   - Reviewer validates completeness, consistency, clarity, scope, and YAGNI
   - Calibrated review: only flags issues that would cause real planning problems
   - Max 3 review iterations before surfacing to user
-  - User review gate added: user must approve spec before proceeding to planning
   - New file: `skills/brainstorming/spec-document-reviewer-prompt.md`
 
 - **Plan document review loop** (adapted from upstream `7b99c39`, `6c274dc`, `2c6a8a3`)
