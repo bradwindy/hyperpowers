@@ -20,6 +20,8 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 **Save plans to:** `docs/hyperpowers/plans/YYYY-MM-DD-<feature-name>.md`
 
+**Context isolation:** When dispatching subagents, construct exactly what they need. Subagents should never inherit your session context or history — you curate their input precisely.
+
 <requirements>
 ## Requirements
 
@@ -309,7 +311,7 @@ Incomplete plans require back-and-forth that defeats the purpose of planning.
 ```markdown
 # [Feature Name] Implementation Plan
 
-> **For Claude:** Run `/execute-plan` to implement this plan (will ask which execution style you prefer).
+> **For Claude:** Run `/execute-plan` to implement this plan (will ask which execution style you prefer). Steps use checkbox (`- [ ]`) syntax for tracking.
 > **Related Issues:** [PROJ-123, PROJ-456]
 > **Primary Issue:** [PROJ-123] (from branch name)
 
@@ -355,7 +357,7 @@ Incomplete plans require back-and-forth that defeats the purpose of planning.
 - Modify: `exact/path/to/existing.py:123-145`
 - Test: `tests/exact/path/to/test.py`
 
-**Step 1: Write the failing test**
+- [ ] **Step 1: Write the failing test**
 
 ```python
 def test_specific_behavior():
@@ -364,24 +366,24 @@ def test_specific_behavior():
 ```
 ````
 
-**Step 2: Run test to verify it fails**
+- [ ] **Step 2: Run test to verify it fails**
 
 Run: `pytest tests/path/test.py::test_name -v`
 Expected: FAIL with "function not defined"
 
-**Step 3: Write minimal implementation**
+- [ ] **Step 3: Write minimal implementation**
 
 ```python
 def function(input):
     return expected
 ```
 
-**Step 4: Run test to verify it passes**
+- [ ] **Step 4: Run test to verify it passes**
 
 Run: `pytest tests/path/test.py::test_name -v`
 Expected: PASS
 
-**Step 5: Commit**
+- [ ] **Step 5: Commit**
 
 ```bash
 git add tests/path/test.py src/path/file.py
@@ -438,6 +440,28 @@ Before saving the plan, validate technical assumptions:
 - If agent times out: Note "Assumption validation incomplete" in plan, proceed to save
 - If no assumptions found: Note "No technical assumptions to validate" in plan
 
+## Plan Review Loop
+
+After assumption validation, dispatch a plan reviewer subagent to verify the plan is complete and ready for implementation.
+
+1. **Dispatch plan reviewer:**
+   ```
+   Task(description: "Review plan document",
+        prompt: [plan-document-reviewer-prompt.md template filled with:
+          - PLAN_FILE_PATH: the plan you just wrote
+          - SPEC_FILE_PATH: the design/research doc used as input],
+        model: "haiku",
+        subagent_type: "general-purpose")
+   ```
+
+2. **If reviewer returns "Issues Found":**
+   - Fix the identified issues in the plan
+   - Re-dispatch the reviewer (max 3 iterations, then surface remaining issues to user)
+
+3. **If reviewer returns "Approved":** Proceed to save and handoff
+
+**Calibration:** Only flag issues that would cause real implementation problems. An implementer building the wrong thing or getting stuck is an issue. Minor wording and stylistic preferences are not.
+
 **Completion Enforcement** (CRITICAL):
 
 Your FINAL message MUST contain the handoff block. This is NOT optional.
@@ -490,7 +514,7 @@ Delete `docs/hyperpowers/handoffs/*` after plan is written (see Execution Handof
 
 <completion-check>
 Before announcing completion, verify you followed the skill:
-- [ ] Completed all phases in order (Research Check → Issue Context → Plan Writing → Assumption Validation → Save)
+- [ ] Completed all phases in order (Research Check → Issue Context → Plan Writing → Assumption Validation → Plan Review Loop → Save)
 - [ ] Passed all verification gates (Pre-Plan Writing, Handoff Consumption, Plan Quality)
 - [ ] Produced required outputs (plan document at docs/hyperpowers/plans/)
 

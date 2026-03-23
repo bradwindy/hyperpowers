@@ -12,6 +12,8 @@ When you have multiple unrelated failures (different test files, different subsy
 
 **Core principle:** Dispatch one subagent per independent problem domain. Let them work concurrently.
 
+**Context isolation:** When dispatching subagents, construct exactly what they need. Subagents should never inherit your session context or history — you curate their input precisely.
+
 <requirements>
 ## Requirements
 
