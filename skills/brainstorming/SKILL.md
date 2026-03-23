@@ -13,6 +13,8 @@ Help turn ideas into fully formed designs and specs through natural collaborativ
 
 Start by understanding the current project context, then ask questions one at a time to refine the idea. Once you understand what you're building, present the design in small sections (200-300 words), checking after each section whether it looks right so far.
 
+**Context isolation:** When dispatching subagents, construct exactly what they need. Subagents should never inherit your session context or history — you curate their input precisely.
+
 <requirements>
 ## Requirements
 
@@ -155,6 +157,25 @@ Use AskUserQuestion for clarifying questions. Plain text questions don't allow s
 **Documentation:**
 - Write the validated design to `docs/hyperpowers/designs/YYYY-MM-DD-<topic>-design.md`
 - Do NOT commit (this directory is gitignored - designs are ephemeral)
+
+### Spec Review Loop
+
+After saving the design doc, dispatch a spec reviewer subagent to validate it before the user reviews.
+
+1. **Dispatch spec reviewer:**
+   ```
+   Task(description: "Review spec document",
+        prompt: [spec-document-reviewer-prompt.md template filled with:
+          - SPEC_FILE_PATH: the design doc you just saved],
+        model: "haiku",
+        subagent_type: "general-purpose")
+   ```
+
+2. **If reviewer returns "Issues Found":**
+   - Fix the identified issues in the design doc
+   - Re-dispatch the reviewer (max 3 iterations, then surface remaining issues to user)
+
+3. **If reviewer returns "Approved":** Proceed to completion enforcement
 
 **Completion Enforcement** (CRITICAL):
 
@@ -309,7 +330,7 @@ Brainstorming is complete when you have a design document at `docs/hyperpowers/d
 
 <completion-check>
 Before announcing completion, verify you followed the skill:
-- [ ] Completed all phases in order (0 → 0.5 → Understanding → Design Presentation → Assumption Validation → Save)
+- [ ] Completed all phases in order (0 → 0.5 → Understanding → Design Presentation → Assumption Validation → Save → Spec Review Loop)
 - [ ] Passed all verification gates (Understanding Gate, Design Gate)
 - [ ] Produced required outputs (design document at docs/hyperpowers/designs/)
 

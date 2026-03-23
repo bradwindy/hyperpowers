@@ -12,6 +12,10 @@ Skills are pre-loaded workflows that ensure consistent, high-quality execution. 
 
 **Core principle:** Even 1% chance a skill applies means you should invoke it.
 
+<SUBAGENT-STOP>
+If you are a subagent (dispatched via Task tool), STOP HERE. Do not follow the rest of this skill. Execute the prompt you were dispatched with instead. This skill is for the orchestrator only — subagents that invoke full workflow skills create recursive skill leakage.
+</SUBAGENT-STOP>
+
 <requirements>
 ## Requirements
 
