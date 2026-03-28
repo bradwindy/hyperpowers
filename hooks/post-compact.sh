@@ -43,10 +43,7 @@ using_hyperpowers_escaped=$(escape_for_json "$using_hyperpowers_content")
 
 cat <<EOF
 {
-  "hookSpecificOutput": {
-    "hookEventName": "PostCompact",
-    "additionalContext": "<EXTREMELY_IMPORTANT>\nContext was compacted. You have hyperpowers — always check skills before responding.\n\n${using_hyperpowers_escaped}${progress_context}\n</EXTREMELY_IMPORTANT>"
-  }
+  "systemMessage": "<EXTREMELY_IMPORTANT>\nContext was compacted. You have hyperpowers — always check skills before responding.\n\n${using_hyperpowers_escaped}${progress_context}\n</EXTREMELY_IMPORTANT>"
 }
 EOF
 
