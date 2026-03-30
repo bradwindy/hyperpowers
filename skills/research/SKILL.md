@@ -509,7 +509,7 @@ Research complete and saved to `docs/hyperpowers/research/<actual-filename>.md`.
 
 To continue:
 /compact ready to plan docs/hyperpowers/research/<actual-filename>.md
-/hyperpowers:writing-plans docs/hyperpowers/research/<actual-filename>.md
+/hyperpowers:write-plan docs/hyperpowers/research/<actual-filename>.md
 ```
 
 If NO: Add it. You cannot announce completion without this exact block.
