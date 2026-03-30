@@ -1,5 +1,5 @@
 ---
-name: feedback
+name: providing-feedback
 description: Use when user provides feedback on a design, research, or plan document, or invokes /hyperpowers:feedback
 effort: low
 allowed-tools: Read, Grep, Glob, Edit, Write, AskUserQuestion, WebSearch, WebFetch, Task

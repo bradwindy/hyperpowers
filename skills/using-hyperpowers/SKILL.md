@@ -42,6 +42,10 @@ If you are a subagent (dispatched via Task tool), STOP HERE. Do not follow the r
 - "I remember this skill" → Skills evolve. Read current version
 - "It's overkill" → Simple becomes complex. Use it
 
+## Command Context
+
+If a command has already loaded and given you explicit instructions to invoke a specific skill, follow the command's instructions directly. Do NOT independently re-check skills or attempt a second invocation -- the command IS the skill dispatch mechanism. The command has already done the skill-matching for you.
+
 ## Priority
 
 1. **Process skills first** (brainstorming, debugging)

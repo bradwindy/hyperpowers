@@ -424,7 +424,7 @@ Writing-plans skill automatically incorporates research:
 - Research clarification phase prevents incomplete planning
 
 **Files Created:**
-- `skills/research/SKILL.md`
+- `skills/researching/SKILL.md`
 - `agents/research/codebase-analyst.md`
 - `agents/research/git-history-analyzer.md`
 - `agents/research/framework-docs-researcher.md`
@@ -657,7 +657,7 @@ Skills enforce that issue context is included at each stage:
 **Modified Files:**
 - `agents/issue-tracking/AGENT.md` - Added `get-issue-body` operation
 - `skills/brainstorming/SKILL.md` - Added issue context capture phase
-- `skills/research/SKILL.md` - Added issue context carry-forward
+- `skills/researching/SKILL.md` - Added issue context carry-forward
 - `skills/writing-plans/SKILL.md` - Added issue context extraction and inclusion
 - `skills/subagent-driven-development/SKILL.md` - Added issue context forwarding
 - `skills/verification-before-completion/SKILL.md` - Added acceptance criteria verification
