@@ -432,7 +432,7 @@ If you have an existing installation:
 - **simplification-cascades** - Find insights that eliminate multiple components
 - **when-stuck** - Dispatch to right problem-solving technique
 
-**Research Skills** (`skills/research/`)
+**Research Skills** (`skills/researching/`)
 - **tracing-knowledge-lineages** - Understand how ideas evolved over time
 
 **Architecture Skills** (`skills/architecture/`)

@@ -3,7 +3,7 @@ name: feedback
 description: "Use to refine design, research, or plan documents through natural language feedback. Presents each change as a diff with individual approval."
 ---
 
-Take the prompt just given to you by the user and invoke the hyperpowers feedback skill.
+Take the prompt just given to you by the user and invoke the hyperpowers providing-feedback skill.
 
 **CRITICAL:** After invoking, you MUST:
 1. Read the entire skill that loads
@@ -13,4 +13,4 @@ Take the prompt just given to you by the user and invoke the hyperpowers feedbac
 
 Partial compliance = failure. Simple cases still require full process.
 
-Skill(hyperpowers:feedback, args: "<user-prompt-here>")
+Skill(hyperpowers:providing-feedback, args: "<user-prompt-here>")

@@ -159,6 +159,19 @@ Use words Claude would search for:
 - `creating-skills` not `skill-creation`
 - `condition-based-waiting` not `async-test-helpers`
 
+### Command vs Skill Naming
+
+When a command exists as a thin dispatcher for a skill, the command and skill MUST have different names. Same names cause duplicate entries in the skill listing and trigger recursion where the command's `Skill()` call resolves to the command itself.
+
+**Pattern:** Command uses short imperative form, skill uses gerund/descriptive form.
+
+| Command | Skill | Pattern |
+|---------|-------|---------|
+| `brainstorm` | `brainstorming` | verb -> gerund |
+| `write-plan` | `writing-plans` | verb-noun -> gerund-noun |
+| `research` | `researching` | verb -> gerund |
+| `feedback` | `providing-feedback` | noun -> gerund-noun |
+
 ### Token Efficiency
 
 Getting-started and frequently-referenced skills load into EVERY conversation.

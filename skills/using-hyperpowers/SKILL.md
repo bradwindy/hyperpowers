@@ -1,6 +1,7 @@
 ---
 name: using-hyperpowers
 description: Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions
+effort: low
 user-invocable: false
 ---
 
@@ -11,6 +12,10 @@ user-invocable: false
 Skills are pre-loaded workflows that ensure consistent, high-quality execution. This skill establishes the fundamental rule: invoke skills BEFORE any response.
 
 **Core principle:** Even 1% chance a skill applies means you should invoke it.
+
+<SUBAGENT-STOP>
+If you are a subagent (dispatched via Task tool), STOP HERE. Do not follow the rest of this skill. Execute the prompt you were dispatched with instead. This skill is for the orchestrator only — subagents that invoke full workflow skills create recursive skill leakage.
+</SUBAGENT-STOP>
 
 <requirements>
 ## Requirements
@@ -36,6 +41,10 @@ Skills are pre-loaded workflows that ensure consistent, high-quality execution. 
 - "Let me explore first" → Skills tell you HOW to explore
 - "I remember this skill" → Skills evolve. Read current version
 - "It's overkill" → Simple becomes complex. Use it
+
+## Command Context
+
+If a command has already loaded and given you explicit instructions to invoke a specific skill, follow the command's instructions directly. Do NOT independently re-check skills or attempt a second invocation -- the command IS the skill dispatch mechanism. The command has already done the skill-matching for you.
 
 ## Priority
 

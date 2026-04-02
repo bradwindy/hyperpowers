@@ -19,8 +19,8 @@ fail() {
 test_research_has_related_issues_section() {
     echo "Testing: Research skill includes Related Issues section"
 
-    grep -q "## Related Issues" skills/research/SKILL.md || fail "Missing Related Issues section"
-    grep -q "Phase 2.5" skills/research/SKILL.md || fail "Missing Phase 2.5"
+    grep -q "## Related Issues" skills/researching/SKILL.md || fail "Missing Related Issues section"
+    grep -q "Phase 2.5" skills/researching/SKILL.md || fail "Missing Phase 2.5"
 
     pass "Research skill updated"
 }

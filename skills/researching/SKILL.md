@@ -1,6 +1,7 @@
 ---
-name: research
+name: researching
 description: Use when starting deep technical research before planning, when needing to understand a new codebase area, or when the user invokes /hyperpowers:research
+effort: high
 allowed-tools: Read, Grep, Glob, WebSearch, WebFetch, Task, Write, AskUserQuestion
 user-invocable: false
 ---
@@ -12,6 +13,8 @@ user-invocable: false
 ## Overview
 
 Deep research that surfaces issues before they become bugs. Dispatches 8 parallel agents to analyze codebase, git history, framework docs, best practices, test coverage, error handling, dependencies, and architecture boundaries, then synthesizes findings into a persistent research document.
+
+**Context isolation:** When dispatching research subagents, construct exactly what they need. Subagents should never inherit your session context or history — you curate their input precisely.
 
 <requirements>
 ## Requirements (MINIMUM 8 agents, synthesis)
@@ -486,7 +489,7 @@ Research complete and saved to `docs/hyperpowers/research/<actual-filename>.md`.
 
 To continue:
 /compact ready to plan docs/hyperpowers/research/<actual-filename>.md
-/hyperpowers:writing-plans docs/hyperpowers/research/<actual-filename>.md
+/hyperpowers:write-plan docs/hyperpowers/research/<actual-filename>.md
 ```
 
 If NO: Add it. You cannot announce completion without this exact block.

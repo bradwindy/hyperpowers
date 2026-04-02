@@ -139,7 +139,7 @@ Also added:
 - `skills/compound/SKILL.md` - Added COMPULSORY gates
 - `skills/dispatching-parallel-agents/SKILL.md` - Added COMPULSORY gates
 - `skills/using-hyperpowers/SKILL.md` - Added COMPULSORY gates
-- `skills/feedback/SKILL.md` - Added COMPULSORY gates
+- `skills/providing-feedback/SKILL.md` - Added COMPULSORY gates
 - `skills/finishing-a-development-branch/SKILL.md` - Added COMPULSORY gates
 - `skills/receiving-code-review/SKILL.md` - Added COMPULSORY gates
 - `skills/requesting-code-review/SKILL.md` - Added COMPULSORY gates
@@ -147,7 +147,7 @@ Also added:
 - `skills/using-git-worktrees/SKILL.md` - Added COMPULSORY gates
 - `skills/writing-skills/SKILL.md` - Added COMPULSORY gates
 - `skills/writing-plans/SKILL.md` - Added COMPULSORY gates
-- `skills/research/SKILL.md` - Added COMPULSORY gates
+- `skills/researching/SKILL.md` - Added COMPULSORY gates
 - `skills/systematic-debugging/SKILL.md` - Added COMPULSORY gates (follow-up)
 - `skills/test-driven-development/SKILL.md` - Added COMPULSORY gates (follow-up)
 - `skills/verification-before-completion/SKILL.md` - Added COMPULSORY gates (follow-up)
