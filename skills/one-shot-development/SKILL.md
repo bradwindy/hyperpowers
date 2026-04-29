@@ -2,7 +2,6 @@
 name: one-shot-development
 description: Use when you have a comprehensive, well-researched plan ready for execution without oversight during task implementation
 allowed-tools: Bash, Read, Grep, Glob, Write, Edit, AskUserQuestion
-disable-model-invocation: true
 user-invocable: true
 ---
 
