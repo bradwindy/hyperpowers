@@ -2,7 +2,8 @@
 name: verification-before-completion
 description: Use when about to claim work is complete, fixed, or passing, before committing or creating PRs. Should be invoked proactively before any completion claims.
 allowed-tools: Bash, Read, Grep, Glob, AskUserQuestion
-user-invocable: false
+disable-model-invocation: true
+user-invocable: true
 ---
 
 # Verification Before Completion

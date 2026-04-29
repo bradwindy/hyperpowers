@@ -11,11 +11,8 @@ PLUGIN_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 warning_message=""
 legacy_skills_dir="${HOME}/.config/hyperpowers/skills"
 if [ -d "$legacy_skills_dir" ]; then
-    warning_message="\n\n<important-reminder>IN YOUR FIRST REPLY AFTER SEEING THIS MESSAGE YOU MUST TELL THE USER:⚠️ **WARNING:** Hyperpowers now uses Claude Code's skills system. Custom skills in ~/.config/hyperpowers/skills will not be read. Move custom skills to ~/.claude/skills instead. To make this message go away, remove ~/.config/hyperpowers/skills</important-reminder>"
+    warning_message="<important-reminder>IN YOUR FIRST REPLY AFTER SEEING THIS MESSAGE YOU MUST TELL THE USER: **WARNING:** Hyperpowers now uses Claude Code's skills system. Custom skills in ~/.config/hyperpowers/skills will not be read. Move custom skills to ~/.claude/skills instead. To make this message go away, remove ~/.config/hyperpowers/skills</important-reminder>"
 fi
-
-# Read using-hyperpowers content
-using_hyperpowers_content=$(cat "${PLUGIN_ROOT}/skills/using-hyperpowers/SKILL.md" 2>&1 || echo "Error reading using-hyperpowers skill")
 
 # Escape outputs for JSON using pure bash
 escape_for_json() {
@@ -36,17 +33,20 @@ escape_for_json() {
     printf '%s' "$output"
 }
 
-using_hyperpowers_escaped=$(escape_for_json "$using_hyperpowers_content")
-warning_escaped=$(escape_for_json "$warning_message")
-
-# Output context injection as JSON
-cat <<EOF
+if [ -n "$warning_message" ]; then
+    warning_escaped=$(escape_for_json "$warning_message")
+    cat <<EOF
 {
   "hookSpecificOutput": {
     "hookEventName": "SessionStart",
-    "additionalContext": "<EXTREMELY_IMPORTANT>\nYou have hyperpowers.\n\n**Below is the full content of your 'hyperpowers:using-hyperpowers' skill - your introduction to using skills. For all other skills, use the 'Skill' tool:**\n\n${using_hyperpowers_escaped}\n\n${warning_escaped}\n</EXTREMELY_IMPORTANT>"
+    "additionalContext": "${warning_escaped}"
   }
 }
 EOF
+else
+    cat <<EOF
+{}
+EOF
+fi
 
 exit 0

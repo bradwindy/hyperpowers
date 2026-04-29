@@ -2,7 +2,8 @@
 name: finishing-a-development-branch
 description: Use when implementation is complete, all tests pass, and you need to decide how to integrate the work
 allowed-tools: Bash, Read, Grep, Glob, Task, AskUserQuestion
-user-invocable: false
+disable-model-invocation: true
+user-invocable: true
 ---
 
 # Finishing a Development Branch

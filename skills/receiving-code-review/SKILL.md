@@ -1,7 +1,8 @@
 ---
 name: receiving-code-review
 description: Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable
-user-invocable: false
+disable-model-invocation: true
+user-invocable: true
 ---
 
 # Code Review Reception

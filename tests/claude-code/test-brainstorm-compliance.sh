@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Compliance test for the brainstorming skill
-# Tests that Claude properly follows the brainstorming workflow when asked to
+# Compliance test for the brainstorm skill
+# Tests that Claude properly follows the brainstorm workflow when asked to
 # implement a feature with ambiguous requirements
 
 set -euo pipefail
@@ -8,7 +8,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 source "$SCRIPT_DIR/test-helpers.sh"
 
-SKILL_NAME="brainstorming"
+SKILL_NAME="brainstorm"
 SCENARIO_FILE="$SCRIPT_DIR/skills/$SKILL_NAME/scenario.md"
 CHECKLIST_FILE="$SCRIPT_DIR/skills/$SKILL_NAME/checklist.md"
 SKIPPING_FILE="$SCRIPT_DIR/skills/$SKILL_NAME/skipping-signs.md"
@@ -35,15 +35,15 @@ done
 
 # Step 1: Run scenario in test project
 echo "Step 1: Running scenario in test project..."
-echo "(This will call Claude with brainstorming prompt - may take 2-5 minutes)"
+echo "(This will call Claude with brainstorm prompt - may take 2-5 minutes)"
 echo ""
 
 # Extract just the user prompt from scenario file
 USER_PROMPT="Add a dark mode toggle to the app"
 
 # Run Claude in the test project directory with the scenario
-# We use --max-turns to limit the interaction (higher value needed for brainstorming workflow)
-# The brainstorming skill will ask clarifying questions and create a design doc
+# We use --max-turns to limit the interaction (higher value needed for brainstorm workflow)
+# The brainstorm skill will ask clarifying questions and create a design doc
 cd "$TEST_PROJECT"
 SESSION_OUTPUT=$(claude -p "$USER_PROMPT" --max-turns 15 2>&1 || true)
 cd "$SCRIPT_DIR"

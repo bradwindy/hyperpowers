@@ -2,7 +2,8 @@
 name: subagent-driven-development
 description: Use when executing implementation plans with independent tasks in the current session
 allowed-tools: Bash, Read, Grep, Glob, Task, TodoWrite, AskUserQuestion
-user-invocable: false
+disable-model-invocation: true
+user-invocable: true
 ---
 
 # Subagent-Driven Development
@@ -286,7 +287,7 @@ Prevention:
 ## Integration
 
 **Required workflow skills:**
-- **hyperpowers:writing-plans** - Creates the plan this skill executes
+- **hyperpowers:write-plan** - Creates the plan this skill executes
 - **hyperpowers:finishing-a-development-branch** - Complete development after all tasks
 
 **Subagents should use:**

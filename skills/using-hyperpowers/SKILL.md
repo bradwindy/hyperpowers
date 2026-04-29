@@ -2,7 +2,8 @@
 name: using-hyperpowers
 description: Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions
 effort: low
-user-invocable: false
+disable-model-invocation: true
+user-invocable: true
 ---
 
 # Using Hyperpowers

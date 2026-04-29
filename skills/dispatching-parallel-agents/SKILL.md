@@ -1,7 +1,8 @@
 ---
 name: dispatching-parallel-agents
 description: Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies. Trigger phrases include "run in parallel", "simultaneously", "at the same time".
-user-invocable: false
+disable-model-invocation: true
+user-invocable: true
 ---
 
 # Dispatching Parallel Agents

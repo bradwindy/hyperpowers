@@ -1,9 +1,10 @@
 ---
-name: writing-plans
+name: write-plan
 description: Use when you have a spec or requirements for a multi-step task, before touching code
 effort: high
 allowed-tools: Read, Grep, Glob, Write, Task, AskUserQuestion
-user-invocable: false
+disable-model-invocation: true
+user-invocable: true
 ---
 
 # Writing Plans

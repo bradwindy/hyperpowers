@@ -63,7 +63,7 @@ use find_skills tool
 Use the `use_skill` tool to load a specific skill:
 
 ```
-use use_skill tool with skill_name: "hyperpowers:brainstorming"
+use use_skill tool with skill_name: "hyperpowers:brainstorm"
 ```
 
 Skills are automatically inserted into the conversation and persist across context compaction.

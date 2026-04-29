@@ -3,7 +3,8 @@ name: compound
 description: Use when a non-trivial problem has been solved, when phrases like "that worked" or "it's fixed" appear after debugging, or when the user invokes /hyperpowers:compound. Proactively triggered on resolution phrases.
 effort: low
 allowed-tools: Read, Grep, Glob, Write
-user-invocable: false
+disable-model-invocation: true
+user-invocable: true
 ---
 
 # Compound Skill (Knowledge Capture)

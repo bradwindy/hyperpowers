@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Compliance test for the writing-plans skill
+# Compliance test for the write-plan skill
 # Tests that Claude properly consumes research documents when writing plans:
 # 1. Handoff Consumption Gate: Research document explicitly cited
 # 2. Context Gate: Research findings inform the plan
@@ -12,7 +12,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 source "$SCRIPT_DIR/test-helpers.sh"
 
-SKILL_NAME="writing-plans"
+SKILL_NAME="write-plan"
 SCENARIO_FILE="$SCRIPT_DIR/skills/$SKILL_NAME/scenario.md"
 CHECKLIST_FILE="$SCRIPT_DIR/skills/$SKILL_NAME/checklist.md"
 SKIPPING_FILE="$SCRIPT_DIR/skills/$SKILL_NAME/skipping-signs.md"
@@ -98,11 +98,11 @@ echo "Research document created at docs/hyperpowers/research/2026-01-13-user-pre
 echo ""
 
 # Step 1: Run scenario asking Claude to write a plan
-echo "Step 1: Running writing-plans scenario..."
+echo "Step 1: Running write-plan scenario..."
 echo "(This will ask Claude to write a plan based on research - may take 10-15 minutes)"
 echo ""
 
-# The prompt triggers the writing-plans skill
+# The prompt triggers the write-plan skill
 USER_PROMPT="Write a plan based on this research to implement user preferences"
 
 # Run Claude in the test project directory

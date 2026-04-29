@@ -1,9 +1,10 @@
 ---
-name: providing-feedback
+name: feedback
 description: Use when user provides feedback on a design, research, or plan document, or invokes /hyperpowers:feedback
 effort: low
 allowed-tools: Read, Grep, Glob, Edit, Write, AskUserQuestion, WebSearch, WebFetch, Task
-user-invocable: false
+disable-model-invocation: true
+user-invocable: true
 ---
 
 # Feedback Skill
@@ -81,7 +82,7 @@ Read the target document and parse the user's natural language feedback.
 
 **Document Detection:**
 - `docs/hyperpowers/designs/` → design document → next stage is `/hyperpowers:research`
-- `docs/hyperpowers/research/` → research document → next stage is `/hyperpowers:writing-plans`
+- `docs/hyperpowers/research/` → research document → next stage is `/hyperpowers:write-plan`
 - `docs/hyperpowers/plans/` → plan document → next stage is `/hyperpowers:subagent-driven-development`
 
 **If document not found:** Stop and inform user: "Document not found at [path]. Please provide a valid path to a design, research, or plan document."
@@ -247,7 +248,7 @@ Would you like to:
 
 **Next stage options (context-aware):**
 - Design doc (`docs/hyperpowers/designs/`) → "Move to research (`/hyperpowers:research`)"
-- Research doc (`docs/hyperpowers/research/`) → "Move to planning (`/hyperpowers:writing-plans`)"
+- Research doc (`docs/hyperpowers/research/`) → "Move to planning (`/hyperpowers:write-plan`)"
 - Plan doc (`docs/hyperpowers/plans/`) → "Move to implementation (`/hyperpowers:subagent-driven-development`)"
 
 **If user chooses option 1:** Return to Phase 1 with new feedback.

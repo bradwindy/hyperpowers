@@ -1,9 +1,10 @@
 ---
-name: brainstorming
+name: brainstorm
 description: "Use when starting any creative work - creating features, building components, adding functionality, or modifying behavior"
 effort: high
 allowed-tools: Read, Grep, Glob, AskUserQuestion, WebSearch, WebFetch, Task
-user-invocable: false
+disable-model-invocation: true
+user-invocable: true
 ---
 
 # Brainstorming Ideas Into Designs

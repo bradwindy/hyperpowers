@@ -1,9 +1,10 @@
 ---
-name: researching
+name: research
 description: Use when starting deep technical research before planning, when needing to understand a new codebase area, or when the user invokes /hyperpowers:research
 effort: high
 allowed-tools: Read, Grep, Glob, WebSearch, WebFetch, Task, Write, AskUserQuestion
-user-invocable: false
+disable-model-invocation: true
+user-invocable: true
 ---
 
 # Research Skill

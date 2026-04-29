@@ -4,7 +4,8 @@ description: Use when encountering any bug, test failure, or unexpected behavior
 effort: high
 context: fork
 allowed-tools: Read, Grep, Glob, Bash, Write, Edit
-user-invocable: false
+disable-model-invocation: true
+user-invocable: true
 ---
 
 # Systematic Debugging

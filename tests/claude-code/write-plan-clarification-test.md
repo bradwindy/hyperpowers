@@ -98,7 +98,7 @@ Run this test BEFORE adding clarification phase to establish baseline behavior. 
 All implementation changes are in place as of this verification:
 
 #### 1. Phase 0 Section in SKILL.md
-**Location:** `/Users/bradley/Developer/hyperpowers/skills/writing-plans/SKILL.md` lines 20-58
+**Location:** `/Users/bradley/Developer/hyperpowers/skills/write-plan/SKILL.md` lines 20-58
 
 **Verified:**
 - Section "Phase 0: Request Clarification" exists
@@ -111,7 +111,7 @@ All implementation changes are in place as of this verification:
 - Output: `docs/hyperpowers/handoffs/context-clarification.md`
 
 #### 2. Updated Workflow Diagram
-**Location:** `/Users/bradley/Developer/hyperpowers/skills/writing-plans/SKILL.md` lines 92-153
+**Location:** `/Users/bradley/Developer/hyperpowers/skills/write-plan/SKILL.md` lines 92-153
 
 **Verified:**
 - Diagram includes Phase 0 nodes before Phase 1
@@ -121,7 +121,7 @@ All implementation changes are in place as of this verification:
 - Sequential flow maintained through all phases
 
 #### 3. Request Clarification Prompt Template
-**Location:** `/Users/bradley/Developer/hyperpowers/skills/writing-plans/request-clarification-prompt.md`
+**Location:** `/Users/bradley/Developer/hyperpowers/skills/write-plan/request-clarification-prompt.md`
 
 **Verified:**
 - File exists and is complete
@@ -136,7 +136,7 @@ All implementation changes are in place as of this verification:
 - Anti-patterns section prevents common mistakes
 
 #### 4. Context Synthesis with Clarification
-**Location:** `/Users/bradley/Developer/hyperpowers/skills/writing-plans/context-synthesis-prompt.md` lines 1-11
+**Location:** `/Users/bradley/Developer/hyperpowers/skills/write-plan/context-synthesis-prompt.md` lines 1-11
 
 **Verified:**
 - Section "Using Clarification Context" added at top
@@ -205,6 +205,6 @@ This verification confirms the implementation is complete and correct. To fully 
 
 ### Files Modified in This Feature
 
-1. `/Users/bradley/Developer/hyperpowers/skills/writing-plans/SKILL.md` - Added Phase 0, updated diagram
-2. `/Users/bradley/Developer/hyperpowers/skills/writing-plans/request-clarification-prompt.md` - Created template
-3. `/Users/bradley/Developer/hyperpowers/skills/writing-plans/context-synthesis-prompt.md` - Added clarification context section
+1. `/Users/bradley/Developer/hyperpowers/skills/write-plan/SKILL.md` - Added Phase 0, updated diagram
+2. `/Users/bradley/Developer/hyperpowers/skills/write-plan/request-clarification-prompt.md` - Created template
+3. `/Users/bradley/Developer/hyperpowers/skills/write-plan/context-synthesis-prompt.md` - Added clarification context section

@@ -75,8 +75,8 @@ done
 tests=(
     "test-subagent-driven-development.sh"
     "test-subagent-driven-development-cleanup.sh"
-    "test-writing-plans-context-gathering.sh"
-    "test-writing-plans-cleanup.sh"
+    "test-write-plan-context-gathering.sh"
+    "test-write-plan-cleanup.sh"
     "test-research.sh"
     "test-compound.sh"
     "issue-tracking-detection.test.sh"

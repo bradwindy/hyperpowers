@@ -36,14 +36,14 @@ else
 fi
 echo ""
 
-# Test: please use brainstorming
-echo ">>> Test 3: please-use-brainstorming"
-if "$SCRIPT_DIR/run-test.sh" "brainstorming" "$PROMPTS_DIR/please-use-brainstorming.txt"; then
+# Test: please use brainstorm
+echo ">>> Test 3: please-use-brainstorm"
+if "$SCRIPT_DIR/run-test.sh" "brainstorm" "$PROMPTS_DIR/please-use-brainstorm.txt"; then
     PASSED=$((PASSED + 1))
-    RESULTS="$RESULTS\nPASS: please-use-brainstorming"
+    RESULTS="$RESULTS\nPASS: please-use-brainstorm"
 else
     FAILED=$((FAILED + 1))
-    RESULTS="$RESULTS\nFAIL: please-use-brainstorming"
+    RESULTS="$RESULTS\nFAIL: please-use-brainstorm"
 fi
 echo ""
 

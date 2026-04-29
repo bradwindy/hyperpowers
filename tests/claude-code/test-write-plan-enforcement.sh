@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-# Test: writing-plans skill enforcement language exists
+# Test: write-plan skill enforcement language exists
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 source "$SCRIPT_DIR/test-helpers.sh"
 
-echo "=== Test: writing-plans enforcement language ==="
+echo "=== Test: write-plan enforcement language ==="
 echo ""
 
-SKILL_FILE="$SCRIPT_DIR/../../skills/writing-plans/SKILL.md"
+SKILL_FILE="$SCRIPT_DIR/../../skills/write-plan/SKILL.md"
 
 # Test 1: Iron Law exists
 echo "Test 1: Iron Law statement exists..."
@@ -65,4 +65,4 @@ else
 fi
 
 echo ""
-echo "=== All writing-plans enforcement tests passed ==="
+echo "=== All write-plan enforcement tests passed ==="

@@ -2,7 +2,8 @@
 name: validated-batch-development
 description: Use when executing implementation plans with intelligent batching based on buildability and parallel validation checkpoints
 allowed-tools: Bash, Read, Grep, Glob, Task, TodoWrite, AskUserQuestion, Write, Edit
-user-invocable: false
+disable-model-invocation: true
+user-invocable: true
 ---
 
 # Validated Batch Development
@@ -448,7 +449,7 @@ Use `hyperpowers:finishing-a-development-branch` skill:
 ## Integration
 
 **Required workflow skills:**
-- **hyperpowers:writing-plans** - Creates the plan this skill executes
+- **hyperpowers:write-plan** - Creates the plan this skill executes
 - **hyperpowers:verification-before-completion** - Final evidence-based verification
 - **hyperpowers:finishing-a-development-branch** - Complete development after all tasks
 

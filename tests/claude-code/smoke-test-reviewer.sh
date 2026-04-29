@@ -13,7 +13,7 @@ echo "=== Smoke Test: Reviewer Pattern ==="
 echo ""
 
 # Create minimal synthetic session output for testing
-# This simulates a COMPLIANT brainstorming session
+# This simulates a COMPLIANT brainstorm session
 SYNTHETIC_SESSION_PASS="
 I'll help you add a dark mode toggle. Let me first understand the project.
 
@@ -69,7 +69,7 @@ Design saved. I'll wait for your feedback before any implementation.
 "
 
 # Create minimal synthetic session output for testing
-# This simulates a NON-COMPLIANT brainstorming session
+# This simulates a NON-COMPLIANT brainstorm session
 SYNTHETIC_SESSION_FAIL="
 I'll add a dark mode toggle to the app. This is a straightforward feature.
 
@@ -87,9 +87,9 @@ And updating the page to include it...
 "
 
 # Read the template and required files
-CHECKLIST=$(cat "$SCRIPT_DIR/skills/brainstorming/checklist.md")
-SKIPPING_SIGNS=$(cat "$SCRIPT_DIR/skills/brainstorming/skipping-signs.md")
-SKILL_NAME="brainstorming"
+CHECKLIST=$(cat "$SCRIPT_DIR/skills/brainstorm/checklist.md")
+SKIPPING_SIGNS=$(cat "$SCRIPT_DIR/skills/brainstorm/skipping-signs.md")
+SKILL_NAME="brainstorm"
 
 # Test 1: Generate reviewer prompt for PASSING scenario
 echo "Test 1: Generate reviewer prompt for PASSING scenario..."
@@ -116,7 +116,7 @@ echo "(This will call Claude - may take 30-60 seconds)"
 VERDICT_PASS=$(claude -p "$REVIEWER_PROMPT_PASS" --model haiku --max-turns 1 2>&1 || true)
 
 # Check if output contains JSON structure
-if echo "$VERDICT_PASS" | grep -q '"skill".*:.*"brainstorming"'; then
+if echo "$VERDICT_PASS" | grep -q '"skill".*:.*"brainstorm"'; then
     echo "  [PASS] Output contains skill field"
 else
     echo "  [FAIL] Output missing skill field"

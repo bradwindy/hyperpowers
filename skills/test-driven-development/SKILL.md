@@ -1,7 +1,8 @@
 ---
 name: test-driven-development
 description: Use when implementing any feature or bugfix, before writing implementation code
-user-invocable: false
+disable-model-invocation: true
+user-invocable: true
 ---
 
 # Test-Driven Development (TDD)

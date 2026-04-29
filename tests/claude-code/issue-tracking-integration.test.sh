@@ -19,20 +19,20 @@ fail() {
 test_research_has_related_issues_section() {
     echo "Testing: Research skill includes Related Issues section"
 
-    grep -q "## Related Issues" skills/researching/SKILL.md || fail "Missing Related Issues section"
-    grep -q "Phase 2.5" skills/researching/SKILL.md || fail "Missing Phase 2.5"
+    grep -q "## Related Issues" skills/research/SKILL.md || fail "Missing Related Issues section"
+    grep -q "Phase 2.5" skills/research/SKILL.md || fail "Missing Phase 2.5"
 
     pass "Research skill updated"
 }
 
 test_writing_plans_has_issue_context() {
-    echo "Testing: Writing-plans skill carries issue context"
+    echo "Testing: Write-plan skill carries issue context"
 
-    grep -q "Phase 0.5\|Issue Context" skills/writing-plans/SKILL.md || fail "Missing issue context phase"
-    grep -q "Related Issues:" skills/writing-plans/SKILL.md || fail "Missing Related Issues in header"
-    grep -q "Primary Issue:" skills/writing-plans/SKILL.md || fail "Missing Primary Issue in header"
+    grep -q "Phase 0.5\|Issue Context" skills/write-plan/SKILL.md || fail "Missing issue context phase"
+    grep -q "Related Issues:" skills/write-plan/SKILL.md || fail "Missing Related Issues in header"
+    grep -q "Primary Issue:" skills/write-plan/SKILL.md || fail "Missing Primary Issue in header"
 
-    pass "Writing-plans skill updated"
+    pass "Write-plan skill updated"
 }
 
 test_subagent_has_pre_implementation() {
